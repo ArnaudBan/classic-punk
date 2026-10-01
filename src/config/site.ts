@@ -19,7 +19,7 @@ export const site = {
 
   guitarSocialClub: {
     url: 'https://guitarsocialclub.com/',
-    // TODO: chiffres à valider avec l'associé avant publication
+    // Chiffres validés avec l'associé (1er octobre 2026)
     stats: [
       { value: '4,8/5', label: "sur l'App Store" },
       { value: '33', label: 'outils gratuits dans le navigateur' },
@@ -29,8 +29,7 @@ export const site = {
   },
 
   about: {
-    // TODO: phrase [OPTION] sur le groupe de punk hardcore, à valider
-    showBand: false,
+    showBand: true,
     // TODO: portrait d'Arnaud (noir et blanc, grain, cadrage serré, 4:5)
     portrait: null as ImageMetadata | null,
   },
@@ -38,8 +37,8 @@ export const site = {
   /** Formulaire de contact : pas de service tiers, le formulaire prépare un e-mail (mailto:). */
   contact: {
     provider: 'mailto' as const,
-    // TODO: [OPTION] réseaux (LinkedIn, GitHub, Mastodon / Bluesky)
-    socials: '[OPTION] LinkedIn, GitHub, Mastodon / Bluesky : [À COMPLÉTER]',
+    /** Réseaux affichés sur la page Contact (et dans le JSON-LD sameAs). */
+    socials: [{ label: 'GitHub', url: 'https://github.com/ArnaudBan/' }],
   },
 
   /**

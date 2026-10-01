@@ -66,7 +66,6 @@ export const contact = {
   coords: {
     eyebrow: 'Coordonnées',
     title: 'Écrire directement',
-    socials: site.contact.socials,
   },
   support: {
     eyebrow: 'Support des apps',

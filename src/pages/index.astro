@@ -36,6 +36,7 @@ const jsonLd = [
     name: site.founder.name,
     jobTitle: site.founder.jobTitle,
     worksFor: { '@id': `${site.url}/#organization` },
+    sameAs: site.contact.socials.map((s) => s.url),
   },
 ];
 ---

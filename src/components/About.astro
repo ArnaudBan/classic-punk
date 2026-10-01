@@ -1,12 +1,13 @@
 ---
 /** À propos : portrait (emplacement 4:5 tant qu'il n'est pas fourni) et texte. */
 import { Picture } from 'astro:assets';
+import TextLink from './TextLink.astro';
 import { site } from '../config/site';
 
 interface Props {
   lead: string;
   paragraphs: readonly string[];
-  band?: string;
+  band?: { before: string; link: { label: string; href: string }; after: string };
   caption: string;
 }
 const { lead, paragraphs, band, caption } = Astro.props;
@@ -38,7 +39,9 @@ const portrait = site.about.portrait;
     {
       site.about.showBand && band && (
         <div class="about__band">
-          <p class="about__muted">{band}</p>
+          <p class="about__muted">
+            {band.before} <TextLink href={band.link.href} external>{band.link.label}</TextLink>{band.after}
+          </p>
         </div>
       )
     }

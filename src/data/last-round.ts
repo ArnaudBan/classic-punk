@@ -9,7 +9,7 @@ import semaine from '../assets/apps/lr-11-semaine.webp';
 export const lastRound = {
   hero: {
     credits: ['CP-002', 'Last Round', 'iPhone', 'iOS 17 et plus', 'Sans compte ni pub'],
-    eyebrow: 'Last Round · une manche Classic Punk',
+    eyebrow: 'Last Round · un set Classic Punk',
     titleStart: "La dernière manche, c'est",
     titleHighlight: 'toi',
     titleEnd: 'qui la décides.',

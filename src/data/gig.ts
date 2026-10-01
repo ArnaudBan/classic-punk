@@ -8,8 +8,6 @@ import setlistClientDark from '../assets/apps/gig-setlist-client-dark.png';
 const TODO_MIN_OS = '[À COMPLÉTER : version minimale]';
 const TODO_SILICON_INTEL = '[À VÉRIFIER]';
 const TODO_DATA_TRANSFER = '[À COMPLÉTER : comment transférer les données — export CSV, sauvegarde Time Machine…]';
-const TODO_ARCHIVED = '[À TRANCHER — proposition : oui, tous les clients comptent, archivés compris.]';
-const TODO_LANGUAGE = '[À COMPLÉTER selon la décision de langue de lancement.]';
 
 export const gig = {
   hero: {
@@ -112,8 +110,8 @@ export const gig = {
         q: 'Que se passe-t-il si je change de Mac ?',
         a: `Ton achat se restaure depuis l'App Store avec ton identifiant Apple (bouton « Restaurer les achats » dans l'app). ${TODO_DATA_TRANSFER}`,
       },
-      { q: 'Les clients archivés comptent-ils dans la limite gratuite ?', a: TODO_ARCHIVED },
-      { q: 'Gig est-il disponible en anglais ?', a: TODO_LANGUAGE },
+      { q: 'Les clients archivés comptent-ils dans la limite gratuite ?', a: 'Oui : tous les clients comptent, archivés compris.' },
+      { q: 'Gig est-il disponible en anglais ?', a: "Pas encore : pour l'instant, Gig existe uniquement en français." },
       {
         q: "Besoin d'aide ?",
         a: 'Écris-moi depuis la page contact en choisissant',

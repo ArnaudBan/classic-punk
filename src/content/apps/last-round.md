@@ -2,7 +2,7 @@
 name: Last Round
 slug: last-round
 catalog: CP-002
-endorsement: une manche Classic Punk # TODO: [OPTION] ou « un set Classic Punk »
+endorsement: un set Classic Punk
 platform: ios
 minOS: iOS 17
 status: dev

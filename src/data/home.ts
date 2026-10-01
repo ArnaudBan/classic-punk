@@ -109,7 +109,6 @@ export const home = {
     title: 'En tournée avec Guitar Social Club',
     paragraphs: [
       "Je suis associé de Guitar Social Club, une méthode pour apprendre ou reprendre la guitare à l'âge adulte, fondée par le professeur Yohann Abbou. J'y développe le site, l'application principale et l'ensemble des outils.",
-      // TODO: chiffres à vérifier avant publication (4,8/5, 33 outils)
       "Au programme : une app notée 4,8/5 sur l'App Store, des dizaines d'outils gratuits qui tournent dans le navigateur (accordeur, détecteur d'accords, métronome…), un test qui écoute réellement le jeu du guitariste, et une pédagogie développée avec le CNRS.",
     ],
     link: 'Voir Guitar Social Club',
@@ -125,7 +124,12 @@ export const home = {
       "Le studio m'a appris deux choses qui ne m'ont jamais quitté. La première : la technique ne pardonne pas, une phase inversée s'entend, un détail négligé aussi. La seconde : sans énergie, sans parti pris, même un enregistrement parfait ne raconte rien.",
       "En 2010, j'ai changé d'instrument et je me suis mis au développement. Depuis 2024, je propose mes services en indépendant sous le nom de Classic Punk : un studio d'une personne, sans investisseurs, où chaque projet est mixé avec le même soin.",
     ],
-    band: "Et je n'ai pas raccroché la guitare : je joue toujours dans un groupe de punk hardcore, qui vient de sortir son premier vinyle.",
+    // TODO: texte adapté (nom du groupe, rôle de bassiste), à valider
+    band: {
+      before: "Et je n'ai pas raccroché la guitare : je suis le bassiste de",
+      link: { label: 'Vigilante', href: 'https://vigilante.band/' },
+      after: ', un groupe de punk hardcore qui vient de sortir son premier vinyle.',
+    },
     caption: fr.home.portraitCaption,
   },
 

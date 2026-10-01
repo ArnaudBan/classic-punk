@@ -19,7 +19,6 @@ const DISPLAY_FONTS = {
 const pageUrl = new URL(`/${app.slug}/`, site.url).href;
 
 const os = app.platform === 'macos' ? 'macOS' : 'iOS';
-const price = app.price ? Number.parseFloat(app.price.replace(',', '.').replace(/[^\d.]/g, '')) : undefined;
 
 const jsonLd = [
   {
@@ -31,10 +30,8 @@ const jsonLd = [
     operatingSystem: app.minOS ?? os,
     applicationCategory: app.category,
     publisher: { '@type': 'Organization', name: site.name, url: `${site.url}/` },
-    ...(price !== undefined &&
-      !Number.isNaN(price) && {
-        offers: { '@type': 'Offer', price: price.toFixed(2), priceCurrency: 'EUR' },
-      }),
+    // Apps en freemium : téléchargement gratuit, l'achat intégré est décrit sur la page.
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
     ...(app.storeUrl && { downloadUrl: app.storeUrl }),
   },
   {
