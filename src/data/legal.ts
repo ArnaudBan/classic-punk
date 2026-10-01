@@ -38,9 +38,9 @@ export const legal = {
     id: 'confidentialite',
     title: 'Confidentialité du site',
     paragraphs: [
-      "Ce site ne dépose aucun cookie publicitaire et n'utilise aucun outil de suivi [À VÉRIFIER si une mesure d'audience sans cookie est ajoutée].",
-      // TODO: texte adapté au formulaire mailto (le contenu d'origine citait un service d'envoi), à valider
-      `Les seules données collectées sont celles que vous saisissez dans le formulaire de contact (nom, e-mail, message). Le formulaire ne les envoie à aucun serveur : il prépare un e-mail dans votre propre messagerie, que vous choisissez d'envoyer. Elles servent uniquement à vous répondre et sont conservées ${l.retention}.`,
+      "Ce site ne dépose aucun cookie et n'utilise aucun outil de suivi, de mesure d'audience ni de publicité.",
+      // Texte adapté au formulaire mailto (le contenu d'origine citait un service d'envoi).
+      `Les seules données collectées sont celles que vous saisissez dans le formulaire de contact (nom, e-mail, message). Le formulaire ne les envoie à aucun serveur : il prépare un e-mail dans votre propre messagerie, que vous choisissez d'envoyer. Les messages reçus sont hébergés par ${l.mailHost}. Ils servent uniquement à vous répondre et sont conservés ${l.retention}.`,
     ],
     rights: {
       before: "Vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à",
@@ -77,7 +77,7 @@ export const legal = {
         {
           id: 'last-round-conditions',
           title: "Conditions d'utilisation de Last Round",
-          text: "Last Round est distribué via l'App Store et soumis au contrat de licence standard d'Apple (EULA). [À COMPLÉTER selon le modèle économique.]",
+          text: "Last Round est distribué via l'App Store et soumis au contrat de licence standard d'Apple (EULA). L'application s'essaie gratuitement pendant 14 jours. Un achat intégré unique de 3,99 €, sans abonnement, permet ensuite de continuer à l'utiliser ; il est partagé avec votre famille grâce au Partage familial d'Apple et restaurable sur vos appareils via le bouton « Restaurer les achats ». Les remboursements sont gérés par Apple.",
         },
       ],
     },
@@ -86,7 +86,7 @@ export const legal = {
   property: {
     id: 'propriete',
     title: 'Propriété intellectuelle',
-    text: "Les textes, visuels, logos et applications présentés sur ce site appartiennent à Classic Punk, sauf mention contraire. Guitar Social Club est une marque de ses propriétaires respectifs [À VÉRIFIER]. Apple, App Store, Mac et iPhone sont des marques d'Apple Inc.",
+    text: "Les textes, visuels, logos et applications présentés sur ce site appartiennent à Classic Punk, sauf mention contraire. Guitar Social Club est une marque de ses propriétaires respectifs. Apple, App Store, Mac et iPhone sont des marques d'Apple Inc.",
     updatedLabel: 'Dernière mise à jour :',
     updatedAt: l.updatedAt,
   },

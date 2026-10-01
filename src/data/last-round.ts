@@ -5,8 +5,6 @@
 import enCours from '../assets/apps/lr-09-manche-en-cours.webp';
 import semaine from '../assets/apps/lr-11-semaine.webp';
 
-// TODO: réponse de FAQ encore à trancher (affichée telle quelle jusqu'à décision)
-const TODO_PRICING = '[À COMPLÉTER : modèle économique]';
 
 export const lastRound = {
   hero: {
@@ -104,7 +102,10 @@ export const lastRound = {
       },
       { q: 'Sur quels appareils ?', a: 'iPhone avec iOS 17 ou ultérieur.' },
       { q: 'Mes données sont-elles envoyées quelque part ?', a: 'Non. Tout reste sur ton iPhone.' },
-      { q: 'Combien coûte Last Round ?', a: TODO_PRICING },
+      {
+        q: 'Combien coûte Last Round ?',
+        a: '14 jours gratuits, puis 3,99 € une fois, sans abonnement. Avec le Partage familial, un seul achat couvre toute la famille.',
+      },
       {
         q: "Besoin d'aide ?",
         a: 'Écris-moi depuis la page contact en choisissant',

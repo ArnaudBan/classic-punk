@@ -56,8 +56,10 @@ export const site = {
     vat: 'FR69931433304',
     director: 'Arnaud Banvillet',
     host: 'Infomaniak Network SA, Rue Eugène-Marziano 25, 1227 Les Acacias (GE), Suisse — +41 22 820 35 44',
-    // TODO: durée de conservation des messages
-    retention: '[À COMPLÉTER : durée, ex. 3 ans après le dernier échange]',
+    /** Durée de conservation des messages reçus par le formulaire. */
+    retention: 'un an après notre dernier échange',
+    /** Hébergement de la messagerie de contact. */
+    mailHost: 'Infomaniak, en Suisse, sur des serveurs sécurisés',
     // TODO: à mettre à jour à chaque modification de la page légale
     updatedAt: '1er octobre 2026',
   },

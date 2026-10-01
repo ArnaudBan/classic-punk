@@ -7,7 +7,7 @@ platform: ios
 minOS: iOS 17
 status: dev
 # storeUrl: à renseigner avec status: available
-# price: TODO: modèle économique
+price: 3,99 € # 14 jours gratuits, puis achat unique (Partage familial activé)
 release: '2027'
 category: LifestyleApplication
 theme: last-round
