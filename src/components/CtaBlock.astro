@@ -76,7 +76,20 @@ const { id, kicker, titleStart, titleHighlight, text, button } = Astro.props;
     line-height: 30px;
     color: var(--cp-on-inverse-2);
   }
+  /* Last Round : titres affiche en Lilita One, en casse normale. */
+  :global([data-theme='last-round']) .cta__title {
+    font-weight: 400;
+    font-size: 88px;
+    line-height: 1;
+    text-transform: none;
+  }
   @media (max-width: 767px) {
+    :global([data-theme='last-round']) .cta__title {
+      font-size: 42px;
+    }
+    :global([data-theme='last-round']) .cta__title :global(.cp-highlight) {
+      white-space: normal;
+    }
     .cta {
       padding: var(--space-8) 0;
     }

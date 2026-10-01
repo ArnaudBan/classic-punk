@@ -211,6 +211,8 @@ textarea.cp-field__control{min-height:160px;resize:vertical}
 @media (max-width:767px){.cp-footer__inner{grid-template-columns:minmax(0,1fr);padding:var(--space-7) var(--gutter-mobile) var(--space-5);gap:var(--space-6)}.cp-footer__sig{font-size:40px}}
 
 /* Thèmes des pages d'app. À poser sur le CONTENU de la page (<main data-theme="gig">), jamais sur l'en-tête ni le pied de page.
-   L'accent, le papier, le focus et la police affiche basculent sur ceux de l'app ; tous les composants suivent. */
+   L'accent, le papier, le focus et la police affiche basculent sur ceux de l'app ; tous les composants suivent.
+   Les alias (--cp-rule, --cp-on-accent, --cp-focus…) sont redéclarés ici : une variable qui en cite une autre est résolue sur :root. */
 [data-theme="gig"]{--cp-paper:var(--gig-paper);--cp-accent:var(--gig-punk);--cp-on-accent:var(--gig-on-punk);--cp-focus:var(--gig-punk-text);--font-condensed:var(--font-gig-display);background:var(--cp-paper)}
-[data-theme="last-round"]{--cp-accent:var(--lr-secondary);--cp-on-accent:var(--lr-on-secondary);--cp-focus:var(--lr-primary)}
+[data-theme="last-round"]{--cp-paper:var(--lr-background);--cp-paper-raised:var(--lr-surface);--cp-paper-sunk:var(--lr-surface);--cp-ink:var(--lr-text);--cp-ink-2:var(--lr-text-2);--cp-ink-3:var(--lr-text-2);--cp-rule:var(--lr-rule);--cp-hairline:var(--lr-surface-raised);--cp-accent:var(--lr-secondary);--cp-on-accent:var(--lr-on-secondary);--cp-marker:var(--lr-secondary);--cp-focus:var(--lr-secondary);--cp-inverse:var(--lr-primary);--cp-on-inverse:var(--lr-on-primary);--cp-on-inverse-2:var(--lr-on-primary);--cp-focus-inverse:var(--lr-secondary);--cp-success:var(--lr-ok);--cp-error:var(--lr-danger);--cp-disabled:var(--lr-surface-raised);--cp-on-disabled:var(--lr-text-2);--shadow-sleeve:6px 6px 0 var(--lr-primary);--font-condensed:var(--font-lr-display);background:var(--cp-paper);color:var(--cp-ink)}
+[data-theme="last-round"] .cp-stats__value,[data-theme="last-round"] .cp-price__amount{font-family:var(--font-lr-numbers);font-weight:800;font-variant-numeric:tabular-nums}

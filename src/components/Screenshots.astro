@@ -1,6 +1,11 @@
 ---
-/** Galerie de captures légendées, dans une grille à filets. */
+/**
+ * Galerie de captures légendées.
+ * - `framed` : cellules à filets sur fond sunk (Gig, captures Mac).
+ * - `phones` : écrans iPhone dans le cadre de l'app, légende centrée (Last Round).
+ */
 import { Picture } from 'astro:assets';
+import PhoneShot from './PhoneShot.astro';
 
 interface Shot {
   src: ImageMetadata;
@@ -9,23 +14,31 @@ interface Shot {
 }
 interface Props {
   shots: readonly Shot[];
+  variant?: 'framed' | 'phones';
   /** Largeurs relatives des colonnes (ex. [1, 1, 1.5]) ; par défaut, colonnes égales. */
   columns?: readonly number[];
 }
-const { shots, columns } = Astro.props;
+const { shots, variant = 'framed', columns } = Astro.props;
 const template = (columns ?? shots.map(() => 1)).map((c) => `minmax(0,${c}fr)`).join(' ');
 ---
 
-<div class="shots" style={`--shots-cols:${template}`}>
+<div class:list={['shots', `shots--${variant}`]} style={`--shots-cols:${template}`}>
   {
-    shots.map((s) => (
-      <figure>
-        <div class="shots__pad">
-          <Picture src={s.src} alt={s.alt} formats={['avif']} fallbackFormat="webp" class="shots__img" />
-        </div>
-        {s.caption && <figcaption>{s.caption}</figcaption>}
-      </figure>
-    ))
+    shots.map((s) =>
+      variant === 'phones' ? (
+        <figure>
+          <PhoneShot src={s.src} alt={s.alt} width={230} />
+          {s.caption && <figcaption>{s.caption}</figcaption>}
+        </figure>
+      ) : (
+        <figure>
+          <div class="shots__pad">
+            <Picture src={s.src} alt={s.alt} formats={['avif']} fallbackFormat="webp" class="shots__img" />
+          </div>
+          {s.caption && <figcaption>{s.caption}</figcaption>}
+        </figure>
+      ),
+    )
   }
 </div>
 
@@ -33,13 +46,26 @@ const template = (columns ?? shots.map(() => 1)).map((c) => `minmax(0,${c}fr)`).
   .shots {
     display: grid;
     grid-template-columns: var(--shots-cols);
-    border-top: var(--border-hair) solid var(--cp-rule);
-    border-left: var(--border-hair) solid var(--cp-rule);
   }
   figure {
     margin: 0;
     display: flex;
     flex-direction: column;
+  }
+  figcaption {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.06em;
+    color: var(--cp-ink-2);
+  }
+
+  /* framed */
+  .shots--framed {
+    border-top: var(--border-hair) solid var(--cp-rule);
+    border-left: var(--border-hair) solid var(--cp-rule);
+  }
+  .shots--framed figure {
     border-right: var(--border-hair) solid var(--cp-rule);
     border-bottom: var(--border-hair) solid var(--cp-rule);
   }
@@ -59,16 +85,24 @@ const template = (columns ?? shots.map(() => 1)).map((c) => `minmax(0,${c}fr)`).
     height: auto;
     border: var(--border-hair) solid var(--gig-ink);
   }
-  figcaption {
+  .shots--framed figcaption {
     padding: var(--space-3) var(--space-4);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: 0.06em;
-    color: var(--cp-ink-2);
   }
+
+  /* phones */
+  .shots--phones {
+    gap: var(--space-5);
+  }
+  .shots--phones figure {
+    gap: 14px;
+    align-items: center;
+  }
+  .shots--phones figcaption {
+    text-align: center;
+  }
+
   @media (max-width: 767px) {
-    .shots {
+    .shots--framed {
       grid-template-columns: minmax(0, 1fr);
     }
     .shots__pad {
@@ -77,6 +111,10 @@ const template = (columns ?? shots.map(() => 1)).map((c) => `minmax(0,${c}fr)`).
     }
     .shots :global(.shots__img) {
       max-height: 380px;
+    }
+    .shots--phones {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px var(--space-4);
     }
   }
 </style>

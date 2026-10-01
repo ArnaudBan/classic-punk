@@ -8,10 +8,11 @@ interface Props {
   side?: string;
   figure?: { src: ImageMetadata; alt: string; caption?: string };
 }
+/* Sans `figure`, le slot `aside` accueille un visuel libre à droite. */
 const { items, side = 'A', figure } = Astro.props;
 ---
 
-<div class:list={['features', figure && 'features--figure']}>
+<div class:list={['features', (figure || Astro.slots.has('aside')) && 'features--figure']}>
   <TrackList items={items} side={side} />
   {
     figure && (
@@ -29,6 +30,7 @@ const { items, side = 'A', figure } = Astro.props;
       </figure>
     )
   }
+  <slot name="aside" />
 </div>
 
 <style>

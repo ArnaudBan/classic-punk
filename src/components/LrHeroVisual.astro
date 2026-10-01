@@ -1,0 +1,85 @@
+---
+/** Visuel du hero de Last Round : icône, endossement et deux écrans superposés. */
+import { Image } from 'astro:assets';
+import PhoneShot from './PhoneShot.astro';
+
+interface Shot {
+  src: ImageMetadata;
+  alt: string;
+}
+interface Props {
+  icon: ImageMetadata;
+  name: string;
+  eyebrow: string;
+  front: Shot;
+  back: Shot;
+}
+const { icon, name, eyebrow, front, back } = Astro.props;
+---
+
+<div class="lr-visual">
+  <div class="lr-visual__top">
+    <Image src={icon} alt={`Icône de ${name}`} width={64} height={64} densities={[1, 2]} class="lr-visual__icon" />
+    <span class="lr-visual__eyebrow">{eyebrow}</span>
+  </div>
+  <div class="lr-phones">
+    <PhoneShot src={back.src} alt={back.alt} width={230} loading="eager" class="lr-phones__b" />
+    <PhoneShot src={front.src} alt={front.alt} width={250} loading="eager" class="lr-phones__a" />
+  </div>
+</div>
+
+<style>
+  .lr-visual {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .lr-visual__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .lr-visual :global(.lr-visual__icon) {
+    width: 64px;
+    height: 64px;
+    border-radius: 15px;
+  }
+  .lr-visual__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cp-ink-2);
+  }
+  .lr-phones {
+    position: relative;
+    height: 600px;
+  }
+  .lr-phones :global(.lr-phones__a),
+  .lr-phones :global(.lr-phones__b) {
+    position: absolute;
+  }
+  .lr-phones :global(.lr-phones__a) {
+    left: 20px;
+    top: 0;
+  }
+  .lr-phones :global(.lr-phones__b) {
+    right: 0;
+    top: 40px;
+    transform: rotate(4deg);
+  }
+  @media (max-width: 767px) {
+    .lr-phones {
+      height: 470px;
+    }
+    .lr-phones :global(.lr-phones__a) {
+      width: 180px;
+      left: var(--space-2);
+    }
+    .lr-phones :global(.lr-phones__b) {
+      width: 170px;
+      right: var(--space-2);
+    }
+  }
+</style>

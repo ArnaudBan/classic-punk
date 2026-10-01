@@ -10,6 +10,12 @@ interface Props {
   app: CollectionEntry<'apps'>['data'];
 }
 const { app } = Astro.props;
+
+/** Police affiche de l'app, utilisée dès le premier écran (H1). */
+const DISPLAY_FONTS = {
+  gig: '/fonts/Anton-Regular.woff2',
+  'last-round': '/fonts/LilitaOne-Regular.woff2',
+} as const;
 const pageUrl = new URL(`/${app.slug}/`, site.url).href;
 
 const os = app.platform === 'macos' ? 'macOS' : 'iOS';
@@ -44,7 +50,7 @@ const jsonLd = [
 
 <BaseLayout title={app.seo.title} description={app.seo.description} theme={app.theme}>
   <Fragment slot="head">
-    {app.theme === 'gig' && <link rel="preload" href="/fonts/Anton-Regular.woff2" as="font" type="font/woff2" crossorigin />}
+    <link rel="preload" href={DISPLAY_FONTS[app.theme]} as="font" type="font/woff2" crossorigin />
     <JsonLd data={jsonLd} />
   </Fragment>
   <slot />

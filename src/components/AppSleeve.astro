@@ -49,8 +49,6 @@ const isGig = app.theme === 'gig';
 
 <style>
   .sleeve {
-    /* Trame à points de Last Round : couleur issue de la maquette, absente des tokens. */
-    --lr-dot: #262048;
     position: relative;
     height: 440px;
     overflow: hidden;
@@ -65,7 +63,7 @@ const isGig = app.theme === 'gig';
   }
   .sleeve--lr {
     background-color: var(--lr-background);
-    background-image: radial-gradient(var(--lr-dot) 1.2px, transparent 1.4px);
+    background-image: radial-gradient(var(--lr-surface-raised) 1.2px, transparent 1.4px);
     background-size: 22px 22px;
   }
 

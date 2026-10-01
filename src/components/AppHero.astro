@@ -8,9 +8,11 @@ interface Props {
   credits: readonly string[];
   titleStart: string;
   titleHighlight?: string;
+  /** Suite du titre après le mot surligné. */
+  titleEnd?: string;
   lead: string;
 }
-const { credits, titleStart, titleHighlight, lead } = Astro.props;
+const { credits, titleStart, titleHighlight, titleEnd, lead } = Astro.props;
 ---
 
 <section class="app-hero">
@@ -19,10 +21,11 @@ const { credits, titleStart, titleHighlight, lead } = Astro.props;
       <div>
         <Credits items={credits} />
         <h1 class="app-hero__title">
-          {titleStart}{titleHighlight && <> <Highlight>{titleHighlight}</Highlight></>}
+          {titleStart}{titleHighlight && <> <Highlight>{titleHighlight}</Highlight></>}{titleEnd && ` ${titleEnd}`}
         </h1>
         <p class="app-hero__lead">{lead}</p>
         <slot name="actions" />
+        <slot name="meta" />
       </div>
       <div><slot name="visual" /></div>
     </div>
@@ -64,7 +67,20 @@ const { credits, titleStart, titleHighlight, lead } = Astro.props;
     line-height: 30px;
     color: var(--cp-ink-2);
   }
+  /* Last Round : titres affiche en Lilita One, en casse normale. */
+  :global([data-theme='last-round']) .app-hero__title {
+    font-weight: 400;
+    font-size: 88px;
+    line-height: 1;
+    text-transform: none;
+  }
+  :global([data-theme='last-round']) .app-hero__lead {
+    margin-top: 28px;
+  }
   @media (max-width: 767px) {
+    :global([data-theme='last-round']) .app-hero__title {
+      font-size: 48px;
+    }
     .app-hero__grid {
       grid-template-columns: minmax(0, 1fr);
       gap: var(--space-6);

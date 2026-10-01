@@ -1,0 +1,38 @@
+---
+/** Capture d'écran iPhone dans le cadre de Last Round : contour 3 px, coins arrondis, ombre dure. */
+import { Picture } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  /** Largeur d'affichage maximale en px (sert aussi à générer les tailles d'image). */
+  width: number;
+  loading?: 'lazy' | 'eager';
+  class?: string;
+}
+const { src, alt, width, loading = 'lazy', class: className } = Astro.props;
+---
+
+<Picture
+  src={src}
+  alt={alt}
+  formats={['avif']}
+  fallbackFormat="webp"
+  widths={[width, Math.min(width * 2, src.width)]}
+  sizes={`${width}px`}
+  loading={loading}
+  class:list={['phone-shot', className]}
+  style={`--phone-w:${width}px`}
+/>
+
+<style>
+  :global(.phone-shot) {
+    display: block;
+    width: var(--phone-w);
+    max-width: 100%;
+    height: auto;
+    border: var(--border-heavy) solid var(--lr-ink);
+    border-radius: 30px;
+    box-shadow: 0 8px 0 var(--lr-ink);
+  }
+</style>

@@ -1,0 +1,174 @@
+---
+import { getEntry } from 'astro:content';
+import AppLayout from '../layouts/AppLayout.astro';
+import ActionRow from '../components/ActionRow.astro';
+import AppHero from '../components/AppHero.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import Faq from '../components/Faq.astro';
+import FeatureList from '../components/FeatureList.astro';
+import LrHeroVisual from '../components/LrHeroVisual.astro';
+import LrWidget from '../components/LrWidget.astro';
+import NoDataCard from '../components/NoDataCard.astro';
+import PhoneShot from '../components/PhoneShot.astro';
+import Screenshots from '../components/Screenshots.astro';
+import Section from '../components/Section.astro';
+import SectionHead from '../components/SectionHead.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+import StoreButton from '../components/StoreButton.astro';
+import TextLink from '../components/TextLink.astro';
+import TrackList from '../components/TrackList.astro';
+import { lastRound } from '../data/last-round';
+
+const entry = await getEntry('apps', 'last-round');
+if (!entry) throw new Error('Entrée « last-round » absente de la collection apps.');
+const app = entry.data;
+const featured = app.screenshots.find((s) => s.featured) ?? app.screenshots[0];
+if (!featured) throw new Error('Last Round : aucune capture dans la collection.');
+const { hero, steps, features, parents, faq, cta } = lastRound;
+---
+
+<AppLayout app={app}>
+  <div class="dots">
+    <AppHero
+      credits={hero.credits}
+      titleStart={hero.titleStart}
+      titleHighlight={hero.titleHighlight}
+      titleEnd={hero.titleEnd}
+      lead={hero.lead}
+    >
+      <ActionRow slot="actions">
+        <StoreButton status={app.status} platform={app.platform} storeUrl={app.storeUrl} />
+        <TextLink href={hero.secondary.href}>{hero.secondary.label}</TextLink>
+      </ActionRow>
+      {
+        app.status !== 'available' && (
+          <div slot="meta" class="hero-meta">
+            <StatusBadge status={app.status} platform={app.platform} />
+            {app.release && <span class="hero-meta__release">{`${hero.releaseLabel} ${app.release}`}</span>}
+          </div>
+        )
+      }
+      <LrHeroVisual
+        slot="visual"
+        icon={app.icon}
+        name={app.name}
+        eyebrow={hero.eyebrow}
+        front={featured}
+        back={hero.secondShot}
+      />
+    </AppHero>
+  </div>
+
+  <Section id={steps.id}>
+    <SectionHead number={steps.number} eyebrow={steps.eyebrow} title={steps.title} />
+    <TrackList items={steps.items} columns={4} />
+    <Screenshots shots={app.screenshots} variant="phones" />
+  </Section>
+
+  <Section id={features.id} ruled>
+    <SectionHead number={features.number} eyebrow={features.eyebrow} title={features.title} />
+    <FeatureList items={features.items}>
+      <div slot="aside" class="feature-aside">
+        <PhoneShot src={features.week.src} alt={features.week.alt} width={260} />
+        <div class="widget-row">
+          <LrWidget
+            alt={features.widget.alt}
+            remaining={features.widget.remaining}
+            label={features.widget.label}
+            ratio={features.widget.ratio}
+          />
+          <p class="widget-row__caption">{features.widget.caption}</p>
+        </div>
+      </div>
+    </FeatureList>
+  </Section>
+
+  <Section id={parents.id} tone="sunk" ruled>
+    <SectionHead number={parents.number} eyebrow={parents.eyebrow} title={parents.title} />
+    <div class="parents">
+      <div class="parents__text">
+        <p>{parents.lead}</p>
+        <p class="parents__muted">{parents.text}</p>
+      </div>
+      <NoDataCard title={parents.noData.title} items={parents.noData.items} />
+    </div>
+  </Section>
+
+  <Section id={faq.id}>
+    <SectionHead number={faq.number} eyebrow={faq.eyebrow} title={faq.title} />
+    <Faq items={faq.items} />
+  </Section>
+
+  <CtaBlock kicker={cta.kicker} titleStart={cta.titleStart} titleHighlight={cta.titleHighlight}>
+    <ActionRow slot="actions">
+      <StoreButton status={app.status} platform={app.platform} storeUrl={app.storeUrl} />
+      <TextLink href={cta.link.href}>{cta.link.label}</TextLink>
+    </ActionRow>
+  </CtaBlock>
+</AppLayout>
+
+<style>
+  .dots {
+    background-color: var(--lr-background);
+    background-image: radial-gradient(var(--lr-surface-raised) 1.2px, transparent 1.4px);
+    background-size: 22px 22px;
+  }
+  .hero-meta {
+    margin-top: var(--space-5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
+  }
+  .hero-meta__release,
+  .widget-row__caption {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cp-ink-2);
+  }
+
+  .feature-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    align-items: center;
+  }
+  .widget-row {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .widget-row__caption {
+    margin: 0;
+    max-width: 170px;
+    line-height: 18px;
+  }
+
+  .parents {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-7);
+    align-items: start;
+  }
+  .parents__text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 18px;
+    line-height: 29px;
+  }
+  .parents__text p {
+    margin: 0;
+  }
+  .parents__muted {
+    color: var(--cp-ink-2);
+  }
+  @media (max-width: 767px) {
+    .parents {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+  }
+</style>

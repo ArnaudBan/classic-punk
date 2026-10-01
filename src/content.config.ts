@@ -16,6 +16,8 @@ const apps = defineCollection({
         status: z.enum(['dev', 'coming-soon', 'beta', 'available']),
         storeUrl: z.url().optional(),
         price: z.string().optional(),
+        /** Période de sortie prévue, affichée tant que l'app n'est pas disponible. */
+        release: z.string().optional(),
         theme: z.enum(['gig', 'last-round']),
         /** Catégorie schema.org (applicationCategory). */
         category: z.string(),

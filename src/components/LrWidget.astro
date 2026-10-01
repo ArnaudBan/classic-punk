@@ -1,0 +1,65 @@
+---
+/** Widget (petit) de Last Round : jauge circulaire et temps restant, aux couleurs de l'app. */
+interface Props {
+  alt: string;
+  remaining: string;
+  label: string;
+  /** Part restante de la semaine, entre 0 et 1. */
+  ratio: number;
+}
+const { alt, remaining, label, ratio } = Astro.props;
+const circumference = 2 * Math.PI * 40;
+const dash = Math.round(circumference * ratio);
+---
+
+<div class="lr-widget" role="img" aria-label={`${alt} : ${remaining} ${label}`}>
+  <svg width="96" height="96" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="40" fill="none" class="lr-widget__track" stroke-width="12"></circle>
+    <circle
+      cx="50"
+      cy="50"
+      r="40"
+      fill="none"
+      class="lr-widget__gauge"
+      stroke-width="12"
+      stroke-linecap="round"
+      stroke-dasharray={`${dash} ${Math.ceil(circumference)}`}
+      transform="rotate(-90 50 50)"></circle>
+    <text x="50" y="57" text-anchor="middle" class="lr-widget__value">{remaining}</text>
+  </svg>
+  <span class="lr-widget__label">{label}</span>
+</div>
+
+<style>
+  .lr-widget {
+    flex: none;
+    width: 170px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    background: var(--lr-surface);
+    border: var(--border-heavy) solid var(--lr-ink);
+    border-radius: 26px;
+    box-shadow: 0 5px 0 var(--lr-ink);
+  }
+  .lr-widget__track {
+    stroke: var(--lr-surface-raised);
+  }
+  .lr-widget__gauge {
+    stroke: var(--lr-ok);
+  }
+  .lr-widget__value {
+    font-family: var(--font-lr-numbers);
+    font-weight: 800;
+    font-size: 20px;
+    fill: var(--lr-text);
+  }
+  .lr-widget__label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--lr-text-2);
+  }
+</style>
