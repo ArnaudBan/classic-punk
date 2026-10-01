@@ -1,6 +1,6 @@
 # Classic Punk — Contenus du site vitrine
 
-**Version :** 1.0 — 1er octobre 2026
+**Version :** 1.1 — 1er octobre 2026 (décisions intégrées : prix, FAQ, mentions légales, formulaire mailto, spécialité PHP / Laravel)
 **Usage :** source unique des textes du site. Claude Code reprend ces textes tels quels ; Claude Design s'en sert pour dimensionner les maquettes.
 **Langue :** français à la mise en ligne, version anglaise prévue ensuite.
 
@@ -34,7 +34,7 @@ Accroches de rechange (sous-titres, réseaux, carte de visite) :
 **Ligne d'endossement des apps** (déjà utilisée dans Gig) :
 
 - Gig · *un set Classic Punk*
-- Last Round · *une manche Classic Punk* `[OPTION]` ou *un set Classic Punk* pour garder une formule unique.
+- Last Round · *un set Classic Punk* (formule unique pour toutes les apps).
 
 ---
 
@@ -112,7 +112,7 @@ Classic Punk développe aussi ses propres applications. Petites, indépendantes,
 Des sites rapides, accessibles et bien référencés, construits avec des outils modernes comme Astro. Du site vitrine au site éditorial de plusieurs centaines de pages.
 
 **Applications.**
-Applications web, iPhone et Mac. Interfaces soignées, code natif (Swift, SwiftUI) quand c'est pertinent, web quand c'est plus malin.
+Applications web, iPhone et Mac. Ma spécialité : PHP et Laravel, pour des applications web solides et faciles à faire évoluer. Code natif (Swift, SwiftUI) quand c'est pertinent.
 
 **Outils sur mesure.**
 Outils métier, back-offices, automatisations. Et une spécialité héritée du studio : les outils audio qui tournent directement dans le navigateur — accordeur, métronome, analyse du jeu d'un musicien.
@@ -129,9 +129,9 @@ Vous avez un projet, une idée, ou une app qui sonne faux ? Parlons-en. → `/co
 **Texte :**
 Je suis associé de Guitar Social Club, une méthode pour apprendre ou reprendre la guitare à l'âge adulte, fondée par le professeur Yohann Abbou. J'y développe le site, l'application principale et l'ensemble des outils.
 
-Au programme : une app notée 4,8/5 sur l'App Store `[À VÉRIFIER]`, des dizaines d'outils gratuits qui tournent dans le navigateur (accordeur, détecteur d'accords, métronome…) `[À VÉRIFIER : 33 outils]`, un test qui écoute réellement le jeu du guitariste, et une pédagogie développée avec le CNRS.
+Au programme : une app notée 4,8/5 sur l'App Store, des dizaines d'outils gratuits qui tournent dans le navigateur (accordeur, détecteur d'accords, métronome…), un test qui écoute réellement le jeu du guitariste, et une pédagogie développée avec le CNRS.
 
-**Encart chiffres** `[À VÉRIFIER avant publication]` :
+**Encart chiffres** (validés avec l'associé) :
 - 4,8/5 sur l'App Store
 - 33 outils gratuits dans le navigateur
 - Pédagogie développée avec le CNRS
@@ -139,7 +139,7 @@ Au programme : une app notée 4,8/5 sur l'App Store `[À VÉRIFIER]`, des dizain
 
 **Lien :** Voir Guitar Social Club → `https://guitarsocialclub.com/` (nouvel onglet)
 
-> Note : faire valider ce bloc par l'associé (formulation, chiffres, usage du nom et du logo) avant la mise en ligne.
+> Note : chiffres validés avec l'associé le 1er octobre 2026.
 
 ---
 
@@ -150,9 +150,9 @@ Au programme : une app notée 4,8/5 sur l'App Store `[À VÉRIFIER]`, des dizain
 **Texte :**
 Je m'appelle Arnaud. Avant d'écrire du code, j'ai passé des années derrière une console de mixage : ingénieur du son et musicien. Le studio m'a appris deux choses qui ne m'ont jamais quitté. La première : la technique ne pardonne pas, une phase inversée s'entend, un détail négligé aussi. La seconde : sans énergie, sans parti pris, même un enregistrement parfait ne raconte rien.
 
-En 2010, j'ai changé d'instrument et je me suis mis au développement. Depuis 2024, je propose mes services en indépendant sous le nom de Classic Punk : un studio d'une personne, sans investisseurs, où chaque projet est mixé avec le même soin.
+En 2010, j'ai changé d'instrument et je me suis mis au développement. Mon instrument principal, c'est PHP et Laravel ; mais comme tout musicien de studio, je joue de ce que le morceau demande. Depuis 2024, je propose mes services en indépendant sous le nom de Classic Punk : un studio d'une personne, sans investisseurs, où chaque projet est mixé avec le même soin.
 
-`[OPTION — à valider]` Et je n'ai pas raccroché la guitare : je joue toujours dans un groupe de punk hardcore, qui vient de sortir son premier vinyle.
+Et je n'ai pas raccroché la guitare : je suis le bassiste de Vigilante (lien : https://vigilante.band/), un groupe de punk hardcore qui vient de sortir son premier vinyle.
 
 ---
 
@@ -210,7 +210,7 @@ Gig compte tes heures depuis la barre de menu de ton Mac. Tu choisis un client, 
 
 | | Gratuit | Gig illimité |
 |---|---|---|
-| Prix | 0 € | 4,99 € une fois pour toutes `[À VÉRIFIER : 4,99 € ou 6,99 €]` |
+| Prix | 0 € | 4,99 € une fois pour toutes |
 | Clients | 2 | Illimités |
 | Timer, sets, Setlist, export CSV | Oui | Oui |
 | Compte, abonnement, cloud | Aucun | Aucun |
@@ -224,19 +224,19 @@ Pas de facturation. Pas de mode équipe. Pas de surveillance de ton écran. Gig 
 ### 2.7 FAQ
 
 **Sur quels Mac fonctionne Gig ?**
-macOS `[À COMPLÉTER : version minimale]` et versions ultérieures, sur Mac Apple Silicon et Intel `[À VÉRIFIER]`.
+macOS 14 Sonoma et versions ultérieures, sur Mac Apple Silicon et Intel.
 
 **Mes données sont-elles envoyées quelque part ?**
 Non. Tout reste sur ton Mac. Gig n'a ni serveur, ni compte, ni outil de mesure d'audience.
 
 **Que se passe-t-il si je change de Mac ?**
-Ton achat se restaure depuis l'App Store avec ton identifiant Apple (bouton « Restaurer les achats » dans l'app). `[À COMPLÉTER : comment transférer les données — export CSV, sauvegarde Time Machine…]`
+Ton achat se restaure depuis l'App Store avec ton identifiant Apple (bouton « Restaurer les achats » dans l'app). Tes données restent sur ton Mac. Elles suivent avec l'Assistant de migration ou Time Machine ; il n'y a pas encore d'export intégré.
 
 **Les clients archivés comptent-ils dans la limite gratuite ?**
-`[À TRANCHER — proposition : oui, tous les clients comptent, archivés compris.]`
+Oui : tous les clients comptent, archivés compris.
 
 **Gig est-il disponible en anglais ?**
-`[À COMPLÉTER selon la décision de langue de lancement.]`
+Pas encore : pour l'instant, Gig existe uniquement en français.
 
 **Besoin d'aide ?**
 Écris-moi depuis la page contact en choisissant « Support Gig ». → `/contact/?sujet=gig`
@@ -251,11 +251,13 @@ Ton achat se restaure depuis l'App Store avec ton identifiant Apple (bouton « R
 
 ## 3. Page Last Round
 
-**Statut d'affichage :** En développement — sortie prévue sur l'App Store `[À COMPLÉTER : période]`.
+**Statut d'affichage :** En développement — sortie prévue sur l'App Store en 2027.
+
+**Modèle économique :** 14 jours gratuits, puis 3,99 € une fois, sans abonnement. Partage familial activé sur l'achat.
 
 ### 3.1 Hero
 
-**Surtitre :** Last Round · une manche Classic Punk
+**Surtitre :** Last Round · un set Classic Punk
 
 **Titre (H1) :** La dernière manche, c'est toi qui la décides.
 
@@ -307,7 +309,7 @@ iPhone avec iOS 17 ou ultérieur.
 Non. Tout reste sur ton iPhone.
 
 **Combien coûte Last Round ?**
-`[À COMPLÉTER : modèle économique]`
+14 jours gratuits, puis 3,99 € une fois, sans abonnement. Avec le Partage familial, un seul achat couvre toute la famille.
 
 **Besoin d'aide ?**
 Écris-moi depuis la page contact en choisissant « Support Last Round ». → `/contact/?sujet=last-round`
@@ -338,12 +340,16 @@ Un projet de site, d'application ou d'outil ? Une question sur Gig ou Last Round
 
 **Bouton :** Envoyer
 
+**Fonctionnement :** aucun service d'envoi tiers. Après validation, le formulaire prépare un e-mail (mailto:) vers contact@classic-punk.fr dans la messagerie du visiteur.
+
+**Sous le bouton :** Le bouton ouvre votre messagerie avec le message prêt à partir.
+
 **Mention sous le formulaire :**
 Vos informations servent uniquement à vous répondre. Elles ne sont ni revendues ni utilisées pour de la prospection. En savoir plus → `/legal/#confidentialite`
 
-**Message de succès :** Message bien reçu. Je reviens vers vous sous 48 h ouvrées.
+**Message une fois l'e-mail préparé :** Votre message est prêt. Votre messagerie s'est ouverte avec le message : il ne reste qu'à l'envoyer. Je réponds sous 48 h ouvrées.
 
-**Message d'erreur :** Le message n'est pas parti. Réessayez dans un instant, ou écrivez-moi directement à `[À COMPLÉTER : adresse e-mail]`.
+**Lien de secours :** Rien ne s'est ouvert ? Écrivez-moi directement à contact@classic-punk.fr. — Ouvrir à nouveau le message
 
 **Erreurs de champ :**
 - Nom vide : « Il me faut un nom pour vous répondre. »
@@ -352,8 +358,8 @@ Vos informations servent uniquement à vous répondre. Elles ne sont ni revendue
 
 ### Coordonnées
 
-- E-mail : `[À COMPLÉTER]`
-- `[OPTION]` LinkedIn, GitHub, Mastodon / Bluesky : `[À COMPLÉTER]`
+- E-mail : contact@classic-punk.fr
+- GitHub : https://github.com/ArnaudBan/
 
 ### Support des apps
 
@@ -371,21 +377,21 @@ Pour une question sur une app, précisez la version de l'app et celle de votre M
 
 ### 5.1 Mentions légales `#mentions`
 
-- Éditeur : Classic Punk, SASU au capital de `[À COMPLÉTER]` €
-- Siège social : `[À COMPLÉTER]`
-- RCS : `[À COMPLÉTER]` — SIREN : `[À COMPLÉTER]`
-- N° de TVA intracommunautaire : `[À COMPLÉTER]`
-- Directeur de la publication : Arnaud `[À COMPLÉTER : nom]`, président
-- Contact : `[À COMPLÉTER : e-mail]`
-- Hébergeur : `[À COMPLÉTER : raison sociale, adresse, téléphone]`
+- Éditeur : Classic Punk, SASU au capital de 700 €
+- Siège social : 3 Mail Pablo Picasso, 44000 Nantes
+- RCS : Nantes — SIREN : 931 433 304
+- N° de TVA intracommunautaire : FR69931433304
+- Directeur de la publication : Arnaud Banvillet, président
+- Contact : contact@classic-punk.fr
+- Hébergeur : Infomaniak Network SA, Rue Eugène-Marziano 25, 1227 Les Acacias (GE), Suisse — +41 22 820 35 44
 
 ### 5.2 Confidentialité du site `#confidentialite`
 
-Ce site ne dépose aucun cookie publicitaire et n'utilise aucun outil de suivi `[À VÉRIFIER si une mesure d'audience sans cookie est ajoutée]`.
+Ce site ne dépose aucun cookie et n'utilise aucun outil de suivi, de mesure d'audience ni de publicité.
 
-Les seules données collectées sont celles que vous saisissez dans le formulaire de contact (nom, e-mail, message). Elles servent uniquement à vous répondre, sont conservées `[À COMPLÉTER : durée, ex. 3 ans après le dernier échange]` et sont transmises à `[À COMPLÉTER : service d'envoi du formulaire]` pour l'acheminement du message.
+Les seules données collectées sont celles que vous saisissez dans le formulaire de contact (nom, e-mail, message). Le formulaire ne les envoie à aucun serveur : il prépare un e-mail dans votre propre messagerie, que vous choisissez d'envoyer. Les messages reçus sont hébergés par Infomaniak, en Suisse, sur des serveurs sécurisés. Ils servent uniquement à vous répondre et sont conservés un an après notre dernier échange.
 
-Vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à `[e-mail]`. Vous pouvez aussi adresser une réclamation à la CNIL.
+Vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à contact@classic-punk.fr. Vous pouvez aussi adresser une réclamation à la CNIL.
 
 ### 5.3 Gig `#gig`
 
@@ -401,13 +407,13 @@ Gig est distribué via le Mac App Store et soumis au contrat de licence standard
 Last Round ne collecte aucune donnée. Les réglages, sessions et historiques sont stockés uniquement sur votre iPhone. Pas de compte, pas de serveur, pas de publicité, pas de traceur. L'application demande l'autorisation d'envoyer des notifications locales, uniquement pour les alertes de fin de manche et de budget.
 
 **Conditions d'utilisation de Last Round** `#last-round-conditions`
-Last Round est distribué via l'App Store et soumis au contrat de licence standard d'Apple (EULA). `[À COMPLÉTER selon le modèle économique.]`
+Last Round est distribué via l'App Store et soumis au contrat de licence standard d'Apple (EULA). L'application s'essaie gratuitement pendant 14 jours. Un achat intégré unique de 3,99 €, sans abonnement, permet ensuite de continuer à l'utiliser ; il est partagé avec votre famille grâce au Partage familial d'Apple et restaurable sur vos appareils via le bouton « Restaurer les achats ». Les remboursements sont gérés par Apple.
 
 ### 5.5 Propriété intellectuelle `#propriete`
 
-Les textes, visuels, logos et applications présentés sur ce site appartiennent à Classic Punk, sauf mention contraire. Guitar Social Club est une marque de ses propriétaires respectifs `[À VÉRIFIER]`. Apple, App Store, Mac et iPhone sont des marques d'Apple Inc.
+Les textes, visuels, logos et applications présentés sur ce site appartiennent à Classic Punk, sauf mention contraire. Guitar Social Club est une marque de ses propriétaires respectifs. Apple, App Store, Mac et iPhone sont des marques d'Apple Inc.
 
-**Dernière mise à jour :** `[date]`
+**Dernière mise à jour :** 1er octobre 2026
 
 ---
 
@@ -437,13 +443,13 @@ Titres : 60 caractères max. Descriptions : 155 caractères max.
 
 | Page | `<title>` | Meta description |
 |---|---|---|
-| Accueil | Classic Punk — Développeur indépendant, sites et apps | Développeur indépendant : sites web, applications iPhone et Mac, outils sur mesure. La rigueur du classique, l'énergie du punk. |
+| Accueil | Classic Punk — Développeur PHP et Laravel indépendant | Développeur indépendant spécialisé PHP et Laravel : sites, applications web, iPhone et Mac, outils sur mesure. La rigueur du classique, l'énergie du punk. |
 | Gig | Gig — time tracker Mac pour freelances, sans abonnement | Gig compte tes heures depuis la barre de menu du Mac. Gratuit pour deux clients, 4,99 € une fois pour toutes ensuite. Pas de compte, pas de cloud. |
 | Last Round | Last Round — gérer son temps de jeu vidéo sur iPhone | Un budget de jeu pour la semaine, un décompte pour chaque partie, des jours sans manette. Sans compte, sans pub, sans traceur. |
 | Contact | Contact — Classic Punk | Un projet de site, d'app ou d'outil ? Une question sur Gig ou Last Round ? Écrivez-moi, réponse sous 48 h ouvrées. |
 | Légal | Mentions légales et confidentialité — Classic Punk | Mentions légales de Classic Punk, politique de confidentialité du site et des applications Gig et Last Round. |
 
-**Mots-clés de travail** (pour orienter les titres et les textes, pas à empiler) : développeur indépendant, développeur freelance, création de site Astro, développement application iPhone, développement application Mac, application SwiftUI, outils audio web, time tracker Mac, suivi du temps freelance, temps de jeu vidéo, temps d'écran ado.
+**Mots-clés de travail** (pour orienter les titres et les textes, pas à empiler) : développeur PHP Laravel, développeur Laravel freelance, développeur indépendant, développeur freelance, création de site Astro, développement application iPhone, développement application Mac, application SwiftUI, outils audio web, time tracker Mac, suivi du temps freelance, temps de jeu vidéo, temps d'écran ado.
 
 ---
 
