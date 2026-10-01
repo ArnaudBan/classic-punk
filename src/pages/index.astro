@@ -40,7 +40,7 @@ const jsonLd = [
 ];
 ---
 
-<BaseLayout title={home.seo.title} description={home.seo.description}>
+<BaseLayout title={home.seo.title} description={home.seo.description} ogImage="/og/og-home.png">
   <JsonLd slot="head" data={jsonLd} />
 
   <Hero {...home.hero} toc={homeToc} />

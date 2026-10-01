@@ -1,51 +1,133 @@
 ---
-/** Page 404 (textes §6 des contenus). Pas encore de maquette : composée avec les styles existants. */
+/** Page 404 : textes §6 des contenus, disque rayé de la maquette (design/maquettes/404.html). */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import Container from '../components/Container.astro';
+import Credits from '../components/Credits.astro';
+import Highlight from '../components/Highlight.astro';
 
 const text = {
-  title: 'Fausse note.',
+  credits: ['CP-404', 'Erreur 404', 'Page introuvable'],
+  titleStart: 'Fausse',
+  titleHighlight: 'note.',
   body: "Cette page n'existe pas, ou elle a quitté la scène.",
   button: "Retour à l'accueil",
+  discLabel: '404',
+  discCatalog: 'CP-404 · FACE B',
+  discAlt: 'Un disque rayé, étiquette 404',
 };
 ---
 
-<BaseLayout title={`${text.title} — Classic Punk`} description={text.body} noindex>
+<BaseLayout title={`${text.titleStart} ${text.titleHighlight} — Classic Punk`} description={text.body} noindex>
   <section class="notfound">
     <Container>
-      <h1 class="notfound__title">{text.title}</h1>
-      <p class="notfound__text">{text.body}</p>
-      <Button href="/" size="lg" iconAfter="arrow-right">{text.button}</Button>
+      <div class="notfound__grid">
+        <div>
+          <Credits items={text.credits} />
+          <h1 class="notfound__title">{text.titleStart} <Highlight>{text.titleHighlight}</Highlight></h1>
+          <p class="notfound__text">{text.body}</p>
+          <Button href="/" size="lg" iconAfter="arrow-right">{text.button}</Button>
+        </div>
+        <svg class="disc" viewBox="0 0 520 520" role="img" aria-label={text.discAlt}>
+          <circle cx="260" cy="260" r="250" class="disc__vinyl"></circle>
+          <circle cx="260" cy="260" r="215" class="disc__groove"></circle>
+          <circle cx="260" cy="260" r="185" class="disc__groove"></circle>
+          <circle cx="260" cy="260" r="150" class="disc__groove"></circle>
+          <circle cx="260" cy="260" r="110" class="disc__label"></circle>
+          <text x="260" y="234" text-anchor="middle" class="disc__404">{text.discLabel}</text>
+          <text x="260" y="300" text-anchor="middle" class="disc__cat">{text.discCatalog}</text>
+          <circle cx="260" cy="260" r="9" class="disc__hole"></circle>
+          <path d="M40 190 C 140 150, 230 205, 300 120 S 450 90, 492 150" class="disc__scratch" stroke-width="5"></path>
+          <path d="M58 226 C 150 190, 220 238, 296 160" class="disc__scratch" stroke-width="2" opacity=".7"></path>
+        </svg>
+      </div>
     </Container>
   </section>
 </BaseLayout>
 
 <style>
   .notfound {
-    padding: var(--space-9) 0 var(--space-10);
+    border-bottom: var(--border-hair) solid var(--cp-rule);
+  }
+  .notfound__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+    gap: var(--space-7);
+    align-items: center;
+    min-height: 620px;
   }
   .notfound__title {
-    margin: 0;
+    isolation: isolate;
+    margin: var(--space-5) 0 0;
     font-family: var(--font-condensed);
     font-weight: 900;
-    font-size: 112px;
-    line-height: 0.9;
+    font-size: 136px;
+    line-height: 0.88;
     text-transform: uppercase;
   }
+  .notfound__title :global(.cp-highlight) {
+    z-index: auto;
+  }
   .notfound__text {
-    max-width: 580px;
-    margin: var(--space-6) 0;
+    max-width: 460px;
+    margin: 28px 0 var(--space-6);
     font-size: 20px;
     line-height: 30px;
     color: var(--cp-ink-2);
   }
+
+  .disc {
+    display: block;
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    margin: 0 auto;
+  }
+  .disc__vinyl {
+    fill: var(--cp-ink);
+  }
+  .disc__groove {
+    fill: none;
+    stroke: var(--cp-ink-2);
+    stroke-width: 1;
+  }
+  .disc__label {
+    fill: var(--cp-accent);
+  }
+  .disc__404 {
+    font-family: var(--font-condensed);
+    font-weight: 900;
+    font-size: 76px;
+    fill: var(--cp-on-accent);
+  }
+  .disc__cat {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 2px;
+    fill: var(--cp-on-accent);
+  }
+  .disc__hole {
+    fill: var(--cp-paper);
+  }
+  .disc__scratch {
+    fill: none;
+    stroke: var(--cp-paper);
+    stroke-linecap: round;
+  }
+
   @media (max-width: 767px) {
-    .notfound {
-      padding: var(--space-8) 0;
+    .notfound__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-5);
+      min-height: 0;
+      padding: 40px 0 var(--space-8);
     }
     .notfound__title {
-      font-size: 56px;
+      font-size: 76px;
+    }
+    .disc {
+      max-width: 300px;
     }
   }
 </style>

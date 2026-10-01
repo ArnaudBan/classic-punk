@@ -1,0 +1,253 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import PageHero from '../components/PageHero.astro';
+import TodoText from '../components/TodoText.astro';
+import { legal } from '../data/legal';
+import { site } from '../config/site';
+import { warnTodos } from '../lib/todos';
+
+warnTodos('Page légale (/legal/)', legal);
+
+const { mentions, privacy, apps, property } = legal;
+const num = (i: number) => String(i).padStart(2, '0');
+
+/** Sommaire : 5 parties, sous-entrées pour chaque app. */
+const toc = [
+  { id: mentions.id, title: mentions.title },
+  { id: privacy.id, title: privacy.title },
+  ...apps.map((a) => ({ id: a.id, title: a.title, subs: a.parts.map((p) => ({ id: p.id, title: p.title })) })),
+  { id: property.id, title: property.title },
+];
+const partNumber = (id: string) => num(toc.findIndex((t) => t.id === id) + 1);
+---
+
+<BaseLayout title={legal.seo.title} description={legal.seo.description} ogImage="/og/og-legal.png">
+  <PageHero size="l" credits={legal.hero.credits} titleStart={legal.hero.title} lead={legal.hero.lead} />
+
+  <section class="legal">
+    <Container class="legal__layout">
+      <nav class="toc" aria-label={legal.toc.label}>
+        <p><span>{legal.toc.title}</span><span class="toc__count">{legal.toc.count}</span></p>
+        {
+          toc.map((t, i) => (
+            <>
+              <a href={`#${t.id}`}>
+                <span class="toc__n">{num(i + 1)}</span>
+                <span>{t.title}</span>
+              </a>
+              {'subs' in t &&
+                t.subs?.map((s) => (
+                  <a class="toc__sub" href={`#${s.id}`}>
+                    <span>{s.title}</span>
+                  </a>
+                ))}
+            </>
+          ))
+        }
+      </nav>
+
+      <article class="doc">
+        <section id={mentions.id}>
+          <h2><span class="doc__n">{partNumber(mentions.id)}</span><span>{mentions.title}</span></h2>
+          <dl class="facts">
+            {
+              mentions.facts.map((f) => (
+                <>
+                  <dt>{f.label}</dt>
+                  <dd>{'href' in f ? <a href={f.href}>{f.value}</a> : <TodoText text={f.value} />}</dd>
+                </>
+              ))
+            }
+          </dl>
+        </section>
+
+        <section id={privacy.id}>
+          <h2><span class="doc__n">{partNumber(privacy.id)}</span><span>{privacy.title}</span></h2>
+          {privacy.paragraphs.map((p) => <p><TodoText text={p} /></p>)}
+          <p>
+            {privacy.rights.before} <a href={`mailto:${site.email}`}>{site.email}</a>{privacy.rights.after}
+          </p>
+        </section>
+
+        {
+          apps.map((app) => (
+            <section id={app.id}>
+              <h2>
+                <span class="doc__n">{partNumber(app.id)}</span>
+                <span>{app.title}</span>
+              </h2>
+              {app.parts.map((part) => (
+                <>
+                  <h3 id={part.id}>{part.title}</h3>
+                  <p>
+                    <TodoText text={part.text} />
+                  </p>
+                </>
+              ))}
+            </section>
+          ))
+        }
+
+        <section id={property.id}>
+          <h2><span class="doc__n">{partNumber(property.id)}</span><span>{property.title}</span></h2>
+          <p><TodoText text={property.text} /></p>
+          <p class="doc__updated">{property.updatedLabel} <TodoText text={property.updatedAt} /></p>
+        </section>
+      </article>
+    </Container>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal {
+    padding: var(--space-8) 0 var(--space-9);
+  }
+  .legal :global(.legal__layout) {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .toc {
+    position: sticky;
+    top: var(--space-5);
+    border-top: var(--border-heavy) solid var(--cp-rule);
+  }
+  .toc p {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 14px 0;
+    border-bottom: var(--border-hair) solid var(--cp-rule);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .toc__count {
+    color: var(--cp-ink-3);
+    font-weight: 400;
+  }
+  .toc a {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: var(--space-2);
+    padding: 11px 0;
+    border-bottom: var(--border-hair) solid var(--cp-rule);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 21px;
+  }
+  .toc a.toc__sub {
+    grid-template-columns: minmax(0, 1fr);
+    padding-left: 44px;
+    font-weight: 400;
+    color: var(--cp-ink-2);
+    border-bottom-color: var(--cp-hairline);
+  }
+  .toc__n,
+  .doc__n {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .toc__n {
+    letter-spacing: 0.08em;
+    padding-top: 2px;
+  }
+
+  .doc {
+    max-width: var(--container-text);
+    font-size: 17px;
+    line-height: 28px;
+  }
+  .doc section {
+    padding-bottom: var(--space-7);
+    margin-bottom: var(--space-7);
+    border-bottom: var(--border-hair) solid var(--cp-hairline);
+  }
+  .doc section:last-of-type {
+    border-bottom: 0;
+  }
+  .doc section,
+  .doc h3 {
+    scroll-margin-top: var(--space-5);
+  }
+  .doc h2 {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    margin: 0 0 20px;
+    padding-top: 14px;
+    border-top: var(--border-heavy) solid var(--cp-rule);
+    font-family: var(--font-expanded);
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.15;
+  }
+  .doc__n {
+    letter-spacing: 0.1em;
+    padding-top: var(--space-2);
+  }
+  .doc h3 {
+    margin: 28px 0 10px;
+    font-family: var(--font-expanded);
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.25;
+  }
+  .doc p {
+    margin: 0 0 14px;
+  }
+  .doc__updated {
+    margin-top: 28px !important;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cp-ink-3);
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+    margin: 0;
+    border-top: var(--border-hair) solid var(--cp-rule);
+  }
+  .facts dt,
+  .facts dd {
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: var(--border-hair) solid var(--cp-rule);
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .facts dt {
+    font-weight: 700;
+    padding-right: var(--space-4);
+  }
+
+  @media (max-width: 767px) {
+    .legal :global(.legal__layout) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 40px;
+    }
+    .toc {
+      position: static;
+    }
+    .doc h2 {
+      font-size: 22px;
+      grid-template-columns: 40px minmax(0, 1fr);
+    }
+    .facts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .facts dt {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+</style>

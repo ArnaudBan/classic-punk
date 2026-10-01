@@ -1,0 +1,27 @@
+---
+/** Message de retour après une action, annoncé aux lecteurs d'écran. */
+import Icon from './Icon.astro';
+
+interface Props {
+  tone?: 'success' | 'error';
+  title?: string;
+  id?: string;
+  class?: string;
+  /** Focalisable par script (tabindex -1) pour y déplacer le focus. */
+  focusable?: boolean;
+}
+const { tone = 'success', title, id, class: className, focusable = false } = Astro.props;
+---
+
+<div
+  class:list={['cp-notice', `cp-notice--${tone}`, className]}
+  role={tone === 'error' ? 'alert' : 'status'}
+  id={id}
+  tabindex={focusable ? -1 : undefined}
+>
+  <Icon name={tone === 'error' ? 'alert' : 'check'} size={22} />
+  <div class="cp-notice__body">
+    {title && <p class="cp-notice__title">{title}</p>}
+    {Astro.slots.has('default') && <p class="cp-notice__text"><slot /></p>}
+  </div>
+</div>

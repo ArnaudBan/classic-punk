@@ -1,0 +1,228 @@
+---
+/**
+ * Formulaire de contact. Aucun envoi vers un serveur : à la validation, il prépare un e-mail (mailto:)
+ * dans la messagerie du visiteur. Sans JavaScript, le formulaire s'ouvre aussi en mailto (enctype text/plain).
+ * `?sujet=gig` ou `?sujet=last-round` présélectionne le sujet.
+ */
+import Button from './Button.astro';
+import Credits from './Credits.astro';
+import Field from './Field.astro';
+import Notice from './Notice.astro';
+import { contact, subjects } from '../data/contact';
+
+const f = contact.form;
+const r = contact.ready;
+---
+
+<div class="contact-form" data-contact data-to={contact.mail.to} data-prefix={contact.mail.subjectPrefix}>
+  <form
+    class="contact-form__box"
+    action={`mailto:${contact.mail.to}`}
+    method="post"
+    enctype="text/plain"
+    aria-label={f.label}
+    data-contact-form
+  >
+    <div class="contact-form__head">
+      <span class="contact-form__eyebrow">{f.head}</span>
+      <span class="contact-form__eyebrow contact-form__eyebrow--muted">{f.allRequired}</span>
+    </div>
+    <div class="contact-form__two">
+      <Field name="nom" label={f.fields.name.label} required requiredLabel={f.required} error={f.fields.name.error} autocomplete="name" />
+      <Field
+        name="email"
+        type="email"
+        label={f.fields.email.label}
+        required
+        requiredLabel={f.required}
+        help={f.fields.email.help}
+        error={f.fields.email.error}
+        autocomplete="email"
+      />
+    </div>
+    <Field name="sujet" type="select" label={f.fields.subject.label} required requiredLabel={f.required} options={subjects} />
+    <Field
+      name="message"
+      type="textarea"
+      label={f.fields.message.label}
+      required
+      requiredLabel={f.required}
+      placeholder={f.fields.message.placeholder}
+      error={f.fields.message.error}
+    />
+    <div class="contact-form__actions">
+      <Button type="submit" variant="accent" size="lg" iconAfter="arrow-right">{f.submit}</Button>
+      <p class="contact-form__note">{f.submitNote}</p>
+    </div>
+    <p class="contact-form__legal">
+      {f.privacy.text} <a class="cp-link" href={f.privacy.link.href}>{f.privacy.link.label}</a>
+    </p>
+  </form>
+
+  <div class="contact-form__ready" hidden data-contact-ready>
+    <Notice tone="success" title={r.title} focusable class="contact-form__notice">{r.text}</Notice>
+    <Credits items={['', '']} class="contact-form__recap" />
+    <p class="contact-form__fallback">
+      {r.fallback} <a class="cp-link" href={`mailto:${contact.mail.to}`}>{contact.mail.to}</a>.
+      <a class="cp-link" href={`mailto:${contact.mail.to}`} data-contact-retry>{r.retry}</a>
+    </p>
+    <Button href="/" variant="secondary" size="lg" iconAfter="arrow-right">{r.back}</Button>
+  </div>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-contact]');
+  const form = root?.querySelector<HTMLFormElement>('[data-contact-form]');
+  const ready = root?.querySelector<HTMLElement>('[data-contact-ready]');
+
+  if (root && form && ready) {
+    form.noValidate = true;
+    const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+    const subject = field('sujet') as HTMLSelectElement;
+
+    // ?sujet=gig / ?sujet=last-round présélectionne le sujet.
+    const wanted = new URLSearchParams(location.search).get('sujet');
+    if (wanted && [...subject.options].some((o) => o.value === wanted)) subject.value = wanted;
+
+    const setError = (el: HTMLInputElement | HTMLTextAreaElement, invalid: boolean) => {
+      const wrap = el.closest('[data-field]');
+      const err = el.dataset.errId ? document.getElementById(el.dataset.errId) : null;
+      const ids = [invalid ? el.dataset.errId : el.dataset.helpId].filter(Boolean).join(' ');
+      wrap?.classList.toggle('cp-field--error', invalid);
+      if (err) err.hidden = !invalid;
+      if (invalid) el.setAttribute('aria-invalid', 'true');
+      else el.removeAttribute('aria-invalid');
+      if (ids) el.setAttribute('aria-describedby', ids);
+      else el.removeAttribute('aria-describedby');
+    };
+
+    const checks: [string, (v: string, el: HTMLInputElement | HTMLTextAreaElement) => boolean][] = [
+      ['nom', (v) => v.trim() !== ''],
+      ['email', (v, el) => v.trim() !== '' && (el as HTMLInputElement).validity.valid],
+      ['message', (v) => v.trim() !== ''],
+    ];
+
+    const validate = () => {
+      let first: HTMLElement | null = null;
+      for (const [name, ok] of checks) {
+        const el = field(name) as HTMLInputElement | HTMLTextAreaElement;
+        const valid = ok(el.value, el);
+        setError(el, !valid);
+        if (!valid && !first) first = el;
+      }
+      first?.focus();
+      return !first;
+    };
+
+    // Une erreur disparaît dès que le champ est corrigé.
+    form.addEventListener('input', (e) => {
+      const el = e.target as HTMLInputElement | HTMLTextAreaElement;
+      const check = checks.find(([name]) => name === el.name);
+      if (check && el.getAttribute('aria-invalid') === 'true' && check[1](el.value, el)) setError(el, false);
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+
+      const name = field('nom').value.trim();
+      const email = field('email').value.trim();
+      const label = subject.selectedOptions[0]?.text ?? '';
+      const mailSubject = `${root.dataset.prefix} ${label} — ${name}`;
+      const body = `${field('message').value.trim()}\n\n—\n${name}\n${email}`;
+      const href = `mailto:${root.dataset.to}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(body)}`;
+
+      const recap = ready.querySelectorAll('.contact-form__recap li');
+      if (recap[0]) recap[0].textContent = label;
+      if (recap[1]) recap[1].textContent = email;
+      ready.querySelector<HTMLAnchorElement>('[data-contact-retry]')?.setAttribute('href', href);
+
+      form.hidden = true;
+      ready.hidden = false;
+      ready.querySelector<HTMLElement>('.cp-notice')?.focus();
+      location.href = href;
+    });
+  }
+</script>
+
+<style>
+  .contact-form__box {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    padding: 40px;
+    background: var(--cp-paper-raised);
+    border: var(--border-hair) solid var(--cp-rule);
+  }
+  .contact-form__box[hidden],
+  .contact-form__ready[hidden] {
+    display: none;
+  }
+  .contact-form__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding-bottom: 14px;
+    border-bottom: var(--border-heavy) solid var(--cp-rule);
+  }
+  .contact-form__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .contact-form__eyebrow--muted {
+    color: var(--cp-ink-3);
+    font-weight: 400;
+  }
+  .contact-form__two {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+  .contact-form__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+  }
+  .contact-form__note,
+  .contact-form__legal,
+  .contact-form__fallback {
+    margin: 0;
+    font-size: 14px;
+    line-height: 21px;
+    color: var(--cp-ink-3);
+  }
+  .contact-form__note {
+    flex: 1 1 200px;
+  }
+
+  .contact-form__ready {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+  }
+  .contact-form__ready :global(.contact-form__notice) {
+    align-self: stretch;
+  }
+  .contact-form__fallback {
+    color: var(--cp-ink-2);
+  }
+  .contact-form__fallback a + a {
+    display: inline-block;
+    margin-left: var(--space-2);
+  }
+
+  @media (max-width: 767px) {
+    .contact-form__box {
+      padding: 20px;
+    }
+    .contact-form__two {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

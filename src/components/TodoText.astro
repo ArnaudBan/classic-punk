@@ -1,0 +1,22 @@
+---
+/** Affiche un texte en habillant chaque placeholder ([À COMPLÉTER…]) pour qu'il ne passe pas inaperçu. */
+import { splitTodos } from '../lib/todos';
+
+interface Props {
+  text: string;
+}
+const parts = splitTodos(Astro.props.text);
+---
+
+{parts.map((p) => (p.todo ? <span class="todo">{p.text}</span> : p.text))}
+
+<style>
+  .todo {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    background: var(--cp-paper-sunk);
+    border: var(--border-hair) dashed var(--cp-ink-3);
+    padding: 1px 6px;
+    white-space: normal;
+  }
+</style>

@@ -1,6 +1,7 @@
 ---
 /** Questions fréquentes dépliables (details/summary natifs, sans JS). */
 import Icon from './Icon.astro';
+import TodoText from './TodoText.astro';
 
 export interface FaqItem {
   q: string;
@@ -26,7 +27,7 @@ const { items, class: className } = Astro.props;
           <Icon name="chevron-down" size={22} />
         </summary>
         <p class="cp-faq__a">
-          {it.a}
+          <TodoText text={it.a} />
           {it.link && (
             <>
               {' '}

@@ -1,0 +1,90 @@
+---
+/**
+ * Champ de formulaire du design system (cp-field) : libellé, aide, erreur.
+ * Le message d'erreur est rendu masqué ; le script du formulaire l'affiche (aria-invalid, aria-describedby).
+ */
+import Icon from './Icon.astro';
+
+interface Option {
+  value: string;
+  label: string;
+}
+interface Props {
+  name: string;
+  label: string;
+  type?: 'text' | 'email' | 'select' | 'textarea';
+  options?: readonly Option[];
+  required?: boolean;
+  requiredLabel?: string;
+  help?: string;
+  error?: string;
+  placeholder?: string;
+  autocomplete?: string;
+  class?: string;
+}
+const {
+  name,
+  label,
+  type = 'text',
+  options = [],
+  required = false,
+  requiredLabel = 'obligatoire',
+  help,
+  error,
+  placeholder,
+  autocomplete,
+  class: className,
+} = Astro.props;
+const id = `f-${name}`;
+const helpId = `${id}-help`;
+const errId = `${id}-err`;
+const common = {
+  id,
+  name,
+  class: 'cp-field__control',
+  required,
+  placeholder,
+  autocomplete,
+  'aria-describedby': help ? helpId : undefined,
+  'data-help-id': help ? helpId : undefined,
+  'data-err-id': error ? errId : undefined,
+};
+---
+
+<div class:list={['cp-field', className]} data-field>
+  <label class="cp-field__label" for={id}>
+    {label}{required && <span class="cp-field__req">{requiredLabel}</span>}
+  </label>
+  {
+    type === 'textarea' ? (
+      <textarea {...common} />
+    ) : type === 'select' ? (
+      <div class="cp-field__select">
+        <select {...common}>
+          {options.map((o) => (
+            <option value={o.value}>{o.label}</option>
+          ))}
+        </select>
+        <Icon name="chevron-down" size={20} />
+      </div>
+    ) : (
+      <input type={type} {...common} />
+    )
+  }
+  {help && <p class="cp-field__help" id={helpId}>{help}</p>}
+  {
+    error && (
+      <p class="cp-field__error" id={errId} hidden>
+        <Icon name="alert" size={18} />
+        {error}
+      </p>
+    )
+  }
+</div>
+
+<style is:global>
+  .cp-field__error[hidden],
+  .cp-field--error .cp-field__help {
+    display: none;
+  }
+</style>

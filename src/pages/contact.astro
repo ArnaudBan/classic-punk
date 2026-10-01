@@ -1,0 +1,161 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Container from '../components/Container.astro';
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import TodoText from '../components/TodoText.astro';
+import { contact } from '../data/contact';
+import { fr } from '../i18n/fr';
+import { site } from '../config/site';
+
+const apps = (await getCollection('apps')).map((e) => e.data).sort((a, b) => a.catalog.localeCompare(b.catalog));
+---
+
+<BaseLayout title={contact.seo.title} description={contact.seo.description} ogImage="/og/og-contact.png">
+  <PageHero
+    credits={contact.hero.credits}
+    titleStart={contact.hero.titleStart}
+    titleHighlight={contact.hero.titleHighlight}
+    lead={contact.hero.lead}
+  />
+
+  <section class="contact">
+    <Container>
+      <div class="contact__grid">
+        <ContactForm />
+
+        <aside class="contact__aside">
+          <div class="box">
+            <span class="box__eyebrow">{contact.coords.eyebrow}</span>
+            <h2 class="box__title">{contact.coords.title}</h2>
+            <a class="box__mail" href={`mailto:${site.email}`}><Icon name="mail" size={20} /><span>{site.email}</span></a>
+            <p class="box__small"><TodoText text={contact.coords.socials} /></p>
+          </div>
+
+          <div class="box box--sunk">
+            <span class="box__eyebrow">{contact.support.eyebrow}</span>
+            <h2 class="box__title">{contact.support.title}</h2>
+            <p class="box__text">{contact.support.text}</p>
+            <div class="applinks">
+              {
+                apps.map((app) => (
+                  <a class="applink" href={`/contact/?sujet=${app.slug}`}>
+                    <Image src={app.icon} alt="" width={44} height={44} densities={[1, 2]} class:list={['applink__icon', `applink__icon--${app.theme}`]} />
+                    <span>
+                      Support {app.name}
+                      <span class="applink__meta">
+                        {app.catalog} · {fr.platform[app.platform]}
+                      </span>
+                    </span>
+                    <Icon name="arrow-right" size={20} />
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </aside>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact {
+    padding: var(--space-8) 0 var(--space-9);
+  }
+  .contact__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-7);
+    align-items: start;
+  }
+  .contact__aside {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .box {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 28px;
+    border: var(--border-hair) solid var(--cp-rule);
+  }
+  .box--sunk {
+    background: var(--cp-paper-sunk);
+  }
+  .box__eyebrow,
+  .applink__meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cp-ink-3);
+  }
+  .box__eyebrow {
+    font-weight: 600;
+  }
+  .box__title {
+    margin: 0;
+    font-family: var(--font-expanded);
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.15;
+  }
+  .box__mail {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .box__small {
+    margin: 0;
+    font-size: 14px;
+    line-height: 21px;
+    color: var(--cp-ink-3);
+  }
+  .box__text {
+    margin: 0;
+    font-size: 15px;
+    line-height: 23px;
+    color: var(--cp-ink-2);
+  }
+  .applinks {
+    border-bottom: var(--border-hair) solid var(--cp-rule);
+  }
+  .applink {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 20px;
+    gap: 14px;
+    align-items: center;
+    padding: var(--space-3) 0;
+    border-top: var(--border-hair) solid var(--cp-rule);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .applink__meta {
+    display: block;
+    margin-top: 2px;
+    font-weight: 400;
+  }
+  .applinks :global(.applink__icon) {
+    width: 44px;
+    height: 44px;
+  }
+  .applinks :global(.applink__icon--last-round) {
+    border-radius: 10px;
+  }
+  @media (max-width: 767px) {
+    .contact__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-5);
+    }
+    .box {
+      padding: 20px;
+    }
+  }
+</style>

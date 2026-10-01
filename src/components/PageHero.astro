@@ -1,0 +1,78 @@
+---
+/** Hero des pages sans visuel (Contact, Légal) : crédits, H1 avec mot surligné facultatif, chapeau. */
+import Container from './Container.astro';
+import Credits from './Credits.astro';
+import Highlight from './Highlight.astro';
+
+interface Props {
+  credits: readonly string[];
+  titleStart: string;
+  titleHighlight?: string;
+  lead: string;
+  /** xl : titre affiche 112 px (Contact) · l : 80 px, page de lecture (Légal). */
+  size?: 'xl' | 'l';
+}
+const { credits, titleStart, titleHighlight, lead, size = 'xl' } = Astro.props;
+---
+
+<section class:list={['page-hero', `page-hero--${size}`]}>
+  <Container class="page-hero__wrap">
+    <Credits items={credits} />
+    <h1 class="page-hero__title">{titleStart}{titleHighlight && <Highlight>{titleHighlight}</Highlight>}</h1>
+    <p class="page-hero__lead">{lead}</p>
+  </Container>
+</section>
+
+<style>
+  .page-hero {
+    border-bottom: var(--border-hair) solid var(--cp-rule);
+  }
+  .page-hero :global(.page-hero__wrap) {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+  .page-hero--l :global(.page-hero__wrap) {
+    padding-bottom: 56px;
+  }
+  .page-hero__title {
+    isolation: isolate;
+    margin: var(--space-5) 0 0;
+    font-family: var(--font-condensed);
+    font-weight: 900;
+    font-size: 112px;
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: var(--cp-ink);
+  }
+  .page-hero__title :global(.cp-highlight) {
+    z-index: auto;
+  }
+  .page-hero--l .page-hero__title {
+    max-width: 900px;
+    font-size: 80px;
+    line-height: 0.92;
+  }
+  .page-hero__lead {
+    max-width: 620px;
+    margin: 28px 0 0;
+    font-size: 20px;
+    line-height: 30px;
+    color: var(--cp-ink-2);
+  }
+  .page-hero--l .page-hero__lead {
+    max-width: var(--container-text);
+    margin-top: var(--space-5);
+  }
+  @media (max-width: 767px) {
+    .page-hero__title {
+      font-size: 64px;
+    }
+    .page-hero--l .page-hero__title {
+      font-size: 44px;
+    }
+    .page-hero__lead {
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+</style>

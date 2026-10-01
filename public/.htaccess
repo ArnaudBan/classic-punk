@@ -28,9 +28,9 @@ ErrorDocument 404 /404.html
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "DENY"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
-  # CSP stricte : aucun script en ligne ni tiers. À élargir (connect-src, form-action)
-  # quand le service d'envoi du formulaire de contact sera choisi.
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+  # CSP stricte : aucun script en ligne ni tiers. Le formulaire de contact n'envoie rien à un serveur :
+  # sans JavaScript, il s'ouvre en mailto: (d'où form-action mailto:).
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self' mailto:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
   Header always set Strict-Transport-Security "max-age=31536000" env=HTTPS
 
   # Fichiers générés par Astro (nom avec empreinte) : cache long, jamais revalidé.
