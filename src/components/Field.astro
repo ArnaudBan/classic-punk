@@ -53,33 +53,34 @@ const common = {
 
 <div class:list={['cp-field', className]} data-field>
   <label class="cp-field__label" for={id}>
-    {label}{required && <span class="cp-field__req">{requiredLabel}</span>}
+    {label}
+    {required && <span class="cp-field__req">{requiredLabel}</span>}
   </label>
-  {
-    type === 'textarea' ? (
-      <textarea {...common} />
-    ) : type === 'select' ? (
-      <div class="cp-field__select">
-        <select {...common}>
-          {options.map((o) => (
-            <option value={o.value}>{o.label}</option>
-          ))}
-        </select>
-        <Icon name="chevron-down" size={20} />
-      </div>
-    ) : (
-      <input type={type} {...common} />
-    )
-  }
-  {help && <p class="cp-field__help" id={helpId}>{help}</p>}
-  {
-    error && (
-      <p class="cp-field__error" id={errId} hidden>
-        <Icon name="alert" size={18} />
-        {error}
-      </p>
-    )
-  }
+  {type === 'textarea' ? (
+    <textarea {...common} />
+  ) : type === 'select' ? (
+    <div class="cp-field__select">
+      <select {...common}>
+        {options.map((o) => (
+          <option value={o.value}>{o.label}</option>
+        ))}
+      </select>
+      <Icon name="chevron-down" size={20} />
+    </div>
+  ) : (
+    <input type={type} {...common} />
+  )}
+  {help && (
+    <p class="cp-field__help" id={helpId}>
+      {help}
+    </p>
+  )}
+  {error && (
+    <p class="cp-field__error" id={errId} hidden>
+      <Icon name="alert" size={18} />
+      {error}
+    </p>
+  )}
 </div>
 
 <style is:global>

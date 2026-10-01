@@ -1,0 +1,44 @@
+# Vérifications de chaque pull request vers main : lint, format, types, build et tests.
+# Pour bloquer le merge tant qu'elles échouent : Settings → Rules → Rulesets (ou Branches)
+# → règle sur main avec « Require status checks to pass » et le check « Vérifications ».
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# Un nouveau push sur la PR annule la vérification précédente, devenue inutile.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Vérifications
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint (ESLint, accessibilité comprise)
+        run: npm run lint
+
+      - name: Format (Prettier)
+        run: npm run format:check
+
+      - name: Types (astro check)
+        run: npm run check
+
+      - name: Build et tests
+        run: npm test

@@ -45,7 +45,7 @@ export const fr = {
   },
   side: 'Face',
   home: {
-    // Textes de structure issus de la maquette (absents des contenus) — TODO: à valider
+    // Textes de structure issus de la maquette (absents des contenus)
     credits: ['CP-000', 'Classic Punk', 'Développement indépendant', 'Depuis 2024'],
     toc: {
       label: 'Sommaire de la page',

@@ -19,7 +19,5 @@ export default defineConfig({
     // Scripts toujours servis en fichiers externes : la CSP (public/.htaccess) n'autorise aucun script en ligne.
     build: { assetsInlineLimit: 0 },
   },
-  integrations: [
-    sitemap({ filter: (page) => !page.includes('/404') }),
-  ],
+  integrations: [sitemap({ filter: (page) => !page.includes('/404') })],
 });

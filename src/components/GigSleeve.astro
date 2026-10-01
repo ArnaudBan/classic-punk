@@ -17,14 +17,39 @@ const { eyebrow, tag, alt } = Astro.props;
 
 <div class="gig-visual">
   <div class="gig-visual__top">
-    <Image src={lockup} alt="Gig" height={64} width={Math.round((lockup.width * 64) / lockup.height)} class="gig-visual__lockup" />
+    <Image
+      src={lockup}
+      alt="Gig"
+      height={64}
+      width={Math.round((lockup.width * 64) / lockup.height)}
+      class="gig-visual__lockup"
+    />
     <span class="gig-visual__eyebrow">{eyebrow}</span>
   </div>
   <div class="gig-sleeve">
-    <Picture src={popoverDark} alt="" formats={['avif']} fallbackFormat="webp" width={210} densities={[1, 1.5]} class="gig-sleeve__shot gig-sleeve__shot--b" />
-    <Picture src={popover} alt={alt} formats={['avif']} fallbackFormat="webp" width={230} densities={[1, 1.3]} class="gig-sleeve__shot gig-sleeve__shot--a" loading="eager" />
+    <Picture
+      src={popoverDark}
+      alt=""
+      formats={['avif']}
+      fallbackFormat="webp"
+      width={210}
+      densities={[1, 1.5]}
+      class="gig-sleeve__shot gig-sleeve__shot--b"
+    />
+    <Picture
+      src={popover}
+      alt={alt}
+      formats={['avif']}
+      fallbackFormat="webp"
+      width={230}
+      densities={[1, 1.3]}
+      class="gig-sleeve__shot gig-sleeve__shot--a"
+      loading="eager"
+    />
     <Image src={tape} alt="" width={140} height={32} class="gig-sleeve__tape" />
-    <span class="gig-sleeve__tag" aria-hidden="true">{tag}</span>
+    <span class="gig-sleeve__tag" aria-hidden="true">
+      {tag}
+    </span>
   </div>
 </div>
 

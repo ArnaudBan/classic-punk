@@ -14,22 +14,20 @@ const { items, side = 'A', figure } = Astro.props;
 
 <div class:list={['features', (figure || Astro.slots.has('aside')) && 'features--figure']}>
   <TrackList items={items} side={side} />
-  {
-    figure && (
-      <figure>
-        <Picture
-          src={figure.src}
-          alt={figure.alt}
-          formats={['avif']}
-          fallbackFormat="webp"
-          widths={[460, figure.src.width]}
-          sizes="(max-width: 767px) 100vw, 460px"
-          class="features__img"
-        />
-        {figure.caption && <figcaption>{figure.caption}</figcaption>}
-      </figure>
-    )
-  }
+  {figure && (
+    <figure>
+      <Picture
+        src={figure.src}
+        alt={figure.alt}
+        formats={['avif']}
+        fallbackFormat="webp"
+        widths={[460, figure.src.width]}
+        sizes="(max-width: 767px) 100vw, 460px"
+        class="features__img"
+      />
+      {figure.caption && <figcaption>{figure.caption}</figcaption>}
+    </figure>
+  )}
   <slot name="aside" />
 </div>
 

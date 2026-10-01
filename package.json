@@ -11,6 +11,13 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "todo": "node scripts/todo.mjs",
+    "pretest": "astro build",
+    "test": "node --test tests/*.test.mjs",
+    "verify": "npm run lint && npm run format:check && npm run check && npm test",
     "astro": "astro"
   },
   "dependencies": {
@@ -19,7 +26,15 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "eslint-plugin-astro": "^3.2.1",
+    "eslint-plugin-jsx-a11y-x": "^0.2.0",
+    "globals": "^17.13.0",
     "playwright": "^1.63.0",
-    "typescript": "^6.0.3"
+    "prettier": "^3.9.9",
+    "prettier-plugin-astro": "^1.1.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.0"
   }
 }

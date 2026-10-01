@@ -18,7 +18,10 @@ const { credits, titleStart, titleHighlight, lead, size = 'xl' } = Astro.props;
 <section class:list={['page-hero', `page-hero--${size}`]}>
   <Container class="page-hero__wrap">
     <Credits items={credits} />
-    <h1 class="page-hero__title">{titleStart}{titleHighlight && <Highlight>{titleHighlight}</Highlight>}</h1>
+    <h1 class="page-hero__title">
+      {titleStart}
+      {titleHighlight && <Highlight>{titleHighlight}</Highlight>}
+    </h1>
     <p class="page-hero__lead">{lead}</p>
   </Container>
 </section>

@@ -13,24 +13,20 @@ const { links, cta, current } = Astro.props;
 
 <div class="cp-header__panel" id="cp-menu">
   <ul>
-    {
-      links.map((l) => (
-        <li>
-          <a class="cp-header__plink" href={l.href} aria-current={l.href === current ? 'page' : undefined}>
-            <span>{l.label}</span>
-            <Icon name="arrow-right" size={28} />
-          </a>
-        </li>
-      ))
-    }
+    {links.map((l) => (
+      <li>
+        <a class="cp-header__plink" href={l.href} aria-current={l.href === current ? 'page' : undefined}>
+          <span>{l.label}</span>
+          <Icon name="arrow-right" size={28} />
+        </a>
+      </li>
+    ))}
   </ul>
-  {
-    cta && (
-      <Button href={cta.href} variant="primary" size="lg" iconAfter="arrow-right">
-        {cta.label}
-      </Button>
-    )
-  }
+  {cta && (
+    <Button href={cta.href} variant="primary" size="lg" iconAfter="arrow-right">
+      {cta.label}
+    </Button>
+  )}
 </div>
 
 <script>

@@ -48,6 +48,8 @@ if (variant === 'horizontal') {
 <span class:list={['cp-logo', className]} style={`height:${height}px`}>
   <svg viewBox={`0 0 ${vbW} 100`} role="img" height={height} width={Math.round((height * vbW) / 100)}>
     <title>{title}</title>
-    {paths.map((p) => <path fill={p.fill} d={p.d} fill-rule={p.rule} />)}
+    {paths.map((p) => (
+      <path fill={p.fill} d={p.d} fill-rule={p.rule} />
+    ))}
   </svg>
 </span>

@@ -13,7 +13,9 @@ const { title, as: Heading = 'h3' } = Astro.props;
 <div class="tape-note">
   <Image src={tape} alt="" width={120} height={28} class="tape-note__tape" />
   <Heading class="tape-note__title">{title}</Heading>
-  <p class="tape-note__text"><slot /></p>
+  <p class="tape-note__text">
+    <slot />
+  </p>
 </div>
 
 <style>

@@ -17,34 +17,34 @@ const isGig = app.theme === 'gig';
 
 <div class:list={['sleeve', isGig ? 'sleeve--gig' : 'sleeve--lr']}>
   <Image src={app.icon} alt={`Icône de ${app.name}`} width={72} height={72} densities={[1, 2]} class="sleeve__icon" />
-  {
-    shot &&
-      (isGig ? (
-        <div class="sleeve__frame">
-          <Picture
-            src={shot.src}
-            alt={shot.alt}
-            formats={['avif']}
-            fallbackFormat="webp"
-            width={200}
-            densities={[1, 1.5]}
-            class="sleeve__shot"
-          />
-          <Image src={gigTape} alt="" width={120} height={34} class="sleeve__tape" />
-        </div>
-      ) : (
+  {shot &&
+    (isGig ? (
+      <div class="sleeve__frame">
         <Picture
           src={shot.src}
           alt={shot.alt}
           formats={['avif']}
           fallbackFormat="webp"
-          width={176}
-          densities={[1, 2, 3]}
-          class="sleeve__phone"
+          width={200}
+          densities={[1, 1.5]}
+          class="sleeve__shot"
         />
-      ))
-  }
-  <span class="sleeve__tag" aria-hidden="true">{app.catalog} · {fr.side} {side}</span>
+        <Image src={gigTape} alt="" width={120} height={34} class="sleeve__tape" />
+      </div>
+    ) : (
+      <Picture
+        src={shot.src}
+        alt={shot.alt}
+        formats={['avif']}
+        fallbackFormat="webp"
+        width={176}
+        densities={[1, 2, 3]}
+        class="sleeve__phone"
+      />
+    ))}
+  <span class="sleeve__tag" aria-hidden="true">
+    {app.catalog} · {fr.side} {side}
+  </span>
 </div>
 
 <style>

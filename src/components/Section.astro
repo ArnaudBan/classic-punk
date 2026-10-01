@@ -27,7 +27,9 @@ const { id, tone = 'default', ruled = false, flushTop = false, class: className,
     className,
   ]}
 >
-  <Container stack class={containerClass}><slot /></Container>
+  <Container stack class={containerClass}>
+    <slot />
+  </Container>
 </section>
 
 <style>

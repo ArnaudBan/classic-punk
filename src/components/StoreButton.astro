@@ -36,17 +36,15 @@ if (status === 'available') {
 const height = size === 'lg' ? 54 : 44;
 ---
 
-{
-  badge ? (
-    <a class="store-badge" href={storeUrl}>
-      <img src={badge.src} alt={badge.alt} height={height} width={Math.round((badge.width * height) / badge.height)} />
-    </a>
-  ) : (
-    <Button soon size={size} icon={platform === 'macos' ? 'mac' : 'iphone'}>
-      {fr.storeSoon[platform]}
-    </Button>
-  )
-}
+{badge ? (
+  <a class="store-badge" href={storeUrl}>
+    <img src={badge.src} alt={badge.alt} height={height} width={Math.round((badge.width * height) / badge.height)} />
+  </a>
+) : (
+  <Button soon size={size} icon={platform === 'macos' ? 'mac' : 'iphone'}>
+    {fr.storeSoon[platform]}
+  </Button>
+)}
 
 <style>
   .store-badge {

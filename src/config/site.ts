@@ -45,7 +45,7 @@ export const site = {
 
   /**
    * Mentions légales (source : registre du commerce, fiche Classic Punk, SIREN 931 433 304).
-   * Toute valeur contenant encore [À COMPLÉTER] / [À VÉRIFIER] déclenche un avertissement au build.
+   * Toute valeur contenant encore un marqueur des contenus déclenche un avertissement au build.
    */
   legal: {
     company: 'Classic Punk',
@@ -61,7 +61,7 @@ export const site = {
     retention: 'un an après notre dernier échange',
     /** Hébergement de la messagerie de contact. */
     mailHost: 'Infomaniak, en Suisse, sur des serveurs sécurisés',
-    // TODO: à mettre à jour à chaque modification de la page légale
+    // À mettre à jour à chaque modification de la page légale.
     updatedAt: '1er octobre 2026',
   },
 } as const;

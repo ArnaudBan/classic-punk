@@ -19,19 +19,25 @@ const { id, kicker, titleStart, titleHighlight, text, button } = Astro.props;
 <section id={id} class="cta cp-inverse">
   <Container class="cta__wrap">
     {kicker && <span class="cta__kicker">{kicker}</span>}
-    <h2 class="cta__title">{titleStart}{titleHighlight && <> <Highlight>{titleHighlight}</Highlight></>}</h2>
+    <h2 class="cta__title">
+      {titleStart}
+      {titleHighlight && (
+        <>
+          {' '}
+          <Highlight>{titleHighlight}</Highlight>
+        </>
+      )}
+    </h2>
     {text && <p class="cta__text">{text}</p>}
-    {
-      Astro.slots.has('actions') ? (
-        <slot name="actions" />
-      ) : (
-        button && (
-          <Button href={button.href} variant="inverse" size="lg" iconAfter="arrow-right">
-            {button.label}
-          </Button>
-        )
+    {Astro.slots.has('actions') ? (
+      <slot name="actions" />
+    ) : (
+      button && (
+        <Button href={button.href} variant="inverse" size="lg" iconAfter="arrow-right">
+          {button.label}
+        </Button>
       )
-    }
+    )}
   </Container>
 </section>
 

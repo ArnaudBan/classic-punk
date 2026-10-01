@@ -40,14 +40,12 @@ const { hero, steps, features, parents, faq, cta } = lastRound;
         <StoreButton status={app.status} platform={app.platform} storeUrl={app.storeUrl} />
         <TextLink href={hero.secondary.href}>{hero.secondary.label}</TextLink>
       </ActionRow>
-      {
-        app.status !== 'available' && (
-          <div slot="meta" class="hero-meta">
-            <StatusBadge status={app.status} platform={app.platform} />
-            {app.release && <span class="hero-meta__release">{`${hero.releaseLabel} ${app.release}`}</span>}
-          </div>
-        )
-      }
+      {app.status !== 'available' && (
+        <div slot="meta" class="hero-meta">
+          <StatusBadge status={app.status} platform={app.platform} />
+          {app.release && <span class="hero-meta__release">{`${hero.releaseLabel} ${app.release}`}</span>}
+        </div>
+      )}
       <LrHeroVisual
         slot="visual"
         icon={app.icon}

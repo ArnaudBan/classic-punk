@@ -23,23 +23,21 @@ const template = (columns ?? shots.map(() => 1)).map((c) => `minmax(0,${c}fr)`).
 ---
 
 <div class:list={['shots', `shots--${variant}`]} style={`--shots-cols:${template}`}>
-  {
-    shots.map((s) =>
-      variant === 'phones' ? (
-        <figure>
-          <PhoneShot src={s.src} alt={s.alt} width={230} />
-          {s.caption && <figcaption>{s.caption}</figcaption>}
-        </figure>
-      ) : (
-        <figure>
-          <div class="shots__pad">
-            <Picture src={s.src} alt={s.alt} formats={['avif']} fallbackFormat="webp" class="shots__img" />
-          </div>
-          {s.caption && <figcaption>{s.caption}</figcaption>}
-        </figure>
-      ),
-    )
-  }
+  {shots.map((s) =>
+    variant === 'phones' ? (
+      <figure>
+        <PhoneShot src={s.src} alt={s.alt} width={230} />
+        {s.caption && <figcaption>{s.caption}</figcaption>}
+      </figure>
+    ) : (
+      <figure>
+        <div class="shots__pad">
+          <Picture src={s.src} alt={s.alt} formats={['avif']} fallbackFormat="webp" class="shots__img" />
+        </div>
+        {s.caption && <figcaption>{s.caption}</figcaption>}
+      </figure>
+    ),
+  )}
 </div>
 
 <style>

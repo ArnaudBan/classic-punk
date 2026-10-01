@@ -15,16 +15,14 @@ import { site } from '../config/site';
     </div>
     <nav aria-label={fr.footer.label}>
       <ul class="cp-footer__links">
-        {
-          fr.footer.links.map((l) => (
-            <li>
-              <a href={l.href}>
-                {l.label}
-                <Icon name="arrow-right" size={18} />
-              </a>
-            </li>
-          ))
-        }
+        {fr.footer.links.map((l) => (
+          <li>
+            <a href={l.href}>
+              {l.label}
+              <Icon name="arrow-right" size={18} />
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
     <div class="cp-footer__bottom">

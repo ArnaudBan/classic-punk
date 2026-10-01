@@ -16,35 +16,37 @@ const portrait = site.about.portrait;
 
 <div class="about">
   <figure class="about__figure">
-    {
-      portrait ? (
-        <Picture
-          src={portrait}
-          alt="Arnaud, fondateur de Classic Punk"
-          formats={['avif']}
-          fallbackFormat="webp"
-          widths={[400, 800]}
-          sizes="(max-width: 767px) 100vw, 460px"
-          class="about__portrait"
-        />
-      ) : (
-        <div class="about__placeholder" aria-hidden="true" />
-      )
-    }
+    {portrait ? (
+      <Picture
+        src={portrait}
+        alt="Arnaud, fondateur de Classic Punk"
+        formats={['avif']}
+        fallbackFormat="webp"
+        widths={[400, 800]}
+        sizes="(max-width: 767px) 100vw, 460px"
+        class="about__portrait"
+      />
+    ) : (
+      <div class="about__placeholder" aria-hidden="true" />
+    )}
     <figcaption>{caption}</figcaption>
   </figure>
   <div class="about__text">
     <p class="about__lead">{lead}</p>
-    {paragraphs.map((p) => <p class="about__muted">{p}</p>)}
-    {
-      site.about.showBand && band && (
-        <div class="about__band">
-          <p class="about__muted">
-            {band.before} <TextLink href={band.link.href} external>{band.link.label}</TextLink>{band.after}
-          </p>
-        </div>
-      )
-    }
+    {paragraphs.map((p) => (
+      <p class="about__muted">{p}</p>
+    ))}
+    {site.about.showBand && band && (
+      <div class="about__band">
+        <p class="about__muted">
+          {band.before}{' '}
+          <TextLink href={band.link.href} external>
+            {band.link.label}
+          </TextLink>
+          {band.after}
+        </p>
+      </div>
+    )}
   </div>
 </div>
 

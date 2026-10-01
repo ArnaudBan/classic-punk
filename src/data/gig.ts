@@ -4,7 +4,6 @@
  */
 import setlistClientDark from '../assets/apps/gig-setlist-client-dark.png';
 
-
 export const gig = {
   hero: {
     credits: ['CP-001', 'Gig', 'Mac', 'Achat unique', 'Sans compte ni cloud'],
@@ -24,10 +23,10 @@ export const gig = {
     eyebrow: 'Comment ça marche',
     title: 'Deux clics, et ça joue.',
     items: [
-      { title: 'Choisis ton client.', text: 'Depuis l\'icône de la barre de menu, sans ouvrir de fenêtre.' },
+      { title: 'Choisis ton client.', text: "Depuis l'icône de la barre de menu, sans ouvrir de fenêtre." },
       {
         title: 'Tape ta tâche et lance le set.',
-        text: '1-2-3-4! : le chrono démarre. L\'autocomplétion retrouve tes tâches récentes.',
+        text: "1-2-3-4! : le chrono démarre. L'autocomplétion retrouve tes tâches récentes.",
       },
       { title: "Stop, c'est dans la boîte.", text: 'Un set oublié ? Ajoute-le à la main ou corrige les horaires.' },
       {
@@ -106,7 +105,10 @@ export const gig = {
         q: 'Que se passe-t-il si je change de Mac ?',
         a: "Ton achat se restaure depuis l'App Store avec ton identifiant Apple (bouton « Restaurer les achats » dans l'app). Tes données restent sur ton Mac. Elles suivent avec l'Assistant de migration ou Time Machine ; il n'y a pas encore d'export intégré.",
       },
-      { q: 'Les clients archivés comptent-ils dans la limite gratuite ?', a: 'Oui : tous les clients comptent, archivés compris.' },
+      {
+        q: 'Les clients archivés comptent-ils dans la limite gratuite ?',
+        a: 'Oui : tous les clients comptent, archivés compris.',
+      },
       { q: 'Gig est-il disponible en anglais ?', a: "Pas encore : pour l'instant, Gig existe uniquement en français." },
       {
         q: "Besoin d'aide ?",

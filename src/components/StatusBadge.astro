@@ -8,7 +8,8 @@ interface Props {
   platform: 'macos' | 'ios';
 }
 const { status, platform } = Astro.props;
-const variant = status === 'available' ? 'available' : status === 'coming-soon' ? 'soon' : status === 'dev' ? 'dev' : 'neutral';
+const variant =
+  status === 'available' ? 'available' : status === 'coming-soon' ? 'soon' : status === 'dev' ? 'dev' : 'neutral';
 const label = status === 'coming-soon' ? fr.storeSoon[platform] : fr.status[status];
 ---
 
