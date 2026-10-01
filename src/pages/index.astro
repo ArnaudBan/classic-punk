@@ -35,6 +35,7 @@ const jsonLd = [
     '@type': 'Person',
     name: site.founder.name,
     jobTitle: site.founder.jobTitle,
+    knowsAbout: site.founder.skills,
     worksFor: { '@id': `${site.url}/#organization` },
     sameAs: site.contact.socials.map((s) => s.url),
   },

@@ -8,9 +8,9 @@ const e = fr.home.eyebrows;
 
 export const home = {
   seo: {
-    title: 'Classic Punk — Développeur indépendant, sites et apps',
+    title: 'Classic Punk — Développeur PHP et Laravel indépendant',
     description:
-      "Développeur indépendant : sites web, applications iPhone et Mac, outils sur mesure. La rigueur du classique, l'énergie du punk.",
+      "Développeur indépendant spécialisé PHP et Laravel : sites, applications web, iPhone et Mac, outils sur mesure. La rigueur du classique, l'énergie du punk.",
   },
 
   hero: {
@@ -89,7 +89,8 @@ export const home = {
       },
       {
         title: 'Applications.',
-        text: "Applications web, iPhone et Mac. Interfaces soignées, code natif (Swift, SwiftUI) quand c'est pertinent, web quand c'est plus malin.",
+        // Spécialité PHP / Laravel mise en avant (texte adapté des contenus, à valider)
+        text: "Applications web, iPhone et Mac. Ma spécialité : PHP et Laravel, pour des applications web solides et faciles à faire évoluer. Code natif (Swift, SwiftUI) quand c'est pertinent.",
       },
       {
         title: 'Outils sur mesure.',
@@ -122,7 +123,8 @@ export const home = {
     lead: "Je m'appelle Arnaud. Avant d'écrire du code, j'ai passé des années derrière une console de mixage : ingénieur du son et musicien.",
     paragraphs: [
       "Le studio m'a appris deux choses qui ne m'ont jamais quitté. La première : la technique ne pardonne pas, une phase inversée s'entend, un détail négligé aussi. La seconde : sans énergie, sans parti pris, même un enregistrement parfait ne raconte rien.",
-      "En 2010, j'ai changé d'instrument et je me suis mis au développement. Depuis 2024, je propose mes services en indépendant sous le nom de Classic Punk : un studio d'une personne, sans investisseurs, où chaque projet est mixé avec le même soin.",
+      // Instrument principal PHP / Laravel (texte adapté des contenus, à valider)
+      "En 2010, j'ai changé d'instrument et je me suis mis au développement. Mon instrument principal, c'est PHP et Laravel ; mais comme tout musicien de studio, je joue de ce que le morceau demande. Depuis 2024, je propose mes services en indépendant sous le nom de Classic Punk : un studio d'une personne, sans investisseurs, où chaque projet est mixé avec le même soin.",
     ],
     // TODO: texte adapté (nom du groupe, rôle de bassiste), à valider
     band: {

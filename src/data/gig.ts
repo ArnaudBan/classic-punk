@@ -4,10 +4,6 @@
  */
 import setlistClientDark from '../assets/apps/gig-setlist-client-dark.png';
 
-// TODO: réponses de FAQ encore à trancher (affichées telles quelles jusqu'à décision)
-const TODO_MIN_OS = '[À COMPLÉTER : version minimale]';
-const TODO_SILICON_INTEL = '[À VÉRIFIER]';
-const TODO_DATA_TRANSFER = '[À COMPLÉTER : comment transférer les données — export CSV, sauvegarde Time Machine…]';
 
 export const gig = {
   hero: {
@@ -99,7 +95,7 @@ export const gig = {
     items: [
       {
         q: 'Sur quels Mac fonctionne Gig ?',
-        a: `macOS ${TODO_MIN_OS} et versions ultérieures, sur Mac Apple Silicon et Intel ${TODO_SILICON_INTEL}.`,
+        a: 'macOS 14 Sonoma et versions ultérieures, sur Mac Apple Silicon et Intel.',
         open: true,
       },
       {
@@ -108,7 +104,7 @@ export const gig = {
       },
       {
         q: 'Que se passe-t-il si je change de Mac ?',
-        a: `Ton achat se restaure depuis l'App Store avec ton identifiant Apple (bouton « Restaurer les achats » dans l'app). ${TODO_DATA_TRANSFER}`,
+        a: "Ton achat se restaure depuis l'App Store avec ton identifiant Apple (bouton « Restaurer les achats » dans l'app). Tes données restent sur ton Mac. Elles suivent avec l'Assistant de migration ou Time Machine ; il n'y a pas encore d'export intégré.",
       },
       { q: 'Les clients archivés comptent-ils dans la limite gratuite ?', a: 'Oui : tous les clients comptent, archivés compris.' },
       { q: 'Gig est-il disponible en anglais ?', a: "Pas encore : pour l'instant, Gig existe uniquement en français." },

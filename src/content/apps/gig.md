@@ -4,7 +4,7 @@ slug: gig
 catalog: CP-001
 endorsement: un set Classic Punk
 platform: macos
-# minOS: TODO: version minimale de macOS
+minOS: macOS 14
 status: coming-soon
 # storeUrl: à renseigner avec status: available
 price: 4,99 €

@@ -12,7 +12,9 @@ export const site = {
   founder: {
     name: 'Arnaud',
     fullName: 'Arnaud Banvillet',
-    jobTitle: 'Développeur indépendant',
+    jobTitle: 'Développeur PHP et Laravel indépendant',
+    /** Compétences déclarées dans le JSON-LD (Person.knowsAbout). */
+    skills: ['PHP', 'Laravel', 'Swift', 'SwiftUI', 'Astro'],
   },
   since: 2024,
   catalog: 'CP-000',
