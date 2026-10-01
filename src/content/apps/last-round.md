@@ -8,6 +8,7 @@ minOS: iOS 17
 status: dev
 # storeUrl: à renseigner avec status: available
 # price: TODO: modèle économique
+category: LifestyleApplication
 theme: last-round
 tagline: La dernière manche, c'est toi qui la décides.
 summary: Un budget de jeu pour la semaine, un décompte pour chaque partie, des jours sans manette. Une app qui t'aide à garder la main sur ton temps de jeu, sans te surveiller.

@@ -11,7 +11,7 @@ interface Props {
   side?: string;
 }
 const { app, side = 'A' } = Astro.props;
-const shot = app.screenshots[0];
+const shot = app.screenshots.find((s) => s.featured) ?? app.screenshots[0];
 const isGig = app.theme === 'gig';
 ---
 

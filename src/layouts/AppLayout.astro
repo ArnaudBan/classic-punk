@@ -1,0 +1,51 @@
+---
+/** Gabarit commun aux pages d'app : SEO de l'app, JSON-LD, thème posé sur le contenu. */
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { site } from '../config/site';
+import { fr } from '../i18n/fr';
+
+interface Props {
+  app: CollectionEntry<'apps'>['data'];
+}
+const { app } = Astro.props;
+const pageUrl = new URL(`/${app.slug}/`, site.url).href;
+
+const os = app.platform === 'macos' ? 'macOS' : 'iOS';
+const price = app.price ? Number.parseFloat(app.price.replace(',', '.').replace(/[^\d.]/g, '')) : undefined;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: app.name,
+    description: app.seo.description,
+    url: pageUrl,
+    operatingSystem: app.minOS ?? os,
+    applicationCategory: app.category,
+    publisher: { '@type': 'Organization', name: site.name, url: `${site.url}/` },
+    ...(price !== undefined &&
+      !Number.isNaN(price) && {
+        offers: { '@type': 'Offer', price: price.toFixed(2), priceCurrency: 'EUR' },
+      }),
+    ...(app.storeUrl && { downloadUrl: app.storeUrl }),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: fr.nav.home, item: `${site.url}/` },
+      { '@type': 'ListItem', position: 2, name: app.name, item: pageUrl },
+    ],
+  },
+];
+---
+
+<BaseLayout title={app.seo.title} description={app.seo.description} theme={app.theme}>
+  <Fragment slot="head">
+    {app.theme === 'gig' && <link rel="preload" href="/fonts/Anton-Regular.woff2" as="font" type="font/woff2" crossorigin />}
+    <JsonLd data={jsonLd} />
+  </Fragment>
+  <slot />
+</BaseLayout>

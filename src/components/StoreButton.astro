@@ -1,0 +1,56 @@
+---
+/**
+ * Bouton de téléchargement d'une app.
+ * - status `available` : badge officiel Apple (SVG fourni par Apple, non modifié) vers `storeUrl`.
+ * - sinon : bouton maison « Bientôt sur le (Mac) App Store », désactivé (aria-disabled).
+ */
+import Button from './Button.astro';
+import { fr } from '../i18n/fr';
+
+interface Props {
+  status: 'dev' | 'coming-soon' | 'beta' | 'available';
+  platform: 'macos' | 'ios';
+  storeUrl?: string;
+  size?: 'md' | 'lg';
+}
+const { status, platform, storeUrl, size = 'lg' } = Astro.props;
+
+// Badges officiels Apple, version française, à déposer dans src/assets/brand/apple/.
+const BADGES = {
+  macos: { file: 'mac-app-store-fr.svg', alt: 'Télécharger dans le Mac App Store' },
+  ios: { file: 'app-store-fr.svg', alt: "Télécharger dans l'App Store" },
+} as const;
+const badgeFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/brand/apple/*.svg', { eager: true });
+
+let badge: { src: string; width: number; height: number; alt: string } | undefined;
+if (status === 'available') {
+  const { file, alt } = BADGES[platform];
+  const mod = badgeFiles[`../assets/brand/apple/${file}`];
+  if (!mod || !storeUrl) {
+    throw new Error(
+      `StoreButton : l'app est « available » mais il manque ${!storeUrl ? 'storeUrl' : `le badge officiel Apple src/assets/brand/apple/${file}`}.`,
+    );
+  }
+  badge = { src: mod.default.src, width: mod.default.width, height: mod.default.height, alt };
+}
+const height = size === 'lg' ? 54 : 44;
+---
+
+{
+  badge ? (
+    <a class="store-badge" href={storeUrl}>
+      <img src={badge.src} alt={badge.alt} height={height} width={Math.round((badge.width * height) / badge.height)} />
+    </a>
+  ) : (
+    <Button soon size={size} icon={platform === 'macos' ? 'mac' : 'iphone'}>
+      {fr.storeSoon[platform]}
+    </Button>
+  )
+}
+
+<style>
+  .store-badge {
+    display: inline-block;
+    line-height: 0;
+  }
+</style>

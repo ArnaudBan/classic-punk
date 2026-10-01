@@ -1,0 +1,18 @@
+---
+/** Rangée d'actions : un bouton et un lien texte alignés, qui passent à la ligne sur mobile. */
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<div class:list={['actions', className]}><slot /></div>
+
+<style>
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+    align-items: center;
+  }
+</style>

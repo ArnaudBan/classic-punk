@@ -67,12 +67,14 @@
   --font-expanded:"Archivo Expanded", "Helvetica Neue", Arial, sans-serif;
   --font-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
   --font-marker:"Permanent Marker", "Marker Felt", cursive;
+  --font-gig-display:"Anton", Impact, "Arial Narrow", sans-serif;
 }
 @font-face{font-family:"Archivo";src:url("/fonts/Archivo-Text.woff2") format("woff2");font-weight:400 700;font-style:normal;font-display:swap}
 @font-face{font-family:"Archivo Condensed";src:url("/fonts/Archivo-Condensed.woff2") format("woff2");font-weight:800 900;font-style:normal;font-display:swap}
 @font-face{font-family:"Archivo Expanded";src:url("/fonts/Archivo-Expanded.woff2") format("woff2");font-weight:700 800;font-style:normal;font-display:swap}
 @font-face{font-family:"JetBrains Mono";src:url("/fonts/JetBrainsMono.woff2") format("woff2");font-weight:400 600;font-style:normal;font-display:swap}
 @font-face{font-family:"Permanent Marker";src:url("/fonts/PermanentMarker-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Anton";src:url("/fonts/Anton-Regular.woff2") format("woff2");font-weight:400 900;font-style:normal;font-display:swap}
 .display-xl{font-family:var(--font-condensed);font-size:112px;line-height:0.9;font-weight:900;letter-spacing:-0.01em;}
 .display-l{font-family:var(--font-condensed);font-size:80px;line-height:0.92;font-weight:900;letter-spacing:-0.005em;}
 .display-m{font-family:var(--font-condensed);font-size:52px;line-height:0.95;font-weight:900;}

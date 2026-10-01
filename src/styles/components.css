@@ -160,6 +160,7 @@ textarea.cp-field__control{min-height:160px;resize:vertical}
 .cp-price__amount{font-family:var(--font-condensed);font-weight:900;font-size:44px;line-height:1;display:block}
 .cp-price__note{font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--cp-ink-3);display:block;margin-top:4px}
 .cp-price td .cp-icon{color:var(--cp-success);margin-right:6px;vertical-align:-5px}
+@media (max-width:767px){.cp-price{table-layout:fixed}.cp-price th,.cp-price td{padding:var(--space-3);font-size:14px;line-height:20px;overflow-wrap:anywhere}.cp-price thead th{font-size:14px}.cp-price__amount{font-size:32px}.cp-price td .cp-icon{display:none}}
 
 /* Site header */
 .cp-header{position:relative;background:var(--cp-paper);border-bottom:var(--border-hair) solid var(--cp-rule)}
@@ -208,3 +209,8 @@ textarea.cp-field__control{min-height:160px;resize:vertical}
 .cp-footer__links a:hover{color:var(--cp-accent)}
 .cp-footer__bottom{grid-column:1 / -1;display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;border-top:var(--border-hair) solid var(--cp-on-inverse-2);padding-top:var(--space-4);font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--cp-on-inverse-2)}
 @media (max-width:767px){.cp-footer__inner{grid-template-columns:minmax(0,1fr);padding:var(--space-7) var(--gutter-mobile) var(--space-5);gap:var(--space-6)}.cp-footer__sig{font-size:40px}}
+
+/* Thèmes des pages d'app. À poser sur le CONTENU de la page (<main data-theme="gig">), jamais sur l'en-tête ni le pied de page.
+   L'accent, le papier, le focus et la police affiche basculent sur ceux de l'app ; tous les composants suivent. */
+[data-theme="gig"]{--cp-paper:var(--gig-paper);--cp-accent:var(--gig-punk);--cp-on-accent:var(--gig-on-punk);--cp-focus:var(--gig-punk-text);--font-condensed:var(--font-gig-display);background:var(--cp-paper)}
+[data-theme="last-round"]{--cp-accent:var(--lr-secondary);--cp-on-accent:var(--lr-on-secondary);--cp-focus:var(--lr-primary)}

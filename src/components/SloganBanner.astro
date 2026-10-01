@@ -1,0 +1,10 @@
+---
+/** Bandeau slogan pleine largeur. */
+interface Props {
+  tone?: 'inverse' | 'accent';
+  class?: string;
+}
+const { tone = 'inverse', class: className } = Astro.props;
+---
+
+<section class:list={['cp-slogan', `cp-slogan--${tone}`, className]}><p class="cp-slogan__text"><slot /></p></section>

@@ -1,0 +1,65 @@
+---
+/** Arguments d'une app (liste à filets) et capture mise en avant. */
+import { Picture } from 'astro:assets';
+import TrackList, { type Track } from './TrackList.astro';
+
+interface Props {
+  items: readonly Track[];
+  side?: string;
+  figure?: { src: ImageMetadata; alt: string; caption?: string };
+}
+const { items, side = 'A', figure } = Astro.props;
+---
+
+<div class:list={['features', figure && 'features--figure']}>
+  <TrackList items={items} side={side} />
+  {
+    figure && (
+      <figure>
+        <Picture
+          src={figure.src}
+          alt={figure.alt}
+          formats={['avif']}
+          fallbackFormat="webp"
+          widths={[460, figure.src.width]}
+          sizes="(max-width: 767px) 100vw, 460px"
+          class="features__img"
+        />
+        {figure.caption && <figcaption>{figure.caption}</figcaption>}
+      </figure>
+    )
+  }
+</div>
+
+<style>
+  .features--figure {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-7);
+    align-items: start;
+  }
+  figure {
+    margin: 0;
+  }
+  .features :global(.features__img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: var(--border-rule) solid var(--gig-ink);
+    box-shadow: 8px 8px 0 var(--cp-accent);
+  }
+  figcaption {
+    margin-top: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cp-ink-2);
+  }
+  @media (max-width: 767px) {
+    .features--figure {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+  }
+</style>

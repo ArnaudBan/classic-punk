@@ -10,7 +10,8 @@ interface Props {
   titleStart: string;
   titleHighlight?: string;
   text?: string;
-  button: { label: string; href: string };
+  /** Bouton par défaut ; remplacé par le slot `actions` s'il est fourni. */
+  button?: { label: string; href: string };
 }
 const { id, kicker, titleStart, titleHighlight, text, button } = Astro.props;
 ---
@@ -20,7 +21,17 @@ const { id, kicker, titleStart, titleHighlight, text, button } = Astro.props;
     {kicker && <span class="cta__kicker">{kicker}</span>}
     <h2 class="cta__title">{titleStart}{titleHighlight && <> <Highlight>{titleHighlight}</Highlight></>}</h2>
     {text && <p class="cta__text">{text}</p>}
-    <Button href={button.href} variant="inverse" size="lg" iconAfter="arrow-right">{button.label}</Button>
+    {
+      Astro.slots.has('actions') ? (
+        <slot name="actions" />
+      ) : (
+        button && (
+          <Button href={button.href} variant="inverse" size="lg" iconAfter="arrow-right">
+            {button.label}
+          </Button>
+        )
+      )
+    }
   </Container>
 </section>
 
@@ -45,6 +56,8 @@ const { id, kicker, titleStart, titleHighlight, text, button } = Astro.props;
     color: var(--cp-on-inverse-2);
   }
   .cta__title {
+    /* Le surlignage passe derrière tout le titre : il ne masque jamais la ligne du dessus. */
+    isolation: isolate;
     margin: 0;
     font-family: var(--font-condensed);
     font-weight: 900;
@@ -52,6 +65,9 @@ const { id, kicker, titleStart, titleHighlight, text, button } = Astro.props;
     line-height: 0.9;
     text-transform: uppercase;
     color: var(--cp-on-inverse);
+  }
+  .cta__title :global(.cp-highlight) {
+    z-index: auto;
   }
   .cta__text {
     margin: 0;

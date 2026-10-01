@@ -1,0 +1,53 @@
+---
+/** Encart sur ruban kraft, légèrement incliné (« Ce que Gig ne fait pas »). */
+import { Image } from 'astro:assets';
+import tape from '../assets/apps/gig-tape.svg';
+
+interface Props {
+  title: string;
+  as?: 'h2' | 'h3';
+}
+const { title, as: Heading = 'h3' } = Astro.props;
+---
+
+<div class="tape-note">
+  <Image src={tape} alt="" width={120} height={28} class="tape-note__tape" />
+  <Heading class="tape-note__title">{title}</Heading>
+  <p class="tape-note__text"><slot /></p>
+</div>
+
+<style>
+  .tape-note {
+    position: relative;
+    padding: 40px var(--space-6) var(--space-6);
+    background: var(--gig-tape);
+    color: var(--gig-ink);
+    border: var(--border-hair) solid var(--gig-ink);
+    transform: rotate(-1.5deg);
+  }
+  .tape-note :global(.tape-note__tape) {
+    position: absolute;
+    width: 120px;
+    height: 28px;
+    top: -14px;
+    left: var(--space-6);
+    transform: rotate(-4deg);
+  }
+  .tape-note__title {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-condensed);
+    font-size: 44px;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+  .tape-note__text {
+    margin: 0;
+    font-size: 17px;
+    line-height: 27px;
+  }
+  @media (max-width: 767px) {
+    .tape-note__title {
+      font-size: 36px;
+    }
+  }
+</style>

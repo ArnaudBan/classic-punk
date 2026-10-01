@@ -1,0 +1,82 @@
+---
+/** Galerie de captures légendées, dans une grille à filets. */
+import { Picture } from 'astro:assets';
+
+interface Shot {
+  src: ImageMetadata;
+  alt: string;
+  caption?: string;
+}
+interface Props {
+  shots: readonly Shot[];
+  /** Largeurs relatives des colonnes (ex. [1, 1, 1.5]) ; par défaut, colonnes égales. */
+  columns?: readonly number[];
+}
+const { shots, columns } = Astro.props;
+const template = (columns ?? shots.map(() => 1)).map((c) => `minmax(0,${c}fr)`).join(' ');
+---
+
+<div class="shots" style={`--shots-cols:${template}`}>
+  {
+    shots.map((s) => (
+      <figure>
+        <div class="shots__pad">
+          <Picture src={s.src} alt={s.alt} formats={['avif']} fallbackFormat="webp" class="shots__img" />
+        </div>
+        {s.caption && <figcaption>{s.caption}</figcaption>}
+      </figure>
+    ))
+  }
+</div>
+
+<style>
+  .shots {
+    display: grid;
+    grid-template-columns: var(--shots-cols);
+    border-top: var(--border-hair) solid var(--cp-rule);
+    border-left: var(--border-hair) solid var(--cp-rule);
+  }
+  figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    border-right: var(--border-hair) solid var(--cp-rule);
+    border-bottom: var(--border-hair) solid var(--cp-rule);
+  }
+  .shots__pad {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 520px;
+    padding: var(--space-6);
+    background: var(--cp-paper-sunk);
+  }
+  .shots :global(.shots__img) {
+    max-width: 100%;
+    max-height: 460px;
+    width: auto;
+    height: auto;
+    border: var(--border-hair) solid var(--gig-ink);
+  }
+  figcaption {
+    padding: var(--space-3) var(--space-4);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.06em;
+    color: var(--cp-ink-2);
+  }
+  @media (max-width: 767px) {
+    .shots {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .shots__pad {
+      min-height: 0;
+      padding: var(--space-5);
+    }
+    .shots :global(.shots__img) {
+      max-height: 380px;
+    }
+  }
+</style>

@@ -1,0 +1,117 @@
+---
+/** Visuel du hero de Gig : lockup, endossement, pochette rose avec les captures du menu et le ruban. */
+import { Image, Picture } from 'astro:assets';
+import lockup from '../assets/apps/gig-lockup.svg';
+import popover from '../assets/apps/gig-popover.png';
+import popoverDark from '../assets/apps/gig-popover-en-set-dark.png';
+import tape from '../assets/apps/gig-tape.svg';
+
+interface Props {
+  eyebrow: string;
+  tag: string;
+  /** Texte alternatif de la capture principale. */
+  alt: string;
+}
+const { eyebrow, tag, alt } = Astro.props;
+---
+
+<div class="gig-visual">
+  <div class="gig-visual__top">
+    <Image src={lockup} alt="Gig" height={64} width={Math.round((lockup.width * 64) / lockup.height)} class="gig-visual__lockup" />
+    <span class="gig-visual__eyebrow">{eyebrow}</span>
+  </div>
+  <div class="gig-sleeve">
+    <Picture src={popoverDark} alt="" formats={['avif']} fallbackFormat="webp" width={210} densities={[1, 1.5]} class="gig-sleeve__shot gig-sleeve__shot--b" />
+    <Picture src={popover} alt={alt} formats={['avif']} fallbackFormat="webp" width={230} densities={[1, 1.3]} class="gig-sleeve__shot gig-sleeve__shot--a" loading="eager" />
+    <Image src={tape} alt="" width={140} height={32} class="gig-sleeve__tape" />
+    <span class="gig-sleeve__tag" aria-hidden="true">{tag}</span>
+  </div>
+</div>
+
+<style>
+  .gig-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .gig-visual__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .gig-visual :global(.gig-visual__lockup) {
+    height: 64px;
+    width: auto;
+  }
+  .gig-visual__eyebrow,
+  .gig-sleeve__tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .gig-visual__eyebrow {
+    color: var(--cp-ink-2);
+  }
+
+  .gig-sleeve {
+    position: relative;
+    height: 540px;
+    background: var(--gig-punk);
+    border: var(--border-rule) solid var(--gig-ink);
+    overflow: hidden;
+  }
+  .gig-sleeve :global(.gig-sleeve__shot) {
+    position: absolute;
+    display: block;
+    height: auto;
+    border: var(--border-rule) solid var(--gig-ink);
+    box-shadow: 8px 8px 0 var(--gig-ink);
+  }
+  .gig-sleeve :global(.gig-sleeve__shot--a) {
+    width: 230px;
+    left: var(--space-7);
+    top: 44px;
+    transform: rotate(-3deg);
+  }
+  .gig-sleeve :global(.gig-sleeve__shot--b) {
+    width: 210px;
+    right: 36px;
+    top: var(--space-8);
+    transform: rotate(5deg);
+  }
+  .gig-sleeve :global(.gig-sleeve__tape) {
+    position: absolute;
+    width: 140px;
+    height: 32px;
+    left: 92px;
+    top: 26px;
+    transform: rotate(-7deg);
+  }
+  .gig-sleeve__tag {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 10px 14px;
+    color: var(--gig-ink);
+    background: var(--gig-punk);
+    border-top: var(--border-rule) solid var(--gig-ink);
+    border-left: var(--border-rule) solid var(--gig-ink);
+  }
+  @media (max-width: 767px) {
+    .gig-sleeve {
+      height: 420px;
+    }
+    .gig-sleeve :global(.gig-sleeve__shot--a) {
+      width: 170px;
+      left: var(--space-5);
+      top: 56px;
+    }
+    .gig-sleeve :global(.gig-sleeve__shot--b) {
+      width: 150px;
+      right: 20px;
+      top: 110px;
+    }
+  }
+</style>

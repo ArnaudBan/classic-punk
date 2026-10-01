@@ -14,8 +14,10 @@ interface Props {
   description: string;
   ogImage?: string;
   noindex?: boolean;
+  /** Thème d'app posé sur le contenu (<main>), jamais sur l'en-tête ni le pied de page. */
+  theme?: 'gig' | 'last-round';
 }
-const { title, description, ogImage, noindex } = Astro.props;
+const { title, description, ogImage, noindex, theme } = Astro.props;
 ---
 
 <!doctype html>
@@ -36,7 +38,7 @@ const { title, description, ogImage, noindex } = Astro.props;
   <body class="cp-root">
     <a class="skip-link" href="#main">{fr.skipLink}</a>
     <Header />
-    <main id="main" tabindex="-1">
+    <main id="main" tabindex="-1" data-theme={theme}>
       <slot />
     </main>
     <Footer />

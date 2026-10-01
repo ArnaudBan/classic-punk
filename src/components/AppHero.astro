@@ -1,0 +1,80 @@
+---
+/** Hero d'une page d'app : crédits, H1 avec surlignage, chapeau, actions ; visuel à droite (slot `visual`). */
+import Container from './Container.astro';
+import Credits from './Credits.astro';
+import Highlight from './Highlight.astro';
+
+interface Props {
+  credits: readonly string[];
+  titleStart: string;
+  titleHighlight?: string;
+  lead: string;
+}
+const { credits, titleStart, titleHighlight, lead } = Astro.props;
+---
+
+<section class="app-hero">
+  <Container class="app-hero__wrap">
+    <div class="app-hero__grid">
+      <div>
+        <Credits items={credits} />
+        <h1 class="app-hero__title">
+          {titleStart}{titleHighlight && <> <Highlight>{titleHighlight}</Highlight></>}
+        </h1>
+        <p class="app-hero__lead">{lead}</p>
+        <slot name="actions" />
+      </div>
+      <div><slot name="visual" /></div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .app-hero {
+    border-bottom: var(--border-hair) solid var(--cp-rule);
+  }
+  .app-hero :global(.app-hero__wrap) {
+    padding-top: var(--space-8);
+    padding-bottom: 72px;
+  }
+  .app-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: calc(var(--space-7) + var(--space-2));
+    align-items: center;
+  }
+  .app-hero__title {
+    /* Le surlignage passe derrière tout le titre : il ne masque jamais la ligne du dessus. */
+    isolation: isolate;
+    margin: 20px 0 0;
+    font-family: var(--font-condensed);
+    font-weight: 900;
+    font-size: 112px;
+    line-height: 0.92;
+    text-transform: uppercase;
+    color: var(--cp-ink);
+  }
+  .app-hero__title :global(.cp-highlight) {
+    z-index: auto;
+  }
+  .app-hero__lead {
+    max-width: 560px;
+    margin: 44px 0 var(--space-6);
+    font-size: 20px;
+    line-height: 30px;
+    color: var(--cp-ink-2);
+  }
+  @media (max-width: 767px) {
+    .app-hero__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+    .app-hero__title {
+      font-size: 60px;
+    }
+    .app-hero__lead {
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+</style>

@@ -1,0 +1,104 @@
+---
+import { getEntry } from 'astro:content';
+import AppLayout from '../layouts/AppLayout.astro';
+import ActionRow from '../components/ActionRow.astro';
+import AppHero from '../components/AppHero.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import Faq from '../components/Faq.astro';
+import FeatureList from '../components/FeatureList.astro';
+import GigSleeve from '../components/GigSleeve.astro';
+import PriceTable from '../components/PriceTable.astro';
+import Screenshots from '../components/Screenshots.astro';
+import Section from '../components/Section.astro';
+import SectionHead from '../components/SectionHead.astro';
+import SloganBanner from '../components/SloganBanner.astro';
+import StoreButton from '../components/StoreButton.astro';
+import TapeNote from '../components/TapeNote.astro';
+import TextLink from '../components/TextLink.astro';
+import TrackList from '../components/TrackList.astro';
+import { gig } from '../data/gig';
+
+const entry = await getEntry('apps', 'gig');
+if (!entry) throw new Error('Entrée « gig » absente de la collection apps.');
+const app = entry.data;
+const featured = app.screenshots.find((s) => s.featured) ?? app.screenshots[0];
+const { hero, steps, features, pricing, faq, cta } = gig;
+---
+
+<AppLayout app={app}>
+  <AppHero credits={hero.credits} titleStart={hero.titleStart} titleHighlight={hero.titleHighlight} lead={hero.lead}>
+    <ActionRow slot="actions">
+      <StoreButton status={app.status} platform={app.platform} storeUrl={app.storeUrl} />
+      <TextLink href={hero.secondary.href}>{hero.secondary.label}</TextLink>
+    </ActionRow>
+    <GigSleeve slot="visual" eyebrow={hero.eyebrow} tag={hero.sleeveTag} alt={featured?.alt ?? ''} />
+  </AppHero>
+
+  <SloganBanner tone="accent">{gig.slogan}</SloganBanner>
+
+  <Section id={steps.id}>
+    <SectionHead number={steps.number} eyebrow={steps.eyebrow} title={steps.title} />
+    <TrackList items={steps.items} columns={4} />
+    <Screenshots shots={app.screenshots} columns={[1, 1, 1.5]} />
+  </Section>
+
+  <Section id={features.id} flushTop>
+    <SectionHead number={features.number} eyebrow={features.eyebrow} title={features.title} />
+    <FeatureList items={features.items} figure={features.figure} />
+  </Section>
+
+  <Section id={pricing.id} ruled>
+    <SectionHead number={pricing.number} eyebrow={pricing.eyebrow} title={pricing.title} />
+    <div class="pricing">
+      <div class="pricing__main">
+        <PriceTable
+          plans={pricing.plans}
+          rows={pricing.rows}
+          priceLabel={pricing.priceLabel}
+          caption={pricing.caption}
+        />
+        <p class="pricing__text">{pricing.text}</p>
+      </div>
+      <TapeNote title={pricing.notDoing.title}>{pricing.notDoing.text}</TapeNote>
+    </div>
+  </Section>
+
+  <Section id={faq.id} ruled>
+    <SectionHead number={faq.number} eyebrow={faq.eyebrow} title={faq.title} />
+    <Faq items={faq.items} />
+  </Section>
+
+  <CtaBlock kicker={cta.kicker} titleStart={cta.titleStart} titleHighlight={cta.titleHighlight}>
+    <ActionRow slot="actions">
+      <StoreButton status={app.status} platform={app.platform} storeUrl={app.storeUrl} />
+      <TextLink href={cta.link.href}>{cta.link.label}</TextLink>
+    </ActionRow>
+  </CtaBlock>
+</AppLayout>
+
+<style>
+  .pricing {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-7);
+    align-items: start;
+  }
+  .pricing__main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .pricing__text {
+    margin: 0;
+    font-size: 17px;
+    line-height: 27px;
+    color: var(--cp-ink-2);
+  }
+  @media (max-width: 767px) {
+    .pricing {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+  }
+</style>

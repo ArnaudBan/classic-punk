@@ -1,0 +1,61 @@
+---
+/** Tableau de prix à filets, formule mise en avant sur aplat. */
+import Icon from './Icon.astro';
+
+interface Plan {
+  name: string;
+  price: string;
+  note?: string;
+  highlight?: boolean;
+}
+interface Props {
+  plans: readonly Plan[];
+  rows: readonly { label: string; values: readonly (string | true)[] }[];
+  priceLabel?: string;
+  /** Titre lu par les lecteurs d'écran. */
+  caption?: string;
+  yesLabel?: string;
+  class?: string;
+}
+const { plans, rows, priceLabel = 'Prix', caption, yesLabel = 'Oui', class: className } = Astro.props;
+---
+
+<table class:list={['cp-price', className]}>
+  {caption && <caption class="visually-hidden">{caption}</caption>}
+  <thead>
+    <tr>
+      <td></td>
+      {plans.map((pl) => <th scope="col" class={pl.highlight ? 'cp-price__hl' : undefined}>{pl.name}</th>)}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{priceLabel}</th>
+      {
+        plans.map((pl) => (
+          <td>
+            <span class="cp-price__amount">{pl.price}</span>
+            {pl.note && <span class="cp-price__note">{pl.note}</span>}
+          </td>
+        ))
+      }
+    </tr>
+    {
+      rows.map((r) => (
+        <tr>
+          <th scope="row">{r.label}</th>
+          {r.values.map((v) =>
+            v === true ? (
+              <td>
+                <Icon name="check" size={20} />
+                {yesLabel}
+              </td>
+            ) : (
+              <td>{v}</td>
+            ),
+          )}
+        </tr>
+      ))
+    }
+  </tbody>
+</table>

@@ -17,10 +17,20 @@ const apps = defineCollection({
         storeUrl: z.url().optional(),
         price: z.string().optional(),
         theme: z.enum(['gig', 'last-round']),
+        /** Catégorie schema.org (applicationCategory). */
+        category: z.string(),
         tagline: z.string(),
         summary: z.string(),
         icon: image(),
-        screenshots: z.array(z.object({ src: image(), alt: z.string() })),
+        screenshots: z.array(
+          z.object({
+            src: image(),
+            alt: z.string(),
+            caption: z.string().optional(),
+            /** Capture mise en avant sur la pochette de l'accueil. */
+            featured: z.boolean().optional(),
+          }),
+        ),
         seo: z.object({ title: z.string(), description: z.string() }),
       })
       .refine((app) => app.status !== 'available' || Boolean(app.storeUrl), {

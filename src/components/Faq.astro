@@ -1,0 +1,41 @@
+---
+/** Questions fréquentes dépliables (details/summary natifs, sans JS). */
+import Icon from './Icon.astro';
+
+export interface FaqItem {
+  q: string;
+  a: string;
+  /** Lien facultatif à la fin de la réponse. */
+  link?: { label: string; href: string };
+  after?: string;
+  open?: boolean;
+}
+interface Props {
+  items: readonly FaqItem[];
+  class?: string;
+}
+const { items, class: className } = Astro.props;
+---
+
+<div class:list={['cp-faq', className]}>
+  {
+    items.map((it) => (
+      <details class="cp-faq__item" open={it.open}>
+        <summary class="cp-faq__q">
+          <span>{it.q}</span>
+          <Icon name="chevron-down" size={22} />
+        </summary>
+        <p class="cp-faq__a">
+          {it.a}
+          {it.link && (
+            <>
+              {' '}
+              <a class="cp-link" href={it.link.href}>{it.link.label}</a>
+            </>
+          )}
+          {it.after}
+        </p>
+      </details>
+    ))
+  }
+</div>
