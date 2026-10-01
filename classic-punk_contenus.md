@@ -460,4 +460,4 @@ Titres : 60 caractères max. Descriptions : 155 caractères max.
 - Capture Gig, Setlist : « La Setlist de Gig : total des heures du mois par client »
 - Capture Last Round, accueil : « L'écran d'accueil de Last Round avec la jauge du temps de jeu restant pour la semaine »
 - Capture Last Round, widget : « Le widget Last Round sur l'écran d'accueil de l'iPhone »
-- Portrait d'Arnaud `[OPTION]` : « Arnaud, fondateur de Classic Punk »
+- Portrait d'Arnaud : « Arnaud, fondateur de Classic Punk »

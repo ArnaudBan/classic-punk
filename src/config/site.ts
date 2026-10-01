@@ -2,6 +2,7 @@
  * Tout ce qui est susceptible de changer : domaine, e-mail, chiffres, options d'affichage.
  * Chaque valeur provisoire est marquée `// TODO:` (voir `npm run todo`).
  */
+import portrait from '../assets/brand/portrait-arnaud.webp';
 
 export const site = {
   // Domaine du site (à garder synchronisé avec astro.config.mjs et public/robots.txt)
@@ -32,8 +33,8 @@ export const site = {
 
   about: {
     showBand: true,
-    // TODO: portrait d'Arnaud (noir et blanc, grain, cadrage serré, 4:5)
-    portrait: null as ImageMetadata | null,
+    /** Portrait 4:5, noir et blanc (null : emplacement hachuré à la place). */
+    portrait: portrait as ImageMetadata | null,
   },
 
   /** Formulaire de contact : pas de service tiers, le formulaire prépare un e-mail (mailto:). */
