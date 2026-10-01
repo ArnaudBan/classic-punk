@@ -7,7 +7,9 @@ interface Props {
 const { stack = false, class: className } = Astro.props;
 ---
 
-<div class:list={['wrap', stack && 'wrap--stack', className]}><slot /></div>
+<div class:list={['wrap', stack && 'wrap--stack', className]}>
+  <slot />
+</div>
 
 <style>
   .wrap {

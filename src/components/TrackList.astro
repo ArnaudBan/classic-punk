@@ -21,15 +21,13 @@ const { items, side = 'A', columns, headingLevel: Heading = 'h3', class: classNa
   class:list={['cp-tracks', columns && 'cp-tracks--cols', className]}
   style={columns ? `--cp-cols:${columns}` : undefined}
 >
-  {
-    items.map((it, i) => (
-      <li class="cp-tracks__item">
-        <span class="cp-tracks__num">{it.number ?? `${side}${i + 1}`}</span>
-        <div>
-          <Heading class="cp-tracks__title">{it.title}</Heading>
-          {it.text && <p class="cp-tracks__text">{it.text}</p>}
-        </div>
-      </li>
-    ))
-  }
+  {items.map((it, i) => (
+    <li class="cp-tracks__item">
+      <span class="cp-tracks__num">{it.number ?? `${side}${i + 1}`}</span>
+      <div>
+        <Heading class="cp-tracks__title">{it.title}</Heading>
+        {it.text && <p class="cp-tracks__text">{it.text}</p>}
+      </div>
+    </li>
+  ))}
 </ol>

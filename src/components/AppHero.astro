@@ -21,13 +21,22 @@ const { credits, titleStart, titleHighlight, titleEnd, lead } = Astro.props;
       <div>
         <Credits items={credits} />
         <h1 class="app-hero__title">
-          {titleStart}{titleHighlight && <> <Highlight>{titleHighlight}</Highlight></>}{titleEnd && ` ${titleEnd}`}
+          {titleStart}
+          {titleHighlight && (
+            <>
+              {' '}
+              <Highlight>{titleHighlight}</Highlight>
+            </>
+          )}
+          {titleEnd && ` ${titleEnd}`}
         </h1>
         <p class="app-hero__lead">{lead}</p>
         <slot name="actions" />
         <slot name="meta" />
       </div>
-      <div><slot name="visual" /></div>
+      <div>
+        <slot name="visual" />
+      </div>
     </div>
   </Container>
 </section>

@@ -15,5 +15,8 @@ const { href, external = false, class: className } = Astro.props;
   class:list={['cp-link', className]}
   href={href}
   target={external ? '_blank' : undefined}
-  rel={external ? 'noopener' : undefined}><slot />{external && <Icon name="external" size={16} title={fr.newTab} />}</a
+  rel={external ? 'noopener' : undefined}
 >
+  <slot />
+  {external && <Icon name="external" size={16} title={fr.newTab} />}
+</a>

@@ -1,7 +1,7 @@
 /**
  * Textes de la page Contact, repris de classic-punk_contenus.md (§4).
  * Le formulaire n'envoie rien à un serveur : il prépare un e-mail (mailto:) dans la messagerie du visiteur.
- * Les textes marqués « mailto » sont adaptés à ce fonctionnement — TODO: à valider.
+ * Les textes marqués « mailto » sont adaptés à ce fonctionnement (validés, reportés dans les contenus).
  */
 import { site } from '../config/site';
 
@@ -44,14 +44,14 @@ export const contact = {
       },
     },
     submit: 'Envoyer',
-    // mailto — TODO: à valider
+    // mailto
     submitNote: 'Le bouton ouvre votre messagerie avec le message prêt à partir.',
     privacy: {
       text: 'Vos informations servent uniquement à vous répondre. Elles ne sont ni revendues ni utilisées pour de la prospection.',
       link: { label: 'En savoir plus', href: '/legal/#confidentialite' },
     },
   },
-  // mailto — TODO: à valider (le message de succès des contenus annonçait un message « bien reçu »)
+  // mailto : remplace le message « bien reçu », inexact sans envoi par serveur
   ready: {
     title: 'Votre message est prêt.',
     text: "Votre messagerie s'est ouverte avec le message : il ne reste qu'à l'envoyer. Je réponds sous 48 h ouvrées.",

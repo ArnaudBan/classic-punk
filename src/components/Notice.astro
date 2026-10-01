@@ -22,6 +22,10 @@ const { tone = 'success', title, id, class: className, focusable = false } = Ast
   <Icon name={tone === 'error' ? 'alert' : 'check'} size={22} />
   <div class="cp-notice__body">
     {title && <p class="cp-notice__title">{title}</p>}
-    {Astro.slots.has('default') && <p class="cp-notice__text"><slot /></p>}
+    {Astro.slots.has('default') && (
+      <p class="cp-notice__text">
+        <slot />
+      </p>
+    )}
   </div>
 </div>

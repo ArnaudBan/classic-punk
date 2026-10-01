@@ -25,37 +25,37 @@ const { plans, rows, priceLabel = 'Prix', caption, yesLabel = 'Oui', class: clas
   <thead>
     <tr>
       <td></td>
-      {plans.map((pl) => <th scope="col" class={pl.highlight ? 'cp-price__hl' : undefined}>{pl.name}</th>)}
+      {plans.map((pl) => (
+        <th scope="col" class={pl.highlight ? 'cp-price__hl' : undefined}>
+          {pl.name}
+        </th>
+      ))}
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">{priceLabel}</th>
-      {
-        plans.map((pl) => (
-          <td>
-            <span class="cp-price__amount">{pl.price}</span>
-            {pl.note && <span class="cp-price__note">{pl.note}</span>}
-          </td>
-        ))
-      }
+      {plans.map((pl) => (
+        <td>
+          <span class="cp-price__amount">{pl.price}</span>
+          {pl.note && <span class="cp-price__note">{pl.note}</span>}
+        </td>
+      ))}
     </tr>
-    {
-      rows.map((r) => (
-        <tr>
-          <th scope="row">{r.label}</th>
-          {r.values.map((v) =>
-            v === true ? (
-              <td>
-                <Icon name="check" size={20} />
-                {yesLabel}
-              </td>
-            ) : (
-              <td>{v}</td>
-            ),
-          )}
-        </tr>
-      ))
-    }
+    {rows.map((r) => (
+      <tr>
+        <th scope="row">{r.label}</th>
+        {r.values.map((v) =>
+          v === true ? (
+            <td>
+              <Icon name="check" size={20} />
+              {yesLabel}
+            </td>
+          ) : (
+            <td>{v}</td>
+          ),
+        )}
+      </tr>
+    ))}
   </tbody>
 </table>

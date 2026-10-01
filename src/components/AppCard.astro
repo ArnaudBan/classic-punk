@@ -16,7 +16,11 @@ const guestColor = app.theme === 'gig' ? 'var(--gig-punk)' : 'var(--lr-primary)'
 ---
 
 <article class:list={['cp-appcard', className]}>
-  <div class="cp-appcard__top"><b>{app.catalog}</b><span>{side}</span><span>{fr.platform[app.platform]}</span></div>
+  <div class="cp-appcard__top">
+    <b>{app.catalog}</b>
+    <span>{side}</span>
+    <span>{fr.platform[app.platform]}</span>
+  </div>
   <div class="cp-appcard__body">
     <h3 class="cp-appcard__name">{app.name}</h3>
     <div class="cp-appcard__endorse">{app.endorsement}</div>

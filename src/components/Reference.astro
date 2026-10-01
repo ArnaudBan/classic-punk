@@ -15,8 +15,14 @@ const [first, ...rest] = paragraphs;
 <div class="ref">
   <div class="ref__text">
     <p>{first}</p>
-    {rest.map((p) => <p class="ref__muted">{p}</p>)}
-    <div><TextLink href={site.guitarSocialClub.url} external>{link}</TextLink></div>
+    {rest.map((p) => (
+      <p class="ref__muted">{p}</p>
+    ))}
+    <div>
+      <TextLink href={site.guitarSocialClub.url} external>
+        {link}
+      </TextLink>
+    </div>
   </div>
   <Stats items={site.guitarSocialClub.stats} class="ref__stats" />
 </div>

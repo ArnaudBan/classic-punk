@@ -31,17 +31,18 @@ const apps = (await getCollection('apps')).map((e) => e.data).sort((a, b) => a.c
           <div class="box">
             <span class="box__eyebrow">{contact.coords.eyebrow}</span>
             <h2 class="box__title">{contact.coords.title}</h2>
-            <a class="box__mail" href={`mailto:${site.email}`}><Icon name="mail" size={20} /><span>{site.email}</span></a>
+            <a class="box__mail" href={`mailto:${site.email}`}>
+              <Icon name="mail" size={20} />
+              <span>{site.email}</span>
+            </a>
             <ul class="box__socials">
-              {
-                site.contact.socials.map((s) => (
-                  <li>
-                    <TextLink href={s.url} external>
-                      {s.label}
-                    </TextLink>
-                  </li>
-                ))
-              }
+              {site.contact.socials.map((s) => (
+                <li>
+                  <TextLink href={s.url} external>
+                    {s.label}
+                  </TextLink>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -50,20 +51,25 @@ const apps = (await getCollection('apps')).map((e) => e.data).sort((a, b) => a.c
             <h2 class="box__title">{contact.support.title}</h2>
             <p class="box__text">{contact.support.text}</p>
             <div class="applinks">
-              {
-                apps.map((app) => (
-                  <a class="applink" href={`/contact/?sujet=${app.slug}`}>
-                    <Image src={app.icon} alt="" width={44} height={44} densities={[1, 2]} class:list={['applink__icon', `applink__icon--${app.theme}`]} />
-                    <span>
-                      Support {app.name}
-                      <span class="applink__meta">
-                        {app.catalog} · {fr.platform[app.platform]}
-                      </span>
+              {apps.map((app) => (
+                <a class="applink" href={`/contact/?sujet=${app.slug}`}>
+                  <Image
+                    src={app.icon}
+                    alt=""
+                    width={44}
+                    height={44}
+                    densities={[1, 2]}
+                    class:list={['applink__icon', `applink__icon--${app.theme}`]}
+                  />
+                  <span>
+                    Support {app.name}
+                    <span class="applink__meta">
+                      {app.catalog} · {fr.platform[app.platform]}
                     </span>
-                    <Icon name="arrow-right" size={20} />
-                  </a>
-                ))
-              }
+                  </span>
+                  <Icon name="arrow-right" size={20} />
+                </a>
+              ))}
             </div>
           </div>
         </aside>

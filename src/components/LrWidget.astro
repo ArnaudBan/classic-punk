@@ -24,8 +24,11 @@ const dash = Math.round(circumference * ratio);
       stroke-width="12"
       stroke-linecap="round"
       stroke-dasharray={`${dash} ${Math.ceil(circumference)}`}
-      transform="rotate(-90 50 50)"></circle>
-    <text x="50" y="57" text-anchor="middle" class="lr-widget__value">{remaining}</text>
+      transform="rotate(-90 50 50)"
+    ></circle>
+    <text x="50" y="57" text-anchor="middle" class="lr-widget__value">
+      {remaining}
+    </text>
   </svg>
   <span class="lr-widget__label">{label}</span>
 </div>

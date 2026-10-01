@@ -48,21 +48,29 @@ const jsonLd = [
   <Hero {...home.hero} toc={homeToc} />
 
   <Section id={manifesto.id}>
-    <SectionHead number={manifesto.number} eyebrow={manifesto.eyebrow} title={manifesto.title} intro={manifesto.intro} />
+    <SectionHead
+      number={manifesto.number}
+      eyebrow={manifesto.eyebrow}
+      title={manifesto.title}
+      intro={manifesto.intro}
+    />
     <Manifesto left={manifesto.left} right={manifesto.right} outro={manifesto.outro} />
   </Section>
 
   <Section id={home.apps.id} flushTop>
-    <SectionHead number={home.apps.number} eyebrow={home.apps.eyebrow} title={home.apps.title} intro={home.apps.intro} />
+    <SectionHead
+      number={home.apps.number}
+      eyebrow={home.apps.eyebrow}
+      title={home.apps.title}
+      intro={home.apps.intro}
+    />
     <div class="releases">
-      {
-        apps.map((app, i) => (
-          <div class="release">
-            <AppSleeve app={app} />
-            <AppCard app={app} side={`A${i + 1}`} />
-          </div>
-        ))
-      }
+      {apps.map((app, i) => (
+        <div class="release">
+          <AppSleeve app={app} />
+          <AppCard app={app} side={`A${i + 1}`} />
+        </div>
+      ))}
     </div>
   </Section>
 

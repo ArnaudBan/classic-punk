@@ -7,5 +7,7 @@ const { items, class: className } = Astro.props;
 ---
 
 <ul class:list={['cp-credits', className]}>
-  {items.map((item) => <li>{item}</li>)}
+  {items.map((item) => (
+    <li>{item}</li>
+  ))}
 </ul>

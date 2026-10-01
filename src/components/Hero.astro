@@ -25,35 +25,41 @@ const { credits, titleLine1, titleLine2, lead, primary, secondary, toc } = Astro
 ---
 
 <section class="hero">
-  <div class="hero__aplat"><Aplat width={420} height={210} /></div>
+  <div class="hero__aplat">
+    <Aplat width={420} height={210} />
+  </div>
   <Container class="hero__wrap">
     <div class="hero__grid">
       <div>
         <Credits items={credits} />
-        <h1 class="hero__title">{titleLine1} <span class="hero__title-l2">{titleLine2}</span></h1>
+        <h1 class="hero__title">
+          {titleLine1} <span class="hero__title-l2">{titleLine2}</span>
+        </h1>
         <p class="hero__lead">{lead}</p>
         <ButtonGroup>
-          <Button href={primary.href} size="lg">{primary.label}</Button>
-          <Button href={secondary.href} variant="secondary" size="lg" iconAfter="arrow-right">{secondary.label}</Button>
+          <Button href={primary.href} size="lg">
+            {primary.label}
+          </Button>
+          <Button href={secondary.href} variant="secondary" size="lg" iconAfter="arrow-right">
+            {secondary.label}
+          </Button>
         </ButtonGroup>
       </div>
-      {
-        toc && (
-          <nav class="toc" aria-label={fr.home.toc.label}>
-            <div class="toc__head">
-              <span class="toc__cat">{credits[0]}</span>
-              <span class="toc__title">{fr.home.toc.title}</span>
-            </div>
-            {toc.map((t) => (
-              <a href={t.href}>
-                <span class="toc__num">{t.number}</span>
-                <span class="toc__label">{t.label}</span>
-                <Icon name="arrow-right" size={18} />
-              </a>
-            ))}
-          </nav>
-        )
-      }
+      {toc && (
+        <nav class="toc" aria-label={fr.home.toc.label}>
+          <div class="toc__head">
+            <span class="toc__cat">{credits[0]}</span>
+            <span class="toc__title">{fr.home.toc.title}</span>
+          </div>
+          {toc.map((t) => (
+            <a href={t.href}>
+              <span class="toc__num">{t.number}</span>
+              <span class="toc__label">{t.label}</span>
+              <Icon name="arrow-right" size={18} />
+            </a>
+          ))}
+        </nav>
+      )}
     </div>
   </Container>
 </section>

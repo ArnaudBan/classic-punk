@@ -28,7 +28,14 @@ const r = contact.ready;
       <span class="contact-form__eyebrow contact-form__eyebrow--muted">{f.allRequired}</span>
     </div>
     <div class="contact-form__two">
-      <Field name="nom" label={f.fields.name.label} required requiredLabel={f.required} error={f.fields.name.error} autocomplete="name" />
+      <Field
+        name="nom"
+        label={f.fields.name.label}
+        required
+        requiredLabel={f.required}
+        error={f.fields.name.error}
+        autocomplete="name"
+      />
       <Field
         name="email"
         type="email"
@@ -40,7 +47,14 @@ const r = contact.ready;
         autocomplete="email"
       />
     </div>
-    <Field name="sujet" type="select" label={f.fields.subject.label} required requiredLabel={f.required} options={subjects} />
+    <Field
+      name="sujet"
+      type="select"
+      label={f.fields.subject.label}
+      required
+      requiredLabel={f.required}
+      options={subjects}
+    />
     <Field
       name="message"
       type="textarea"
@@ -51,22 +65,37 @@ const r = contact.ready;
       error={f.fields.message.error}
     />
     <div class="contact-form__actions">
-      <Button type="submit" variant="accent" size="lg" iconAfter="arrow-right">{f.submit}</Button>
+      <Button type="submit" variant="accent" size="lg" iconAfter="arrow-right">
+        {f.submit}
+      </Button>
       <p class="contact-form__note">{f.submitNote}</p>
     </div>
     <p class="contact-form__legal">
-      {f.privacy.text} <a class="cp-link" href={f.privacy.link.href}>{f.privacy.link.label}</a>
+      {f.privacy.text}{' '}
+      <a class="cp-link" href={f.privacy.link.href}>
+        {f.privacy.link.label}
+      </a>
     </p>
   </form>
 
   <div class="contact-form__ready" hidden data-contact-ready>
-    <Notice tone="success" title={r.title} focusable class="contact-form__notice">{r.text}</Notice>
+    <Notice tone="success" title={r.title} focusable class="contact-form__notice">
+      {r.text}
+    </Notice>
     <Credits items={['', '']} class="contact-form__recap" />
     <p class="contact-form__fallback">
-      {r.fallback} <a class="cp-link" href={`mailto:${contact.mail.to}`}>{contact.mail.to}</a>.
-      <a class="cp-link" href={`mailto:${contact.mail.to}`} data-contact-retry>{r.retry}</a>
+      {r.fallback}{' '}
+      <a class="cp-link" href={`mailto:${contact.mail.to}`}>
+        {contact.mail.to}
+      </a>
+      .
+      <a class="cp-link" href={`mailto:${contact.mail.to}`} data-contact-retry>
+        {r.retry}
+      </a>
     </p>
-    <Button href="/" variant="secondary" size="lg" iconAfter="arrow-right">{r.back}</Button>
+    <Button href="/" variant="secondary" size="lg" iconAfter="arrow-right">
+      {r.back}
+    </Button>
   </div>
 </div>
 
@@ -77,7 +106,8 @@ const r = contact.ready;
 
   if (root && form && ready) {
     form.noValidate = true;
-    const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+    const field = (name: string) =>
+      form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
     const subject = field('sujet') as HTMLSelectElement;
 
     // ?sujet=gig / ?sujet=last-round présélectionne le sujet.

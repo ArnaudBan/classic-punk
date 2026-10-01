@@ -12,10 +12,18 @@ const current = (href: string) => (href === path ? 'page' : undefined);
 
 <header class="cp-root cp-header" data-header>
   <div class="cp-header__bar">
-    <a class="cp-header__home" href="/" aria-label={fr.nav.homeAria}><Logo height={36} /></a>
+    <a class="cp-header__home" href="/" aria-label={fr.nav.homeAria}>
+      <Logo height={36} />
+    </a>
     <nav class="cp-header__nav" aria-label={fr.nav.label}>
       <ul class="cp-header__links">
-        {links.map((l) => <li><a href={l.href} aria-current={current(l.href)}>{l.label}</a></li>)}
+        {links.map((l) => (
+          <li>
+            <a href={l.href} aria-current={current(l.href)}>
+              {l.label}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
     <button

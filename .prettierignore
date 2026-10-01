@@ -1,0 +1,12 @@
+dist/
+.astro/
+node_modules/
+package-lock.json
+# Export Claude Design et documents de référence : jamais reformatés
+design/
+classic-punk_*.md
+# Copiés tels quels depuis design/ : à remplacer d'un bloc, pas à reformater
+src/styles/tokens.css
+src/styles/components.css
+src/data/brand-svg.ts
+public/

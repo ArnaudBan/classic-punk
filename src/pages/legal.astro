@@ -28,71 +28,86 @@ const partNumber = (id: string) => num(toc.findIndex((t) => t.id === id) + 1);
   <section class="legal">
     <Container class="legal__layout">
       <nav class="toc" aria-label={legal.toc.label}>
-        <p><span>{legal.toc.title}</span><span class="toc__count">{legal.toc.count}</span></p>
-        {
-          toc.map((t, i) => (
-            <>
-              <a href={`#${t.id}`}>
-                <span class="toc__n">{num(i + 1)}</span>
-                <span>{t.title}</span>
-              </a>
-              {'subs' in t &&
-                t.subs?.map((s) => (
-                  <a class="toc__sub" href={`#${s.id}`}>
-                    <span>{s.title}</span>
-                  </a>
-                ))}
-            </>
-          ))
-        }
+        <p>
+          <span>{legal.toc.title}</span>
+          <span class="toc__count">{legal.toc.count}</span>
+        </p>
+        {toc.map((t, i) => (
+          <>
+            <a href={`#${t.id}`}>
+              <span class="toc__n">{num(i + 1)}</span>
+              <span>{t.title}</span>
+            </a>
+            {'subs' in t &&
+              t.subs?.map((s) => (
+                <a class="toc__sub" href={`#${s.id}`}>
+                  <span>{s.title}</span>
+                </a>
+              ))}
+          </>
+        ))}
       </nav>
 
       <article class="doc">
         <section id={mentions.id}>
-          <h2><span class="doc__n">{partNumber(mentions.id)}</span><span>{mentions.title}</span></h2>
+          <h2>
+            <span class="doc__n">{partNumber(mentions.id)}</span>
+            <span>{mentions.title}</span>
+          </h2>
           <dl class="facts">
-            {
-              mentions.facts.map((f) => (
-                <>
-                  <dt>{f.label}</dt>
-                  <dd>{'href' in f ? <a href={f.href}>{f.value}</a> : <TodoText text={f.value} />}</dd>
-                </>
-              ))
-            }
+            {mentions.facts.map((f) => (
+              <>
+                <dt>{f.label}</dt>
+                <dd>{'href' in f ? <a href={f.href}>{f.value}</a> : <TodoText text={f.value} />}</dd>
+              </>
+            ))}
           </dl>
         </section>
 
         <section id={privacy.id}>
-          <h2><span class="doc__n">{partNumber(privacy.id)}</span><span>{privacy.title}</span></h2>
-          {privacy.paragraphs.map((p) => <p><TodoText text={p} /></p>)}
+          <h2>
+            <span class="doc__n">{partNumber(privacy.id)}</span>
+            <span>{privacy.title}</span>
+          </h2>
+          {privacy.paragraphs.map((p) => (
+            <p>
+              <TodoText text={p} />
+            </p>
+          ))}
           <p>
-            {privacy.rights.before} <a href={`mailto:${site.email}`}>{site.email}</a>{privacy.rights.after}
+            {privacy.rights.before} <a href={`mailto:${site.email}`}>{site.email}</a>
+            {privacy.rights.after}
           </p>
         </section>
 
-        {
-          apps.map((app) => (
-            <section id={app.id}>
-              <h2>
-                <span class="doc__n">{partNumber(app.id)}</span>
-                <span>{app.title}</span>
-              </h2>
-              {app.parts.map((part) => (
-                <>
-                  <h3 id={part.id}>{part.title}</h3>
-                  <p>
-                    <TodoText text={part.text} />
-                  </p>
-                </>
-              ))}
-            </section>
-          ))
-        }
+        {apps.map((app) => (
+          <section id={app.id}>
+            <h2>
+              <span class="doc__n">{partNumber(app.id)}</span>
+              <span>{app.title}</span>
+            </h2>
+            {app.parts.map((part) => (
+              <>
+                <h3 id={part.id}>{part.title}</h3>
+                <p>
+                  <TodoText text={part.text} />
+                </p>
+              </>
+            ))}
+          </section>
+        ))}
 
         <section id={property.id}>
-          <h2><span class="doc__n">{partNumber(property.id)}</span><span>{property.title}</span></h2>
-          <p><TodoText text={property.text} /></p>
-          <p class="doc__updated">{property.updatedLabel} <TodoText text={property.updatedAt} /></p>
+          <h2>
+            <span class="doc__n">{partNumber(property.id)}</span>
+            <span>{property.title}</span>
+          </h2>
+          <p>
+            <TodoText text={property.text} />
+          </p>
+          <p class="doc__updated">
+            {property.updatedLabel} <TodoText text={property.updatedAt} />
+          </p>
         </section>
       </article>
     </Container>

@@ -19,24 +19,24 @@ const { items, class: className } = Astro.props;
 ---
 
 <div class:list={['cp-faq', className]}>
-  {
-    items.map((it) => (
-      <details class="cp-faq__item" open={it.open}>
-        <summary class="cp-faq__q">
-          <span>{it.q}</span>
-          <Icon name="chevron-down" size={22} />
-        </summary>
-        <p class="cp-faq__a">
-          <TodoText text={it.a} />
-          {it.link && (
-            <>
-              {' '}
-              <a class="cp-link" href={it.link.href}>{it.link.label}</a>
-            </>
-          )}
-          {it.after}
-        </p>
-      </details>
-    ))
-  }
+  {items.map((it) => (
+    <details class="cp-faq__item" open={it.open}>
+      <summary class="cp-faq__q">
+        <span>{it.q}</span>
+        <Icon name="chevron-down" size={22} />
+      </summary>
+      <p class="cp-faq__a">
+        <TodoText text={it.a} />
+        {it.link && (
+          <>
+            {' '}
+            <a class="cp-link" href={it.link.href}>
+              {it.link.label}
+            </a>
+          </>
+        )}
+        {it.after}
+      </p>
+    </details>
+  ))}
 </div>

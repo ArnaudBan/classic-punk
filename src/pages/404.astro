@@ -24,9 +24,13 @@ const text = {
       <div class="notfound__grid">
         <div>
           <Credits items={text.credits} />
-          <h1 class="notfound__title">{text.titleStart} <Highlight>{text.titleHighlight}</Highlight></h1>
+          <h1 class="notfound__title">
+            {text.titleStart} <Highlight>{text.titleHighlight}</Highlight>
+          </h1>
           <p class="notfound__text">{text.body}</p>
-          <Button href="/" size="lg" iconAfter="arrow-right">{text.button}</Button>
+          <Button href="/" size="lg" iconAfter="arrow-right">
+            {text.button}
+          </Button>
         </div>
         <svg class="disc" viewBox="0 0 520 520" role="img" aria-label={text.discAlt}>
           <circle cx="260" cy="260" r="250" class="disc__vinyl"></circle>
@@ -34,8 +38,12 @@ const text = {
           <circle cx="260" cy="260" r="185" class="disc__groove"></circle>
           <circle cx="260" cy="260" r="150" class="disc__groove"></circle>
           <circle cx="260" cy="260" r="110" class="disc__label"></circle>
-          <text x="260" y="234" text-anchor="middle" class="disc__404">{text.discLabel}</text>
-          <text x="260" y="300" text-anchor="middle" class="disc__cat">{text.discCatalog}</text>
+          <text x="260" y="234" text-anchor="middle" class="disc__404">
+            {text.discLabel}
+          </text>
+          <text x="260" y="300" text-anchor="middle" class="disc__cat">
+            {text.discCatalog}
+          </text>
           <circle cx="260" cy="260" r="9" class="disc__hole"></circle>
           <path d="M40 190 C 140 150, 230 205, 300 120 S 450 90, 492 150" class="disc__scratch" stroke-width="5"></path>
           <path d="M58 226 C 150 190, 220 238, 296 160" class="disc__scratch" stroke-width="2" opacity=".7"></path>

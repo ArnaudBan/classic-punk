@@ -11,13 +11,11 @@ const { items, side = 'B', transition } = Astro.props;
 ---
 
 <TrackList items={items} side={side} columns={3} />
-{
-  transition && (
-    <p class="transition">
-      {transition.text} <a href={transition.link.href}>{transition.link.label}</a>
-    </p>
-  )
-}
+{transition && (
+  <p class="transition">
+    {transition.text} <a href={transition.link.href}>{transition.link.label}</a>
+  </p>
+)}
 
 <style>
   .transition {

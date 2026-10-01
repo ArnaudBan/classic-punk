@@ -30,7 +30,8 @@ jobs:
 
       - run: npm ci
       - run: npm run check
-      - run: npm run build
+      # Build (pretest) puis tests sur dist/ : rien n'est envoyé si un test échoue.
+      - run: npm test
 
       - name: Envoi FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0

@@ -36,7 +36,9 @@ const { title, description, ogImage, noindex, theme } = Astro.props;
     <slot name="head" />
   </head>
   <body class="cp-root">
-    <a class="skip-link" href="#main">{fr.skipLink}</a>
+    <a class="skip-link" href="#main">
+      {fr.skipLink}
+    </a>
     <Header />
     <main id="main" tabindex="-1" data-theme={theme}>
       <slot />

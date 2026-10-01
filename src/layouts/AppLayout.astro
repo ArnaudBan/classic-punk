@@ -45,7 +45,12 @@ const jsonLd = [
 ];
 ---
 
-<BaseLayout title={app.seo.title} description={app.seo.description} ogImage={`/og/og-${app.slug}.png`} theme={app.theme}>
+<BaseLayout
+  title={app.seo.title}
+  description={app.seo.description}
+  ogImage={`/og/og-${app.slug}.png`}
+  theme={app.theme}
+>
   <Fragment slot="head">
     <link rel="preload" href={DISPLAY_FONTS[app.theme]} as="font" type="font/woff2" crossorigin />
     <JsonLd data={jsonLd} />

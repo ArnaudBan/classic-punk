@@ -5,7 +5,6 @@
 import enCours from '../assets/apps/lr-09-manche-en-cours.webp';
 import semaine from '../assets/apps/lr-11-semaine.webp';
 
-
 export const lastRound = {
   hero: {
     credits: ['CP-002', 'Last Round', 'iPhone', 'iOS 17 et plus', 'Sans compte ni pub'],
@@ -50,7 +49,10 @@ export const lastRound = {
     eyebrow: 'Les fonctions',
     title: "Tout ce qu'il faut. Rien de plus.",
     items: [
-      { title: 'Un décompte qui ne triche pas.', text: 'Pause, reprise, arrêt : seul le temps réellement joué est compté.' },
+      {
+        title: 'Un décompte qui ne triche pas.',
+        text: 'Pause, reprise, arrêt : seul le temps réellement joué est compté.',
+      },
       { title: 'Un budget hebdomadaire.', text: "Il repart à zéro le jour et à l'heure que tu choisis." },
       {
         title: 'Des alertes avant la fin.',
@@ -82,7 +84,7 @@ export const lastRound = {
     eyebrow: 'Pour les parents',
     title: "Un outil pour apprendre à s'arrêter, pas un mouchard.",
     lead: "Last Round n'est pas un contrôle parental. Il ne surveille pas les autres applications et ne bloque rien à distance : c'est le joueur qui tient la manette, et qui apprend à poser ses propres limites.",
-    text: 'Un budget décidé ensemble, une jauge que tout le monde comprend, et moins de négociations à l\'heure du dîner.',
+    text: "Un budget décidé ensemble, une jauge que tout le monde comprend, et moins de négociations à l'heure du dîner.",
     noData: {
       title: "Aucune donnée ne quitte l'iPhone",
       items: ['Pas de compte', 'Pas de serveur', 'Pas de publicité', 'Pas de traceur'],
