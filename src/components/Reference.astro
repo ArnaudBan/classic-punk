@@ -1,0 +1,55 @@
+---
+/** Référence Guitar Social Club : texte, lien externe et chiffres clés (valeurs dans site.ts). */
+import Stats from './Stats.astro';
+import TextLink from './TextLink.astro';
+import { site } from '../config/site';
+
+interface Props {
+  paragraphs: readonly string[];
+  link: string;
+}
+const { paragraphs, link } = Astro.props;
+const [first, ...rest] = paragraphs;
+---
+
+<div class="ref">
+  <div class="ref__text">
+    <p>{first}</p>
+    {rest.map((p) => <p class="ref__muted">{p}</p>)}
+    <div><TextLink href={site.guitarSocialClub.url} external>{link}</TextLink></div>
+  </div>
+  <Stats items={site.guitarSocialClub.stats} class="ref__stats" />
+</div>
+
+<style>
+  .ref {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-7);
+    align-items: start;
+  }
+  .ref__text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 17px;
+    line-height: 27px;
+  }
+  .ref__text p {
+    margin: 0;
+  }
+  .ref__muted {
+    color: var(--cp-ink-2);
+  }
+  @media (min-width: 768px) {
+    .ref :global(.ref__stats) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 767px) {
+    .ref {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+  }
+</style>

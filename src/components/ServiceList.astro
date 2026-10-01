@@ -1,0 +1,39 @@
+---
+/** Services en trois colonnes, puis phrase de transition vers le contact. */
+import TrackList, { type Track } from './TrackList.astro';
+
+interface Props {
+  items: readonly Track[];
+  side?: string;
+  transition?: { text: string; link: { label: string; href: string } };
+}
+const { items, side = 'B', transition } = Astro.props;
+---
+
+<TrackList items={items} side={side} columns={3} />
+{
+  transition && (
+    <p class="transition">
+      {transition.text} <a href={transition.link.href}>{transition.link.label}</a>
+    </p>
+  )
+}
+
+<style>
+  .transition {
+    margin: 0;
+    max-width: 820px;
+    font-family: var(--font-expanded);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.35;
+  }
+  .transition a {
+    color: var(--cp-ink);
+    text-decoration: underline 4px var(--cp-accent);
+    text-underline-offset: 6px;
+  }
+  .transition a:hover {
+    color: var(--cp-marker);
+  }
+</style>

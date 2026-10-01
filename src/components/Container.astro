@@ -1,0 +1,29 @@
+---
+/** Conteneur centré (container-max, marges latérales). `stack` empile les enfants avec un espacement. */
+interface Props {
+  stack?: boolean;
+  class?: string;
+}
+const { stack = false, class: className } = Astro.props;
+---
+
+<div class:list={['wrap', stack && 'wrap--stack', className]}><slot /></div>
+
+<style>
+  .wrap {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--gutter-desktop);
+    box-sizing: border-box;
+  }
+  .wrap--stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-7);
+  }
+  @media (max-width: 767px) {
+    .wrap {
+      padding: 0 var(--gutter-mobile);
+    }
+  }
+</style>

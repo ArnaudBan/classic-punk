@@ -1,0 +1,35 @@
+---
+/** Liste numérotée comme la face d'un disque (A1, A2…) : services, étapes, fonctions. */
+export interface Track {
+  title: string;
+  text?: string;
+  number?: string;
+}
+interface Props {
+  items: readonly Track[];
+  side?: string;
+  /** Nombre de colonnes en grille ; sans, liste verticale à filets. */
+  columns?: number;
+  /** Niveau des titres d'items (h3 par défaut, h4 sous un h3). */
+  headingLevel?: 'h3' | 'h4';
+  class?: string;
+}
+const { items, side = 'A', columns, headingLevel: Heading = 'h3', class: className } = Astro.props;
+---
+
+<ol
+  class:list={['cp-tracks', columns && 'cp-tracks--cols', className]}
+  style={columns ? `--cp-cols:${columns}` : undefined}
+>
+  {
+    items.map((it, i) => (
+      <li class="cp-tracks__item">
+        <span class="cp-tracks__num">{it.number ?? `${side}${i + 1}`}</span>
+        <div>
+          <Heading class="cp-tracks__title">{it.title}</Heading>
+          {it.text && <p class="cp-tracks__text">{it.text}</p>}
+        </div>
+      </li>
+    ))
+  }
+</ol>

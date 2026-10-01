@@ -1,0 +1,22 @@
+---
+/** En-tête de section façon verso de pochette : filet de 3 px, numéro de piste, surtitre, titre, chapeau. */
+interface Props {
+  number?: string;
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  as?: 'h1' | 'h2' | 'h3';
+  id?: string;
+  class?: string;
+}
+const { number = '', eyebrow, title, intro, as: Tag = 'h2', id, class: className } = Astro.props;
+---
+
+<header class:list={['cp-sechead', className]} id={id}>
+  <div class="cp-sechead__num">{number}</div>
+  <div>
+    {eyebrow && <p class="cp-sechead__eyebrow">{eyebrow}</p>}
+    <Tag class="cp-sechead__title">{title}</Tag>
+    {intro && <p class="cp-sechead__intro">{intro}</p>}
+  </div>
+</header>

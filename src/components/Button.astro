@@ -1,0 +1,54 @@
+---
+import Icon from './Icon.astro';
+import type { IconName } from '../data/brand-svg';
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'accent' | 'inverse';
+  size?: 'md' | 'lg';
+  href?: string;
+  target?: string;
+  icon?: IconName;
+  iconAfter?: IconName;
+  /** État « Bientôt » : désactivé mais lisible (aria-disabled). */
+  soon?: boolean;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  target,
+  icon,
+  iconAfter,
+  soon = false,
+  disabled = false,
+  type = 'button',
+  class: className,
+} = Astro.props;
+const inactive = disabled || soon;
+const cls = ['cp-btn', `cp-btn--${variant}`, size === 'lg' && 'cp-btn--lg', className];
+---
+
+{
+  href && !inactive ? (
+    <a class:list={cls} href={href} target={target} rel={target === '_blank' ? 'noopener' : undefined}>
+      {icon && <Icon name={icon} size={18} />}
+      <span><slot /></span>
+      {iconAfter && <Icon name={iconAfter} size={18} />}
+    </a>
+  ) : (
+    <button
+      class:list={cls}
+      type={type}
+      aria-disabled={inactive ? 'true' : undefined}
+      disabled={disabled && !soon ? true : undefined}
+    >
+      {icon && <Icon name={icon} size={18} />}
+      <span><slot /></span>
+      {iconAfter && <Icon name={iconAfter} size={18} />}
+    </button>
+  )
+}

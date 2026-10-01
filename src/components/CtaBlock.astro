@@ -1,0 +1,71 @@
+---
+/** Appel final sur fond noir : repère, titre display avec surlignage, texte, bouton. */
+import Button from './Button.astro';
+import Container from './Container.astro';
+import Highlight from './Highlight.astro';
+
+interface Props {
+  id?: string;
+  kicker?: string;
+  titleStart: string;
+  titleHighlight?: string;
+  text?: string;
+  button: { label: string; href: string };
+}
+const { id, kicker, titleStart, titleHighlight, text, button } = Astro.props;
+---
+
+<section id={id} class="cta cp-inverse">
+  <Container class="cta__wrap">
+    {kicker && <span class="cta__kicker">{kicker}</span>}
+    <h2 class="cta__title">{titleStart}{titleHighlight && <> <Highlight>{titleHighlight}</Highlight></>}</h2>
+    {text && <p class="cta__text">{text}</p>}
+    <Button href={button.href} variant="inverse" size="lg" iconAfter="arrow-right">{button.label}</Button>
+  </Container>
+</section>
+
+<style>
+  .cta {
+    padding: var(--space-9) 0;
+    background: var(--cp-inverse);
+    color: var(--cp-on-inverse);
+  }
+  .cta :global(.cta__wrap) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+  .cta__kicker {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cp-on-inverse-2);
+  }
+  .cta__title {
+    margin: 0;
+    font-family: var(--font-condensed);
+    font-weight: 900;
+    font-size: 112px;
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: var(--cp-on-inverse);
+  }
+  .cta__text {
+    margin: 0;
+    max-width: 620px;
+    font-size: 20px;
+    line-height: 30px;
+    color: var(--cp-on-inverse-2);
+  }
+  @media (max-width: 767px) {
+    .cta {
+      padding: var(--space-8) 0;
+    }
+    .cta__title {
+      font-size: 56px;
+    }
+  }
+</style>

@@ -1,0 +1,11 @@
+---
+interface Props {
+  items: readonly string[];
+  class?: string;
+}
+const { items, class: className } = Astro.props;
+---
+
+<ul class:list={['cp-credits', className]}>
+  {items.map((item) => <li>{item}</li>)}
+</ul>

@@ -1,0 +1,17 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  status?: 'available' | 'soon' | 'dev' | 'neutral';
+  class?: string;
+}
+const { status = 'neutral', class: className } = Astro.props;
+const DEFAULT_TEXT = { available: 'Disponible', soon: 'Bientôt', dev: 'En développement', neutral: '' };
+const hasSlot = Astro.slots.has('default');
+---
+
+<span class:list={['cp-badge', `cp-badge--${status}`, className]}>
+  {status === 'available' && <Icon name="check" size={14} />}
+  {status === 'dev' && <span class="cp-badge__dot" aria-hidden="true" />}
+  {hasSlot ? <slot /> : DEFAULT_TEXT[status]}
+</span>

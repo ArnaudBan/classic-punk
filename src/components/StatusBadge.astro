@@ -1,0 +1,15 @@
+---
+/** Badge de statut d'une app, à partir des champs de la collection `apps`. */
+import Badge from './Badge.astro';
+import { fr } from '../i18n/fr';
+
+interface Props {
+  status: 'dev' | 'coming-soon' | 'beta' | 'available';
+  platform: 'macos' | 'ios';
+}
+const { status, platform } = Astro.props;
+const variant = status === 'available' ? 'available' : status === 'coming-soon' ? 'soon' : status === 'dev' ? 'dev' : 'neutral';
+const label = status === 'coming-soon' ? fr.storeSoon[platform] : fr.status[status];
+---
+
+<Badge status={variant}>{label}</Badge>

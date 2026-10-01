@@ -1,0 +1,149 @@
+---
+/** Pochette d'une app sur l'accueil : couleurs invitées de l'app, icône et capture principale. */
+import type { CollectionEntry } from 'astro:content';
+import { Image, Picture } from 'astro:assets';
+import gigTape from '../assets/apps/gig-tape.svg';
+import { fr } from '../i18n/fr';
+
+interface Props {
+  app: CollectionEntry<'apps'>['data'];
+  /** Face du disque (A, B). */
+  side?: string;
+}
+const { app, side = 'A' } = Astro.props;
+const shot = app.screenshots[0];
+const isGig = app.theme === 'gig';
+---
+
+<div class:list={['sleeve', isGig ? 'sleeve--gig' : 'sleeve--lr']}>
+  <Image src={app.icon} alt={`Icône de ${app.name}`} width={72} height={72} densities={[1, 2]} class="sleeve__icon" />
+  {
+    shot &&
+      (isGig ? (
+        <div class="sleeve__frame">
+          <Picture
+            src={shot.src}
+            alt={shot.alt}
+            formats={['avif']}
+            fallbackFormat="webp"
+            width={200}
+            densities={[1, 1.5]}
+            class="sleeve__shot"
+          />
+          <Image src={gigTape} alt="" width={120} height={34} class="sleeve__tape" />
+        </div>
+      ) : (
+        <Picture
+          src={shot.src}
+          alt={shot.alt}
+          formats={['avif']}
+          fallbackFormat="webp"
+          width={176}
+          densities={[1, 2, 3]}
+          class="sleeve__phone"
+        />
+      ))
+  }
+  <span class="sleeve__tag" aria-hidden="true">{app.catalog} · {fr.side} {side}</span>
+</div>
+
+<style>
+  .sleeve {
+    /* Trame à points de Last Round : couleur issue de la maquette, absente des tokens. */
+    --lr-dot: #262048;
+    position: relative;
+    height: 440px;
+    overflow: hidden;
+    border: var(--border-hair) solid var(--cp-rule);
+    border-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sleeve--gig {
+    background: var(--gig-punk);
+  }
+  .sleeve--lr {
+    background-color: var(--lr-background);
+    background-image: radial-gradient(var(--lr-dot) 1.2px, transparent 1.4px);
+    background-size: 22px 22px;
+  }
+
+  .sleeve__icon {
+    position: absolute;
+    left: var(--space-5);
+    top: var(--space-5);
+    width: 72px;
+    height: 72px;
+  }
+  .sleeve--lr .sleeve__icon {
+    border-radius: var(--space-4);
+  }
+
+  .sleeve__frame {
+    position: relative;
+    transform: rotate(-3deg);
+    border: var(--border-rule) solid var(--gig-ink);
+    box-shadow: 8px 8px 0 var(--gig-ink);
+    line-height: 0;
+  }
+  .sleeve__shot {
+    display: block;
+    width: 200px;
+    height: auto;
+  }
+  .sleeve__tape {
+    position: absolute;
+    width: 120px;
+    height: 34px;
+    top: -18px;
+    left: 40px;
+    transform: rotate(-6deg);
+  }
+
+  .sleeve__phone {
+    width: 176px;
+    height: auto;
+    border: var(--border-heavy) solid var(--lr-ink);
+    border-radius: 28px;
+    box-shadow: 0 8px 0 var(--lr-ink);
+    transform: translateY(40px);
+  }
+
+  .sleeve__tag {
+    position: absolute;
+    right: var(--space-3);
+    bottom: var(--space-3);
+    background: inherit;
+    padding: var(--space-1) 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .sleeve--gig .sleeve__tag {
+    color: var(--gig-ink);
+  }
+  .sleeve--lr .sleeve__tag {
+    color: var(--lr-text-2);
+  }
+
+  @media (max-width: 767px) {
+    .sleeve {
+      height: 340px;
+    }
+    .sleeve__shot {
+      width: 140px;
+    }
+    .sleeve__phone {
+      width: 130px;
+    }
+    .sleeve__icon {
+      width: 52px;
+      height: 52px;
+      left: var(--space-4);
+      top: var(--space-4);
+    }
+  }
+</style>

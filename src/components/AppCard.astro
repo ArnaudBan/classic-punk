@@ -1,0 +1,31 @@
+---
+/** Carte d'une sortie du label, alimentée par une entrée de la collection `apps`. */
+import type { CollectionEntry } from 'astro:content';
+import StatusBadge from './StatusBadge.astro';
+import TextLink from './TextLink.astro';
+import { fr } from '../i18n/fr';
+
+interface Props {
+  app: CollectionEntry<'apps'>['data'];
+  /** Repère de face et de piste (A1, A2…). */
+  side?: string;
+  class?: string;
+}
+const { app, side = '', class: className } = Astro.props;
+const guestColor = app.theme === 'gig' ? 'var(--gig-punk)' : 'var(--lr-primary)';
+---
+
+<article class:list={['cp-appcard', className]}>
+  <div class="cp-appcard__top"><b>{app.catalog}</b><span>{side}</span><span>{fr.platform[app.platform]}</span></div>
+  <div class="cp-appcard__body">
+    <h3 class="cp-appcard__name">{app.name}</h3>
+    <div class="cp-appcard__endorse">{app.endorsement}</div>
+    <p class="cp-appcard__tagline">{app.tagline}</p>
+    <p class="cp-appcard__desc">{app.summary}</p>
+    <div class="cp-appcard__foot">
+      <StatusBadge status={app.status} platform={app.platform} />
+      <TextLink href={`/${app.slug}/`}>{`${fr.home.discover} ${app.name}`}</TextLink>
+    </div>
+  </div>
+  <div class="cp-appcard__guest" style={`background:${guestColor}`}></div>
+</article>

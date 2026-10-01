@@ -1,0 +1,53 @@
+---
+import { BRAND, LOGO } from '../data/brand-svg';
+
+interface Props {
+  variant?: 'horizontal' | 'symbol' | 'square';
+  tone?: 'light' | 'dark' | 'black' | 'white';
+  height?: number;
+  title?: string;
+  class?: string;
+}
+
+const { variant = 'horizontal', tone = 'light', height = 40, title = 'Classic Punk', class: className } = Astro.props;
+const { ink: INK, paper: PAPER, yellow: Y, white: W } = BRAND;
+
+const square = variant === 'square';
+const g = square ? LOGO.S : LOGO.W;
+const vbW = variant === 'horizontal' ? LOGO.wordW : square ? 100 : 130;
+
+type PathDef = { fill: string; d: string; rule?: 'evenodd' };
+let paths: PathDef[];
+if (tone === 'dark') {
+  paths = [
+    { fill: PAPER, d: g.disc },
+    { fill: Y, d: g.label },
+    { fill: INK, d: g.dot },
+    { fill: Y, d: g.pout + g.pctr, rule: 'evenodd' },
+  ];
+} else if (tone === 'black' || tone === 'white') {
+  const c = tone === 'black' ? INK : W;
+  paths = [
+    { fill: c, d: g.disc + g.label + g.dot, rule: 'evenodd' },
+    { fill: c, d: g.pout + g.pctr, rule: 'evenodd' },
+  ];
+} else {
+  paths = [
+    { fill: INK, d: g.disc },
+    { fill: Y, d: g.label },
+    { fill: INK, d: g.dot },
+    { fill: INK, d: g.sleeve + g.pout + g.pctr, rule: 'evenodd' },
+    { fill: Y, d: g.pout + g.pctr, rule: 'evenodd' },
+  ];
+}
+if (variant === 'horizontal') {
+  paths.push({ fill: { light: INK, dark: PAPER, black: INK, white: W }[tone], d: LOGO.word });
+}
+---
+
+<span class:list={['cp-logo', className]} style={`height:${height}px`}>
+  <svg viewBox={`0 0 ${vbW} 100`} role="img" height={height} width={Math.round((height * vbW) / 100)}>
+    <title>{title}</title>
+    {paths.map((p) => <path fill={p.fill} d={p.d} fill-rule={p.rule} />)}
+  </svg>
+</span>

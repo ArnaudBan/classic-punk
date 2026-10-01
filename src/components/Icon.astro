@@ -1,0 +1,29 @@
+---
+import { ICONS, type IconName } from '../data/brand-svg';
+
+interface Props {
+  name: IconName;
+  size?: number;
+  /** Titre accessible : sans titre, l'icône est décorative. */
+  title?: string;
+  class?: string;
+}
+
+const { name, size = 20, title, class: className } = Astro.props;
+const body = (title ? `<title>${title}</title>` : '') + ICONS[name];
+---
+
+<svg
+  class:list={['cp-icon', className]}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="square"
+  stroke-linejoin="miter"
+  aria-hidden={title ? undefined : 'true'}
+  role={title ? 'img' : undefined}
+  set:html={body}
+/>

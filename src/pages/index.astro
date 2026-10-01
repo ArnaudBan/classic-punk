@@ -1,0 +1,107 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import About from '../components/About.astro';
+import AppCard from '../components/AppCard.astro';
+import AppSleeve from '../components/AppSleeve.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import Hero from '../components/Hero.astro';
+import JsonLd from '../components/JsonLd.astro';
+import Manifesto from '../components/Manifesto.astro';
+import Reference from '../components/Reference.astro';
+import Section from '../components/Section.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ServiceList from '../components/ServiceList.astro';
+import { home, homeToc } from '../data/home';
+import { site } from '../config/site';
+
+const apps = (await getCollection('apps')).map((e) => e.data).sort((a, b) => a.catalog.localeCompare(b.catalog));
+const { manifesto, services, reference, about, cta } = home;
+
+const hasEmail = !site.email.startsWith('[');
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${site.url}/#organization`,
+    name: site.name,
+    url: `${site.url}/`,
+    logo: `${site.url}/apple-touch-icon.png`,
+    slogan: site.signature,
+    ...(hasEmail && { email: site.email }),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: site.founder.name,
+    jobTitle: site.founder.jobTitle,
+    worksFor: { '@id': `${site.url}/#organization` },
+  },
+];
+---
+
+<BaseLayout title={home.seo.title} description={home.seo.description}>
+  <JsonLd slot="head" data={jsonLd} />
+
+  <Hero {...home.hero} toc={homeToc} />
+
+  <Section id={manifesto.id}>
+    <SectionHead number={manifesto.number} eyebrow={manifesto.eyebrow} title={manifesto.title} intro={manifesto.intro} />
+    <Manifesto left={manifesto.left} right={manifesto.right} outro={manifesto.outro} />
+  </Section>
+
+  <Section id={home.apps.id} flushTop>
+    <SectionHead number={home.apps.number} eyebrow={home.apps.eyebrow} title={home.apps.title} intro={home.apps.intro} />
+    <div class="releases">
+      {
+        apps.map((app, i) => (
+          <div class="release">
+            <AppSleeve app={app} />
+            <AppCard app={app} side={`A${i + 1}`} />
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section id={services.id} ruled>
+    <SectionHead number={services.number} eyebrow={services.eyebrow} title={services.title} />
+    <ServiceList items={services.items} transition={services.transition} />
+  </Section>
+
+  <Section id={reference.id} tone="sunk" ruled>
+    <SectionHead number={reference.number} eyebrow={reference.eyebrow} title={reference.title} />
+    <Reference paragraphs={reference.paragraphs} link={reference.link} />
+  </Section>
+
+  <Section id={about.id}>
+    <SectionHead number={about.number} eyebrow={about.eyebrow} title={about.title} />
+    <About lead={about.lead} paragraphs={about.paragraphs} band={about.band} caption={about.caption} />
+  </Section>
+
+  <CtaBlock
+    id={cta.id}
+    kicker={`${cta.number} · ${cta.eyebrow}`}
+    titleStart={cta.titleStart}
+    titleHighlight={cta.titleHighlight}
+    text={cta.text}
+    button={cta.button}
+  />
+</BaseLayout>
+
+<style>
+  .releases {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+  .release {
+    display: flex;
+    flex-direction: column;
+  }
+  @media (max-width: 767px) {
+    .releases {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

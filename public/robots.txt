@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://classicpunk.fr/sitemap-index.xml

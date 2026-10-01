@@ -1,0 +1,19 @@
+---
+import Icon from './Icon.astro';
+import { fr } from '../i18n/fr';
+
+interface Props {
+  href: string;
+  /** Ouvre dans un nouvel onglet et ajoute l'icône « external ». */
+  external?: boolean;
+  class?: string;
+}
+const { href, external = false, class: className } = Astro.props;
+---
+
+<a
+  class:list={['cp-link', className]}
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener' : undefined}><slot />{external && <Icon name="external" size={16} title={fr.newTab} />}</a
+>

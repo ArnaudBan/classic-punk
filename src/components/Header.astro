@@ -1,0 +1,46 @@
+---
+/** En-tête du site : logo, navigation ; sous 768 px, bouton menu et panneau (MobileMenu). */
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import MobileMenu from './MobileMenu.astro';
+import { fr } from '../i18n/fr';
+
+const path = Astro.url.pathname;
+const links = fr.nav.links;
+const current = (href: string) => (href === path ? 'page' : undefined);
+---
+
+<header class="cp-root cp-header" data-header>
+  <div class="cp-header__bar">
+    <a class="cp-header__home" href="/" aria-label={fr.nav.homeAria}><Logo height={36} /></a>
+    <nav class="cp-header__nav" aria-label={fr.nav.label}>
+      <ul class="cp-header__links">
+        {links.map((l) => <li><a href={l.href} aria-current={current(l.href)}>{l.label}</a></li>)}
+      </ul>
+    </nav>
+    <button
+      class="cp-header__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="cp-menu"
+      aria-label={fr.nav.open}
+      data-label-open={fr.nav.open}
+      data-label-close={fr.nav.close}
+      data-menu-toggle
+    >
+      <Icon name="menu" size={22} class="cp-header__icon-open" />
+      <Icon name="close" size={22} class="cp-header__icon-close" />
+    </button>
+  </div>
+  <MobileMenu links={links} cta={fr.nav.cta} current={path} />
+</header>
+
+<style is:global>
+  .cp-header__icon-close,
+  .cp-header--open .cp-header__icon-open {
+    display: none;
+  }
+  .cp-header--open .cp-header__icon-close {
+    display: inline-block;
+  }
+</style>

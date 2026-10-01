@@ -1,0 +1,178 @@
+---
+/** Hero de l'accueil : crédits, titre display sur aplat, chapeau, boutons, sommaire numéroté. */
+import Aplat from './Aplat.astro';
+import Button from './Button.astro';
+import ButtonGroup from './ButtonGroup.astro';
+import Container from './Container.astro';
+import Credits from './Credits.astro';
+import Icon from './Icon.astro';
+import { fr } from '../i18n/fr';
+
+interface Link {
+  label: string;
+  href: string;
+}
+interface Props {
+  credits: readonly string[];
+  titleLine1: string;
+  titleLine2: string;
+  lead: string;
+  primary: Link;
+  secondary: Link;
+  toc?: readonly { href: string; number: string; label: string }[];
+}
+const { credits, titleLine1, titleLine2, lead, primary, secondary, toc } = Astro.props;
+---
+
+<section class="hero">
+  <div class="hero__aplat"><Aplat width={420} height={210} /></div>
+  <Container class="hero__wrap">
+    <div class="hero__grid">
+      <div>
+        <Credits items={credits} />
+        <h1 class="hero__title">{titleLine1} <span class="hero__title-l2">{titleLine2}</span></h1>
+        <p class="hero__lead">{lead}</p>
+        <ButtonGroup>
+          <Button href={primary.href} size="lg">{primary.label}</Button>
+          <Button href={secondary.href} variant="secondary" size="lg" iconAfter="arrow-right">{secondary.label}</Button>
+        </ButtonGroup>
+      </div>
+      {
+        toc && (
+          <nav class="toc" aria-label={fr.home.toc.label}>
+            <div class="toc__head">
+              <span class="toc__cat">{credits[0]}</span>
+              <span class="toc__title">{fr.home.toc.title}</span>
+            </div>
+            {toc.map((t) => (
+              <a href={t.href}>
+                <span class="toc__num">{t.number}</span>
+                <span class="toc__label">{t.label}</span>
+                <Icon name="arrow-right" size={18} />
+              </a>
+            ))}
+          </nav>
+        )
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: var(--border-hair) solid var(--cp-rule);
+  }
+  .hero__aplat {
+    position: absolute;
+    right: 360px;
+    top: var(--space-9);
+    pointer-events: none;
+  }
+  .hero :global(.hero__wrap) {
+    position: relative;
+    padding-top: var(--space-8);
+    padding-bottom: 72px;
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    gap: var(--space-7);
+    align-items: end;
+  }
+
+  .hero__title {
+    position: relative;
+    margin: var(--space-6) 0 0;
+    font-family: var(--font-condensed);
+    font-weight: 900;
+    font-size: 112px;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--cp-ink);
+  }
+  .hero__title-l2 {
+    display: block;
+    margin-top: var(--space-3);
+    font-family: var(--font-expanded);
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .hero__lead {
+    max-width: 580px;
+    margin: var(--space-6) 0;
+    font-size: 20px;
+    line-height: 30px;
+    color: var(--cp-ink-2);
+  }
+
+  .toc {
+    background: var(--cp-paper);
+    border: var(--border-hair) solid var(--cp-rule);
+    padding: 0 20px var(--space-1);
+  }
+  .toc__head {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: var(--border-heavy) solid var(--cp-rule);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .toc__cat {
+    font-weight: 600;
+  }
+  .toc__title {
+    color: var(--cp-ink-3);
+  }
+  .toc a {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 20px;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 13px 0;
+    border-bottom: var(--border-hair) solid var(--cp-rule);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .toc__num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+  .toc a:hover .toc__label {
+    text-decoration: underline;
+    text-decoration-color: var(--cp-accent);
+    text-decoration-thickness: var(--border-heavy);
+    text-underline-offset: 4px;
+  }
+
+  @media (max-width: 767px) {
+    .hero__aplat {
+      right: -64px;
+      top: 150px;
+      transform: scale(0.55);
+      transform-origin: top right;
+    }
+    .hero__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+    .hero__title {
+      font-size: 56px;
+      margin-top: var(--space-5);
+    }
+    .hero__title-l2 {
+      font-size: 30px;
+      margin-top: var(--space-2);
+    }
+  }
+</style>

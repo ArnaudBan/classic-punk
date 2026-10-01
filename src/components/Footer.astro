@@ -1,0 +1,35 @@
+---
+/** Pied de page sur fond noir : logo dark, signature, liens, copyright. */
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import { fr } from '../i18n/fr';
+import { site } from '../config/site';
+---
+
+<footer class="cp-root cp-footer cp-inverse">
+  <div class="cp-footer__inner">
+    <div>
+      <Logo tone="dark" height={44} />
+      <p class="cp-footer__sig">{site.signature}</p>
+      <p class="cp-footer__text">{fr.footer.text}</p>
+    </div>
+    <nav aria-label={fr.footer.label}>
+      <ul class="cp-footer__links">
+        {
+          fr.footer.links.map((l) => (
+            <li>
+              <a href={l.href}>
+                {l.label}
+                <Icon name="arrow-right" size={18} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class="cp-footer__bottom">
+      <span>{fr.footer.copyright}</span>
+      <span>{fr.footer.catalog}</span>
+    </div>
+  </div>
+</footer>

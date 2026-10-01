@@ -1,0 +1,116 @@
+---
+/** À propos : portrait (emplacement 4:5 tant qu'il n'est pas fourni) et texte. */
+import { Picture } from 'astro:assets';
+import { site } from '../config/site';
+
+interface Props {
+  lead: string;
+  paragraphs: readonly string[];
+  band?: string;
+  caption: string;
+}
+const { lead, paragraphs, band, caption } = Astro.props;
+const portrait = site.about.portrait;
+---
+
+<div class="about">
+  <figure class="about__figure">
+    {
+      portrait ? (
+        <Picture
+          src={portrait}
+          alt="Arnaud, fondateur de Classic Punk"
+          formats={['avif']}
+          fallbackFormat="webp"
+          widths={[400, 800]}
+          sizes="(max-width: 767px) 100vw, 460px"
+          class="about__portrait"
+        />
+      ) : (
+        <div class="about__placeholder" aria-hidden="true" />
+      )
+    }
+    <figcaption>{caption}</figcaption>
+  </figure>
+  <div class="about__text">
+    <p class="about__lead">{lead}</p>
+    {paragraphs.map((p) => <p class="about__muted">{p}</p>)}
+    {
+      site.about.showBand && band && (
+        <div class="about__band">
+          <p class="about__muted">{band}</p>
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .about {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-7);
+    align-items: start;
+  }
+  .about__figure {
+    margin: 0;
+    position: relative;
+  }
+  .about__placeholder,
+  .about :global(.about__portrait) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border: var(--border-hair) solid var(--cp-rule);
+    box-sizing: border-box;
+  }
+  .about__placeholder {
+    /* Hachures provisoires de la maquette (couleurs absentes des tokens), en attendant le portrait. */
+    --portrait-a: #2b2a28;
+    --portrait-b: #262523;
+    background-color: var(--portrait-a);
+    background-image: repeating-linear-gradient(
+      135deg,
+      var(--portrait-a) 0,
+      var(--portrait-a) 14px,
+      var(--portrait-b) 14px,
+      var(--portrait-b) 28px
+    );
+  }
+  figcaption {
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cp-ink-3);
+  }
+  .about__text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 17px;
+    line-height: 27px;
+  }
+  .about__text p {
+    margin: 0;
+  }
+  .about__lead {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .about__muted {
+    color: var(--cp-ink-2);
+  }
+  .about__band {
+    border-top: var(--border-hair) solid var(--cp-rule);
+    padding-top: var(--space-4);
+  }
+  @media (max-width: 767px) {
+    .about {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-6);
+    }
+  }
+</style>

@@ -1,0 +1,37 @@
+---
+/** Le manifeste « Classique / Punk » : Face A claire, Face B sur fond noir avec PUNK surligné. */
+import Highlight from './Highlight.astro';
+import TrackList, { type Track } from './TrackList.astro';
+import { fr } from '../i18n/fr';
+
+interface Column {
+  title: string;
+  items: readonly Track[];
+}
+interface Props {
+  left: Column;
+  right: Column;
+  outro?: string;
+  class?: string;
+}
+const { left, right, outro, class: className } = Astro.props;
+const cols = [
+  { col: left, punk: false, side: 'A' },
+  { col: right, punk: true, side: 'B' },
+];
+---
+
+<div class:list={['cp-manifesto', className]}>
+  {
+    cols.map(({ col, punk, side }) => (
+      <div class:list={['cp-manifesto__col', punk && 'cp-manifesto__col--punk cp-inverse']}>
+        <div class="cp-manifesto__head">
+          <h3 class="cp-manifesto__title">{punk ? <Highlight>{col.title}</Highlight> : col.title}</h3>
+          <span class="cp-manifesto__side">{fr.side} {side}</span>
+        </div>
+        <TrackList side={side} items={col.items} headingLevel="h4" />
+      </div>
+    ))
+  }
+  {outro && <p class="cp-manifesto__outro">{outro}</p>}
+</div>

@@ -1,0 +1,89 @@
+/* Classic Punk — tokens.css (généré depuis tokens.json). Polices servies depuis /fonts/ (public/fonts/). */
+:root{
+  --cp-paper:#f2f0ea;
+  --cp-paper-raised:#faf9f5;
+  --cp-paper-sunk:#e8e5dc;
+  --cp-ink:#121212;
+  --cp-ink-2:#4a4843;
+  --cp-ink-3:#66635c;
+  --cp-hairline:#c9c6bd;
+  --cp-rule:var(--cp-ink);
+  --cp-accent:#ffcf1a;
+  --cp-on-accent:var(--cp-ink);
+  --cp-marker:#1f4fd8;
+  --cp-focus:var(--cp-marker);
+  --cp-inverse:var(--cp-ink);
+  --cp-on-inverse:var(--cp-paper);
+  --cp-on-inverse-2:#b8b4aa;
+  --cp-focus-inverse:var(--cp-accent);
+  --cp-success:#1e7a3c;
+  --cp-error:#c2261b;
+  --cp-disabled:#dedbd3;
+  --cp-on-disabled:#5e5b55;
+  --gig-punk:#ff2e88;
+  --gig-on-punk:#0d0d0d;
+  --gig-punk-text:#c8006a;
+  --gig-paper:#f7f5f0;
+  --gig-ink:#0d0d0d;
+  --gig-tape:#e6dfca;
+  --lr-background:#0e0b1f;
+  --lr-surface:#1a1533;
+  --lr-ink:#05030f;
+  --lr-primary:#6a45ff;
+  --lr-on-primary:#ffffff;
+  --lr-secondary:#ffc21a;
+  --lr-on-secondary:#1a1200;
+  --lr-text:#f4f1ff;
+  --lr-text-2:#b7afd6;
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+  --space-9:96px;
+  --space-10:128px;
+  --radius-0:0;
+  --radius-disc:50%;
+  --shadow-sleeve:6px 6px 0 #121212;
+  --border-hair:1px;
+  --border-rule:2px;
+  --border-heavy:3px;
+  --tilt-aplat:-6deg;
+  --tilt-marker:-4deg;
+  --tilt-max:8deg;
+  --container-max:1200px;
+  --container-text:680px;
+  --gutter-desktop:32px;
+  --gutter-mobile:16px;
+  --header-height:72px;
+  --bp-md:768px;
+  --bp-lg:1024px;
+  --bp-xl:1440px;
+  --font-sans:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-condensed:"Archivo Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --font-expanded:"Archivo Expanded", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  --font-marker:"Permanent Marker", "Marker Felt", cursive;
+}
+@font-face{font-family:"Archivo";src:url("../fonts/Archivo-Text.woff2") format("woff2");font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Archivo Condensed";src:url("../fonts/Archivo-Condensed.woff2") format("woff2");font-weight:800 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Archivo Expanded";src:url("../fonts/Archivo-Expanded.woff2") format("woff2");font-weight:700 800;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("../fonts/JetBrainsMono.woff2") format("woff2");font-weight:400 600;font-style:normal;font-display:swap}
+@font-face{font-family:"Permanent Marker";src:url("../fonts/PermanentMarker-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+.display-xl{font-family:var(--font-condensed);font-size:112px;line-height:0.9;font-weight:900;letter-spacing:-0.01em;}
+.display-l{font-family:var(--font-condensed);font-size:80px;line-height:0.92;font-weight:900;letter-spacing:-0.005em;}
+.display-m{font-family:var(--font-condensed);font-size:52px;line-height:0.95;font-weight:900;}
+.title-l{font-family:var(--font-expanded);font-size:40px;line-height:1.05;font-weight:800;letter-spacing:-0.01em;}
+.title-m{font-family:var(--font-expanded);font-size:26px;line-height:1.1;font-weight:800;}
+.title-s{font-family:var(--font-expanded);font-size:18px;line-height:1.25;font-weight:700;}
+.lead{font-family:var(--font-sans);font-size:20px;line-height:30px;font-weight:400;}
+.body{font-family:var(--font-sans);font-size:17px;line-height:27px;font-weight:400;}
+.body-s{font-family:var(--font-sans);font-size:15px;line-height:23px;font-weight:400;}
+.label{font-family:var(--font-sans);font-size:14px;line-height:16px;font-weight:700;letter-spacing:0.04em;}
+.meta{font-family:var(--font-mono);font-size:12px;line-height:16px;font-weight:400;letter-spacing:0.08em;}
+.catalog{font-family:var(--font-mono);font-size:12px;line-height:16px;font-weight:600;letter-spacing:0.1em;}
+.mono-body{font-family:var(--font-mono);font-size:14px;line-height:22px;font-weight:400;}
+.marker{font-family:var(--font-marker);font-size:26px;line-height:30px;font-weight:400;}

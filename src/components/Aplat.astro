@@ -1,0 +1,11 @@
+---
+/** L'aplat jaune posé de travers. Décoratif. */
+interface Props {
+  width?: number;
+  height?: number;
+  class?: string;
+}
+const { width = 240, height = 160, class: className } = Astro.props;
+---
+
+<span class:list={['cp-aplat', className]} aria-hidden="true" style={`width:${width}px;height:${height}px`}></span>

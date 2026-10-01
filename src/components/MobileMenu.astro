@@ -1,0 +1,67 @@
+---
+/** Panneau du menu mobile (#cp-menu) et son script : aria-expanded, Échap, gestion du focus. */
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  links: readonly { label: string; href: string }[];
+  cta?: { label: string; href: string };
+  current: string;
+}
+const { links, cta, current } = Astro.props;
+---
+
+<div class="cp-header__panel" id="cp-menu">
+  <ul>
+    {
+      links.map((l) => (
+        <li>
+          <a class="cp-header__plink" href={l.href} aria-current={l.href === current ? 'page' : undefined}>
+            <span>{l.label}</span>
+            <Icon name="arrow-right" size={28} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  {
+    cta && (
+      <Button href={cta.href} variant="primary" size="lg" iconAfter="arrow-right">
+        {cta.label}
+      </Button>
+    )
+  }
+</div>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const toggle = header?.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const panel = document.getElementById('cp-menu');
+
+  if (header && toggle && panel) {
+    const setOpen = (open: boolean, { focus = false } = {}) => {
+      header.classList.toggle('cp-header--open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', (open ? toggle.dataset.labelClose : toggle.dataset.labelOpen) ?? '');
+      if (focus) (open ? panel.querySelector<HTMLElement>('a') : toggle)?.focus();
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true', { focus: true });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && header.classList.contains('cp-header--open')) setOpen(false, { focus: true });
+    });
+
+    // Un lien d'ancre de la même page referme le menu.
+    panel.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) setOpen(false);
+    });
+
+    // Repasser en desktop referme le menu.
+    matchMedia('(min-width: 768px)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+</script>

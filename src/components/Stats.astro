@@ -1,0 +1,19 @@
+---
+/** Chiffres clés en grand, dans une grille à filets. */
+interface Props {
+  items: readonly { value: string; label: string }[];
+  class?: string;
+}
+const { items, class: className } = Astro.props;
+---
+
+<dl class:list={['cp-stats', className]}>
+  {
+    items.map((s) => (
+      <div class="cp-stats__item">
+        <dt class="cp-stats__value">{s.value}</dt>
+        <dd class="cp-stats__label">{s.label}</dd>
+      </div>
+    ))
+  }
+</dl>

@@ -1,0 +1,57 @@
+---
+/** Section de page : espacement vertical, fond, filets, conteneur empilé. */
+import Container from './Container.astro';
+
+interface Props {
+  id?: string;
+  /** default : papier · sunk : bande alternée · inverse : fond noir */
+  tone?: 'default' | 'sunk' | 'inverse';
+  /** Filet fin en haut de section (et en bas pour `sunk`). */
+  ruled?: boolean;
+  /** Supprime l'espacement du haut (section qui suit directement la précédente). */
+  flushTop?: boolean;
+  class?: string;
+  containerClass?: string;
+}
+const { id, tone = 'default', ruled = false, flushTop = false, class: className, containerClass } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    'sec',
+    `sec--${tone}`,
+    tone === 'inverse' && 'cp-inverse',
+    ruled && 'sec--ruled',
+    flushTop && 'sec--flush-top',
+    className,
+  ]}
+>
+  <Container stack class={containerClass}><slot /></Container>
+</section>
+
+<style>
+  .sec {
+    padding: var(--space-9) 0;
+  }
+  .sec--flush-top {
+    padding-top: 0;
+  }
+  .sec--ruled {
+    border-top: var(--border-hair) solid var(--cp-rule);
+  }
+  .sec--sunk {
+    background: var(--cp-paper-sunk);
+  }
+  .sec--sunk.sec--ruled {
+    border-bottom: var(--border-hair) solid var(--cp-rule);
+  }
+  @media (max-width: 767px) {
+    .sec {
+      padding: var(--space-8) 0;
+    }
+    .sec--flush-top {
+      padding-top: 0;
+    }
+  }
+</style>
