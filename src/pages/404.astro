@@ -1,0 +1,51 @@
+---
+/** Page 404 (textes §6 des contenus). Pas encore de maquette : composée avec les styles existants. */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import Container from '../components/Container.astro';
+
+const text = {
+  title: 'Fausse note.',
+  body: "Cette page n'existe pas, ou elle a quitté la scène.",
+  button: "Retour à l'accueil",
+};
+---
+
+<BaseLayout title={`${text.title} — Classic Punk`} description={text.body} noindex>
+  <section class="notfound">
+    <Container>
+      <h1 class="notfound__title">{text.title}</h1>
+      <p class="notfound__text">{text.body}</p>
+      <Button href="/" size="lg" iconAfter="arrow-right">{text.button}</Button>
+    </Container>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound {
+    padding: var(--space-9) 0 var(--space-10);
+  }
+  .notfound__title {
+    margin: 0;
+    font-family: var(--font-condensed);
+    font-weight: 900;
+    font-size: 112px;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+  .notfound__text {
+    max-width: 580px;
+    margin: var(--space-6) 0;
+    font-size: 20px;
+    line-height: 30px;
+    color: var(--cp-ink-2);
+  }
+  @media (max-width: 767px) {
+    .notfound {
+      padding: var(--space-8) 0;
+    }
+    .notfound__title {
+      font-size: 56px;
+    }
+  }
+</style>

@@ -4,8 +4,8 @@
  */
 
 export const site = {
-  // TODO: domaine définitif à confirmer (à garder synchronisé avec astro.config.mjs)
-  url: 'https://classicpunk.fr',
+  // Domaine du site (à garder synchronisé avec astro.config.mjs et public/robots.txt)
+  url: 'https://classic-punk.fr',
   name: 'Classic Punk',
   signature: "La rigueur du classique. L'énergie du punk.",
   // TODO: adresse e-mail de contact

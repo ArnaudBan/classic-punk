@@ -24,3 +24,12 @@ Site statique Astro. Cahier des charges : `classic-punk_cdc-dev.md` · textes : 
 - `src/styles/tokens.css` et `src/styles/components.css` sont copiés tels quels depuis `design/tokens.css` et `design/reference/bundle.css` : à remplacer d'un bloc à chaque nouvel export du design, ne pas les modifier à la main.
 - Les composants `.astro` reproduisent le balisage et les classes `cp-*` de `design/reference/bundle.js`.
 - La mise en page propre à une section est dans le `<style>` de son composant ; `global.css` ne contient que la base.
+
+## Déploiement
+
+Automatique à chaque push sur `main` (donc à chaque merge) : `.github/workflows/deploy.yml` lance `npm ci`, `npm run check` et `npm run build`, puis envoie `dist/` à la racine de l'hébergement Infomaniak par FTP. Si le check ou le build échoue, rien n'est envoyé. Un déploiement peut aussi être lancé à la main depuis l'onglet **Actions** de GitHub (« Run workflow »).
+
+- Secrets GitHub requis : `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`.
+- Seuls les fichiers modifiés sont envoyés ; l'état est gardé sur le serveur dans `.ftp-deploy-sync-state.json` (bloqué en lecture par le `.htaccess`).
+- `public/.htaccess` (Apache) : page 404, redirections HTTPS et `www` → `classic-punk.fr`, en-têtes de sécurité (dont la CSP), cache. **Quand le formulaire de contact sera branché, élargir `connect-src` / `form-action` de la CSP au service d'envoi choisi.**
+- Domaine : `https://classic-punk.fr`, à garder identique dans `astro.config.mjs`, `src/config/site.ts`, `public/robots.txt` et `public/.htaccess`.
