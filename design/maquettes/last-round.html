@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Last Round — une manche Classic Punk (maquette de référence)</title>
+<!-- Maquette statique de référence : le balisage produit par les composants du design system. Pas le code à livrer. -->
+<link rel="stylesheet" href="tokens.local.css">
+<link rel="stylesheet" href="../reference/bundle.css">
+<style>
+body{margin:0;background:#0e0b1f}
+a{color:#f4f1ff}a:hover{color:#ffc21a}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.sec{padding:96px 0}
+.dots{background-color:#0e0b1f;background-image:radial-gradient(#262048 1.2px,transparent 1.4px);background-size:22px 22px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:center}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:0}
+.h1{font-family:var(--font-condensed);font-weight:400;font-size:88px;line-height:1;margin:20px 0 0;color:#f4f1ff}
+.lead{font-size:20px;line-height:30px;color:#b7afd6;max-width:560px;margin:28px 0 32px}
+.actions{display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+.phone{display:block;height:auto;border:3px solid #05030f;border-radius:30px;box-shadow:0 8px 0 #05030f}
+.phones{position:relative;height:600px}
+.screens{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.screens figure{margin:0;display:flex;flex-direction:column;gap:14px;align-items:center}
+.screens img{width:100%;max-width:230px}
+.screens figcaption{font-family:"JetBrains Mono",monospace;font-size:12px;line-height:18px;letter-spacing:.06em;color:#b7afd6;text-align:center}
+.feat{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:start}
+.widget{width:170px;height:170px;border-radius:26px;background:#1a1533;border:3px solid #05030f;box-shadow:0 5px 0 #05030f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.parents{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:start}
+.nodata{border:3px solid #05030f;border-radius:20px;background:#1a1533;box-shadow:0 5px 0 #05030f;padding:28px}
+.nodata li{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #262048;font-weight:700;font-size:17px}
+.nodata li:last-child{border-bottom:0}
+.final-title{font-family:var(--font-condensed);font-weight:400;font-size:88px;line-height:1;margin:0;color:#ffffff}
+@media (max-width:767px){
+  .wrap{padding:0 16px}
+  .sec{padding:64px 0}
+  .hero-grid,.feat,.parents{grid-template-columns:minmax(0,1fr);gap:32px}
+  .h1{font-size:48px}
+  .lead{font-size:18px;line-height:28px}
+  .phones{height:470px}
+  .ph-a{width:180px !important;left:8px !important}
+  .ph-b{width:170px !important;right:8px !important}
+  .screens{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
+  .final-title{font-size:42px}
+  .final-title .cp-highlight{white-space:normal}
+}
+</style>
+</head>
+<body class="cp-root" style="margin:0">
+
+<div class="cp-root" style="background: rgb(242, 240, 234); color: rgb(18, 18, 18); font-family: Archivo, &quot;Helvetica Neue&quot;, sans-serif; min-width: 0px;">
+<header class="cp-root cp-header"><div class="cp-header__bar"><a class="cp-header__home" href="/" aria-label="Classic Punk, accueil"><span class="cp-logo" style="height: 36px;"><svg viewBox="0 0 578 100" role="img" height="36" width="208"><title>Classic Punk</title><path fill="#121212" d="M47 12.65A38 38 0 1 0 47 87.35Z"></path><path fill="#FFCF1A" d="M47 28.09A23 23 0 1 0 47 71.91Z"></path><path fill="#121212" d="M40 46.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 1 0 0-7Z"></path><path fill="#121212" d="M52 12H126V88H52ZM52 12H96A30 30 0 0 1 96 72H70V88H52ZM70 30H96A12 12 0 0 1 96 54H70Z" fill-rule="evenodd"></path><path fill="#FFCF1A" d="M52 12H96A30 30 0 0 1 96 72H70V88H52ZM70 30H96A12 12 0 0 1 96 54H70Z" fill-rule="evenodd"></path><path fill="#121212" d="M171.29 65.52Q165.0 65.52 160.80 63.75Q156.60 61.98 154.50 58.52Q152.40 55.07 152.40 49.95Q152.40 42.47 157.23 38.43Q162.06 34.38 171.34 34.38Q176.50 34.38 180.43 35.94Q184.37 37.49 186.58 40.31Q188.79 43.13 188.79 46.98H180.13Q180.13 45.10 179.01 43.76Q177.90 42.43 175.88 41.71Q173.87 40.99 171.20 40.99Q168.06 40.99 165.91 42.06Q163.77 43.13 162.66 45.01Q161.54 46.89 161.54 49.38V50.48Q161.54 52.97 162.66 54.87Q163.77 56.77 165.89 57.84Q168.01 58.92 171.07 58.92Q173.96 58.92 176.04 58.24Q178.11 57.56 179.23 56.25Q180.34 54.94 180.34 53.10H188.83Q188.83 56.82 186.69 59.62Q184.54 62.41 180.63 63.97Q176.72 65.52 171.29 65.52ZM194.91 65.0V34.91H203.79V57.82H223.11V65.0ZM224.82 65.0 239.60 34.91H249.53L264.31 65.0H254.65L252.37 60.18H236.28L234.00 65.0ZM239.25 53.67H249.40L246.69 47.55Q246.51 47.15 246.20 46.39Q245.90 45.62 245.55 44.77Q245.20 43.92 244.94 43.19Q244.67 42.47 244.50 42.12H244.19Q243.89 42.91 243.45 43.96Q243.01 45.01 242.64 45.97Q242.27 46.93 241.96 47.55ZM284.73 65.52Q281.06 65.52 277.87 65.08Q274.67 64.65 272.27 63.55Q269.86 62.46 268.51 60.49Q267.15 58.52 267.15 55.51Q267.15 55.42 267.15 55.29Q267.15 55.16 267.20 55.02H275.94Q275.90 55.20 275.88 55.37Q275.86 55.55 275.86 55.77Q275.86 57.12 276.88 57.89Q277.91 58.65 279.75 58.96Q281.58 59.27 284.08 59.27Q285.08 59.27 286.15 59.20Q287.23 59.13 288.23 58.98Q289.24 58.83 290.05 58.52Q290.86 58.22 291.31 57.76Q291.77 57.30 291.77 56.60Q291.77 55.68 290.79 55.13Q289.81 54.59 288.08 54.26Q286.35 53.93 284.23 53.67Q282.11 53.41 279.83 53.03Q277.56 52.66 275.42 52.03Q273.27 51.39 271.57 50.34Q269.86 49.30 268.86 47.63Q267.85 45.97 267.85 43.61Q267.85 41.20 269.05 39.48Q270.26 37.75 272.44 36.61Q274.63 35.48 277.60 34.93Q280.58 34.38 284.08 34.38Q287.66 34.38 290.57 34.95Q293.48 35.52 295.56 36.63Q297.63 37.75 298.75 39.43Q299.86 41.12 299.86 43.39V44.00H291.25V43.65Q291.25 42.74 290.46 42.01Q289.67 41.29 288.17 40.88Q286.66 40.46 284.51 40.46Q281.93 40.46 280.27 40.79Q278.61 41.12 277.82 41.66Q277.04 42.21 277.04 42.91Q277.04 43.79 278.04 44.29Q279.05 44.79 280.75 45.10Q282.46 45.40 284.58 45.67Q286.70 45.93 289.00 46.28Q291.29 46.63 293.41 47.24Q295.53 47.85 297.24 48.88Q298.95 49.91 299.95 51.50Q300.96 53.10 300.96 55.42Q300.96 59.05 298.86 61.28Q296.76 63.51 293.11 64.51Q289.46 65.52 284.73 65.52ZM322.65 65.52Q318.97 65.52 315.78 65.08Q312.59 64.65 310.18 63.55Q307.78 62.46 306.42 60.49Q305.07 58.52 305.07 55.51Q305.07 55.42 305.07 55.29Q305.07 55.16 305.11 55.02H313.86Q313.81 55.20 313.79 55.37Q313.77 55.55 313.77 55.77Q313.77 57.12 314.80 57.89Q315.83 58.65 317.66 58.96Q319.50 59.27 321.99 59.27Q323.00 59.27 324.07 59.20Q325.14 59.13 326.15 58.98Q327.15 58.83 327.96 58.52Q328.77 58.22 329.23 57.76Q329.69 57.30 329.69 56.60Q329.69 55.68 328.70 55.13Q327.72 54.59 325.99 54.26Q324.27 53.93 322.15 53.67Q320.02 53.41 317.75 53.03Q315.48 52.66 313.33 52.03Q311.19 51.39 309.48 50.34Q307.78 49.30 306.77 47.63Q305.77 45.97 305.77 43.61Q305.77 41.20 306.97 39.48Q308.17 37.75 310.36 36.61Q312.55 35.48 315.52 34.93Q318.49 34.38 321.99 34.38Q325.58 34.38 328.49 34.95Q331.39 35.52 333.47 36.63Q335.55 37.75 336.66 39.43Q337.78 41.12 337.78 43.39V44.00H329.16V43.65Q329.16 42.74 328.38 42.01Q327.59 41.29 326.08 40.88Q324.57 40.46 322.43 40.46Q319.85 40.46 318.19 40.79Q316.53 41.12 315.74 41.66Q314.95 42.21 314.95 42.91Q314.95 43.79 315.96 44.29Q316.96 44.79 318.67 45.10Q320.37 45.40 322.5 45.67Q324.62 45.93 326.91 46.28Q329.21 46.63 331.33 47.24Q333.45 47.85 335.16 48.88Q336.86 49.91 337.87 51.50Q338.87 53.10 338.87 55.42Q338.87 59.05 336.77 61.28Q334.67 63.51 331.02 64.51Q327.37 65.52 322.65 65.52ZM344.51 65.0V34.91H353.39V65.0ZM378.41 65.52Q372.11 65.52 367.91 63.75Q363.71 61.98 361.61 58.52Q359.51 55.07 359.51 49.95Q359.51 42.47 364.35 38.43Q369.18 34.38 378.45 34.38Q383.61 34.38 387.55 35.94Q391.48 37.49 393.69 40.31Q395.90 43.13 395.90 46.98H387.24Q387.24 45.10 386.12 43.76Q385.01 42.43 383.00 41.71Q380.99 40.99 378.32 40.99Q375.17 40.99 373.03 42.06Q370.88 43.13 369.77 45.01Q368.65 46.89 368.65 49.38V50.48Q368.65 52.97 369.77 54.87Q370.88 56.77 373.01 57.84Q375.13 58.92 378.19 58.92Q381.07 58.92 383.15 58.24Q385.23 57.56 386.34 56.25Q387.46 54.94 387.46 53.10H395.94Q395.94 56.82 393.80 59.62Q391.66 62.41 387.74 63.97Q383.83 65.52 378.41 65.52ZM415.32 65.0V34.91H438.49Q441.47 34.91 443.68 36.22Q445.88 37.53 447.13 39.83Q448.38 42.12 448.38 45.14Q448.38 48.16 447.11 50.50Q445.84 52.84 443.61 54.13Q441.38 55.42 438.41 55.42H424.19V65.0ZM424.19 48.81H435.96Q437.93 48.81 438.95 47.87Q439.98 46.93 439.98 45.18Q439.98 44.00 439.50 43.19Q439.02 42.39 438.14 41.95Q437.27 41.51 435.96 41.51H424.19ZM470.42 65.52Q464.47 65.52 460.58 63.79Q456.69 62.06 454.76 58.76Q452.84 55.46 452.84 50.83V34.91H461.72V50.43Q461.72 54.46 463.99 56.69Q466.26 58.92 470.42 58.92Q474.57 58.92 476.85 56.69Q479.12 54.46 479.12 50.43V34.91H488.04V50.83Q488.04 55.46 486.12 58.76Q484.19 62.06 480.28 63.79Q476.37 65.52 470.42 65.52ZM495.30 65.0V34.91H503.26L518.83 48.95Q519.22 49.30 519.86 49.91Q520.49 50.52 521.17 51.18Q521.85 51.83 522.33 52.40H522.72Q522.72 51.61 522.70 50.43Q522.68 49.25 522.68 48.33V34.91H531.07V65.0H523.25L508.03 51.26Q506.98 50.34 505.84 49.21Q504.70 48.07 504.00 47.41H503.65Q503.65 47.98 503.68 49.25Q503.70 50.52 503.70 51.96V65.0ZM538.51 65.0V34.91H547.39V49.51L563.74 34.91H574.98L561.25 47.33L575.29 65.0H564.27L554.69 52.66L547.39 58.57V65.0Z"></path></svg></span></a><nav class="cp-header__nav" aria-label="Navigation principale"><ul class="cp-header__links"><li><a href="/">Accueil</a></li><li><a href="/gig/">Gig</a></li><li><a href="/last-round/" aria-current="page">Last Round</a></li><li><a href="/contact/">Contact</a></li></ul></nav><button class="cp-header__toggle" aria-expanded="false" aria-controls="cp-menu"><svg class="cp-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" role="img"><title>Ouvrir le menu</title><path d="M3 7h18"></path><path d="M3 12h18"></path><path d="M3 17h18"></path></svg></button></div><div class="cp-header__panel" id="cp-menu"><ul><li><a class="cp-header__plink" href="/"><span>Accueil</span><svg class="cp-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 12h15"></path><path d="M13 6l6 6-6 6"></path></svg></a></li><li><a class="cp-header__plink" href="/gig/"><span>Gig</span><svg class="cp-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 12h15"></path><path d="M13 6l6 6-6 6"></path></svg></a></li><li><a class="cp-header__plink" href="/last-round/" aria-current="page"><span>Last Round</span><svg class="cp-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 12h15"></path><path d="M13 6l6 6-6 6"></path></svg></a></li><li><a class="cp-header__plink" href="/contact/"><span>Contact</span><svg class="cp-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 12h15"></path><path d="M13 6l6 6-6 6"></path></svg></a></li></ul><a class="cp-btn cp-btn--primary cp-btn--lg" href="/contact/"><span>Parler de votre projet</span><svg class="cp-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 12h15"></path><path d="M13 6l6 6-6 6"></path></svg></a></div></header>
+
+<main data-theme="last-round" style="background: rgb(14, 11, 31); color: rgb(244, 241, 255);">
+
+
+<section class="dots" style="border-bottom: 1px solid rgb(110, 104, 144);">
+  <div class="wrap" style="padding-top: 64px; padding-bottom: 72px;">
+    <div class="hero-grid">
+      <div>
+        <ul class="cp-credits"><li>CP-002</li><li>Last Round</li><li>iPhone</li><li>iOS 17 et plus</li><li>Sans compte ni pub</li></ul>
+        <h1 class="h1">La dernière manche, c'est <span class="cp-highlight">toi</span> qui la décides.</h1>
+        <p class="lead">Last Round t'aide à garder la main sur ton temps de jeu. Tu te fixes un budget pour la semaine, tu lances un décompte avant chaque partie, et tu sais toujours combien il te reste. Sans mouchard, sans compte, sans pub.</p>
+        <div class="actions">
+          <button class="cp-btn cp-btn--primary cp-btn--lg" type="button" aria-disabled="true"><svg class="cp-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><rect x="7" y="2" width="10" height="20"></rect><path d="M11 18h2"></path></svg><span>Bientôt sur l'App Store</span></button>
+          <a class="cp-link" href="#comment">Voir comment ça marche</a>
+        </div>
+        <div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center;"><span class="cp-badge cp-badge--dev"><span class="cp-badge__dot" aria-hidden="true"></span>En développement</span><span class="eyebrow" style="color: rgb(183, 175, 214); font-weight: 400;">Sortie : [À COMPLÉTER : période]</span></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <img src="../assets/apps/lr-icon.png" alt="Icône de Last Round" style="width: 64px; height: 64px; border-radius: 15px;">
+          <span class="eyebrow" style="color: rgb(183, 175, 214);">Last Round · une manche Classic Punk</span>
+        </div>
+        <div class="phones">
+          <img class="phone ph-b" src="../assets/apps/lr-09-manche-en-cours.webp" alt="Le décompte d'une manche en cours dans Last Round" style="position: absolute; width: 230px; right: 0px; top: 40px; transform: rotate(4deg);">
+          <img class="phone ph-a" src="../assets/apps/lr-accueil.webp" alt="L'écran d'accueil de Last Round avec la jauge du temps de jeu restant pour la semaine" style="position: absolute; width: 250px; left: 20px; top: 0px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="comment" class="sec">
+  <div class="wrap" style="display: flex; flex-direction: column; gap: 48px;">
+    <header class="cp-sechead"><div class="cp-sechead__num">A1</div><div><p class="cp-sechead__eyebrow">Comment ça marche</p><h2 class="cp-sechead__title">Prêt ? Joue. Pause. Game over.</h2></div></header>
+    <ol class="cp-tracks cp-tracks--cols" style="--cp-cols: 4;"><li class="cp-tracks__item"><span class="cp-tracks__num">A1</span><div><h3 class="cp-tracks__title">Fixe ton budget.</h3><p class="cp-tracks__text">Combien de temps de jeu pour la semaine ? Tu choisis, et tu peux le changer quand tu veux.</p></div></li><li class="cp-tracks__item"><span class="cp-tracks__num">A2</span><div><h3 class="cp-tracks__title">Lance une manche.</h3><p class="cp-tracks__text">Choisis la durée — 15, 30, 60 minutes — et le décompte démarre. Il continue même téléphone verrouillé.</p></div></li><li class="cp-tracks__item"><span class="cp-tracks__num">A3</span><div><h3 class="cp-tracks__title">Garde un œil sur la jauge.</h3><p class="cp-tracks__text">Le temps restant de la semaine s'affiche sur l'écran d'accueil de l'app et dans un widget sur ton iPhone.</p></div></li><li class="cp-tracks__item"><span class="cp-tracks__num">A4</span><div><h3 class="cp-tracks__title">Entends le gong.</h3><p class="cp-tracks__text">Une notification sonne à la fin de la manche, et une autre si tu dépasses ton budget.</p></div></li></ol>
+    <div class="screens">
+      <figure><img class="phone" src="../assets/apps/lr-accueil.webp" alt="L'accueil : la jauge de la semaine"><figcaption>1 · Ta semaine, en un coup d'œil</figcaption></figure>
+      <figure><img class="phone" src="../assets/apps/lr-07-lancer-manche.webp" alt="Le choix de la durée d'une manche"><figcaption>2 · Tu choisis la durée</figcaption></figure>
+      <figure><img class="phone" src="../assets/apps/lr-09-manche-en-cours.webp" alt="Le décompte d'une manche en cours"><figcaption>3 · Le décompte tourne</figcaption></figure>
+      <figure><img class="phone" src="../assets/apps/lr-10-fin-de-manche.webp" alt="L'écran de fin de manche"><figcaption>4 · Last Round terminé !</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec" style="border-top: 1px solid rgb(110, 104, 144);">
+  <div class="wrap" style="display: flex; flex-direction: column; gap: 48px;">
+    <header class="cp-sechead"><div class="cp-sechead__num">A2</div><div><p class="cp-sechead__eyebrow">Les fonctions</p><h2 class="cp-sechead__title">Tout ce qu'il faut. Rien de plus.</h2></div></header>
+    <div class="feat">
+      <ol class="cp-tracks"><li class="cp-tracks__item"><span class="cp-tracks__num">A1</span><div><h3 class="cp-tracks__title">Un décompte qui ne triche pas.</h3><p class="cp-tracks__text">Pause, reprise, arrêt : seul le temps réellement joué est compté.</p></div></li><li class="cp-tracks__item"><span class="cp-tracks__num">A2</span><div><h3 class="cp-tracks__title">Un budget hebdomadaire.</h3><p class="cp-tracks__text">Il repart à zéro le jour et à l'heure que tu choisis.</p></div></li><li class="cp-tracks__item"><span class="cp-tracks__num">A3</span><div><h3 class="cp-tracks__title">Des alertes avant la fin.</h3><p class="cp-tracks__text">À 75 % et 90 % du budget, puis au moment exact où tu le dépasses.</p></div></li><li class="cp-tracks__item"><span class="cp-tracks__num">A4</span><div><h3 class="cp-tracks__title">Des jours sans manette.</h3><p class="cp-tracks__text">Marque les jours où tu ne joues pas. Ces jours-là, impossible de lancer une manche sans le vouloir vraiment.</p></div></li><li class="cp-tracks__item"><span class="cp-tracks__num">A5</span><div><h3 class="cp-tracks__title">Un widget et l'écran verrouillé.</h3><p class="cp-tracks__text">Le temps restant en un coup d’œil, et la manche en cours dans la Dynamic Island.</p></div></li><li class="cp-tracks__item"><span class="cp-tracks__num">A6</span><div><h3 class="cp-tracks__title">L'historique de tes semaines.</h3><p class="cp-tracks__text">Budget respecté ou dépassé, semaine après semaine.</p></div></li></ol>
+      <div style="display: flex; flex-direction: column; gap: 28px; align-items: center;">
+        <img class="phone" src="../assets/apps/lr-11-semaine.webp" alt="L'écran Semaine : totaux, histogramme et manches du jour" style="width: 260px;">
+        <div style="display: flex; gap: 20px; align-items: center;">
+          <div class="widget" role="img" aria-label="Le widget Last Round sur l'écran d'accueil de l'iPhone : 6 h 20 restantes sur 10 h">
+            <svg width="96" height="96" viewBox="0 0 100 100" ariaHidden="true"><circle cx="50" cy="50" r="40" fill="none" stroke="#262048" stroke-width="12"></circle><circle cx="50" cy="50" r="40" fill="none" stroke="#2ee59d" stroke-width="12" stroke-linecap="round" stroke-dasharray="158 252" transform="rotate(-90 50 50)"></circle><text x="50" y="57" text-anchor="middle" font-family="Rubik, sans-serif" font-weight="800" font-size="20" fill="#f4f1ff">6 h 20</text></svg>
+            <span style="font-size: 11px; color: rgb(183, 175, 214); font-weight: 700;">restantes sur 10 h</span>
+          </div>
+          <p class="eyebrow" style="color: rgb(183, 175, 214); font-weight: 400; max-width: 170px; line-height: 18px;">Widget (petit) · jauge et temps restant. Proposition construite avec les tokens de l'app.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="parents" class="sec" style="background: rgb(26, 21, 51); border-top: 1px solid rgb(110, 104, 144); border-bottom: 1px solid rgb(110, 104, 144);">
+  <div class="wrap" style="display: flex; flex-direction: column; gap: 48px;">
+    <header class="cp-sechead"><div class="cp-sechead__num">A3</div><div><p class="cp-sechead__eyebrow">Pour les parents</p><h2 class="cp-sechead__title">Un outil pour apprendre à s'arrêter, pas un mouchard.</h2></div></header>
+    <div class="parents">
+      <div style="display: flex; flex-direction: column; gap: 20px; font-size: 18px; line-height: 29px;">
+        <p style="margin: 0px;">Last Round n'est pas un contrôle parental. Il ne surveille pas les autres applications et ne bloque rien à distance : c'est le joueur qui tient la manette, et qui apprend à poser ses propres limites.</p>
+        <p style="margin: 0px; color: rgb(183, 175, 214);">Un budget décidé ensemble, une jauge que tout le monde comprend, et moins de négociations à l'heure du dîner.</p>
+      </div>
+      <div class="nodata">
+        <p class="eyebrow" style="color: rgb(255, 194, 26); margin-bottom: 8px;">Aucune donnée ne quitte l'iPhone</p>
+        <ul style="list-style: none; margin: 0px; padding: 0px;">
+          
+            <li><svg class="cp-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><rect x="5" y="11" width="14" height="10"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span>Pas de compte</span></li>
+          
+            <li><svg class="cp-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><rect x="5" y="11" width="14" height="10"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span>Pas de serveur</span></li>
+          
+            <li><svg class="cp-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><rect x="5" y="11" width="14" height="10"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span>Pas de publicité</span></li>
+          
+            <li><svg class="cp-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><rect x="5" y="11" width="14" height="10"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span>Pas de traceur</span></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="faq" class="sec">
+  <div class="wrap" style="display: flex; flex-direction: column; gap: 48px;">
+    <header class="cp-sechead"><div class="cp-sechead__num">B1</div><div><p class="cp-sechead__eyebrow">FAQ</p><h2 class="cp-sechead__title">Questions avant la partie</h2></div></header>
+    <div class="cp-faq"><details class="cp-faq__item" open=""><summary class="cp-faq__q"><span>Last Round bloque-t-il mes jeux ?</span><svg class="cp-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary><p class="cp-faq__a">Non, pas dans cette version. Last Round compte le temps des manches que tu lances et te prévient. C'est un outil d'autodiscipline, pas une serrure.</p></details><details class="cp-faq__item"><summary class="cp-faq__q"><span>Sur quels appareils ?</span><svg class="cp-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary><p class="cp-faq__a">iPhone avec iOS 17 ou ultérieur.</p></details><details class="cp-faq__item"><summary class="cp-faq__q"><span>Mes données sont-elles envoyées quelque part ?</span><svg class="cp-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary><p class="cp-faq__a">Non. Tout reste sur ton iPhone.</p></details><details class="cp-faq__item"><summary class="cp-faq__q"><span>Combien coûte Last Round ?</span><svg class="cp-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary><p class="cp-faq__a">[À COMPLÉTER : modèle économique]</p></details><details class="cp-faq__item"><summary class="cp-faq__q"><span>Besoin d'aide ?</span><svg class="cp-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary><p class="cp-faq__a">Écris-moi depuis la page contact en choisissant « Support Last Round ».</p></details></div>
+  </div>
+</section>
+
+
+<section class="cp-inverse sec" style="background: rgb(106, 69, 255); color: rgb(255, 255, 255);">
+  <div class="wrap" style="display: flex; flex-direction: column; gap: 28px; align-items: flex-start;">
+    <span class="eyebrow" style="color: rgb(255, 255, 255);">B2 · CP-002 Last Round</span>
+    <h2 class="final-title">Prêt pour la <span class="cp-highlight">dernière manche ?</span></h2>
+    <div class="actions">
+      <button class="cp-btn cp-btn--primary cp-btn--lg" type="button" aria-disabled="true"><svg class="cp-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><rect x="7" y="2" width="10" height="20"></rect><path d="M11 18h2"></path></svg><span>Bientôt sur l'App Store</span></button>
+      <a class="cp-link" href="/legal/#last-round">Confidentialité et conditions de Last Round</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="cp-root cp-footer cp-inverse"><div class="cp-footer__inner"><div><span class="cp-logo" style="height: 44px;"><svg viewBox="0 0 578 100" role="img" height="44" width="254"><title>Classic Punk</title><path fill="#F2F0EA" d="M47 12.65A38 38 0 1 0 47 87.35Z"></path><path fill="#FFCF1A" d="M47 28.09A23 23 0 1 0 47 71.91Z"></path><path fill="#121212" d="M40 46.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 1 0 0-7Z"></path><path fill="#FFCF1A" d="M52 12H96A30 30 0 0 1 96 72H70V88H52ZM70 30H96A12 12 0 0 1 96 54H70Z" fill-rule="evenodd"></path><path fill="#F2F0EA" d="M171.29 65.52Q165.0 65.52 160.80 63.75Q156.60 61.98 154.50 58.52Q152.40 55.07 152.40 49.95Q152.40 42.47 157.23 38.43Q162.06 34.38 171.34 34.38Q176.50 34.38 180.43 35.94Q184.37 37.49 186.58 40.31Q188.79 43.13 188.79 46.98H180.13Q180.13 45.10 179.01 43.76Q177.90 42.43 175.88 41.71Q173.87 40.99 171.20 40.99Q168.06 40.99 165.91 42.06Q163.77 43.13 162.66 45.01Q161.54 46.89 161.54 49.38V50.48Q161.54 52.97 162.66 54.87Q163.77 56.77 165.89 57.84Q168.01 58.92 171.07 58.92Q173.96 58.92 176.04 58.24Q178.11 57.56 179.23 56.25Q180.34 54.94 180.34 53.10H188.83Q188.83 56.82 186.69 59.62Q184.54 62.41 180.63 63.97Q176.72 65.52 171.29 65.52ZM194.91 65.0V34.91H203.79V57.82H223.11V65.0ZM224.82 65.0 239.60 34.91H249.53L264.31 65.0H254.65L252.37 60.18H236.28L234.00 65.0ZM239.25 53.67H249.40L246.69 47.55Q246.51 47.15 246.20 46.39Q245.90 45.62 245.55 44.77Q245.20 43.92 244.94 43.19Q244.67 42.47 244.50 42.12H244.19Q243.89 42.91 243.45 43.96Q243.01 45.01 242.64 45.97Q242.27 46.93 241.96 47.55ZM284.73 65.52Q281.06 65.52 277.87 65.08Q274.67 64.65 272.27 63.55Q269.86 62.46 268.51 60.49Q267.15 58.52 267.15 55.51Q267.15 55.42 267.15 55.29Q267.15 55.16 267.20 55.02H275.94Q275.90 55.20 275.88 55.37Q275.86 55.55 275.86 55.77Q275.86 57.12 276.88 57.89Q277.91 58.65 279.75 58.96Q281.58 59.27 284.08 59.27Q285.08 59.27 286.15 59.20Q287.23 59.13 288.23 58.98Q289.24 58.83 290.05 58.52Q290.86 58.22 291.31 57.76Q291.77 57.30 291.77 56.60Q291.77 55.68 290.79 55.13Q289.81 54.59 288.08 54.26Q286.35 53.93 284.23 53.67Q282.11 53.41 279.83 53.03Q277.56 52.66 275.42 52.03Q273.27 51.39 271.57 50.34Q269.86 49.30 268.86 47.63Q267.85 45.97 267.85 43.61Q267.85 41.20 269.05 39.48Q270.26 37.75 272.44 36.61Q274.63 35.48 277.60 34.93Q280.58 34.38 284.08 34.38Q287.66 34.38 290.57 34.95Q293.48 35.52 295.56 36.63Q297.63 37.75 298.75 39.43Q299.86 41.12 299.86 43.39V44.00H291.25V43.65Q291.25 42.74 290.46 42.01Q289.67 41.29 288.17 40.88Q286.66 40.46 284.51 40.46Q281.93 40.46 280.27 40.79Q278.61 41.12 277.82 41.66Q277.04 42.21 277.04 42.91Q277.04 43.79 278.04 44.29Q279.05 44.79 280.75 45.10Q282.46 45.40 284.58 45.67Q286.70 45.93 289.00 46.28Q291.29 46.63 293.41 47.24Q295.53 47.85 297.24 48.88Q298.95 49.91 299.95 51.50Q300.96 53.10 300.96 55.42Q300.96 59.05 298.86 61.28Q296.76 63.51 293.11 64.51Q289.46 65.52 284.73 65.52ZM322.65 65.52Q318.97 65.52 315.78 65.08Q312.59 64.65 310.18 63.55Q307.78 62.46 306.42 60.49Q305.07 58.52 305.07 55.51Q305.07 55.42 305.07 55.29Q305.07 55.16 305.11 55.02H313.86Q313.81 55.20 313.79 55.37Q313.77 55.55 313.77 55.77Q313.77 57.12 314.80 57.89Q315.83 58.65 317.66 58.96Q319.50 59.27 321.99 59.27Q323.00 59.27 324.07 59.20Q325.14 59.13 326.15 58.98Q327.15 58.83 327.96 58.52Q328.77 58.22 329.23 57.76Q329.69 57.30 329.69 56.60Q329.69 55.68 328.70 55.13Q327.72 54.59 325.99 54.26Q324.27 53.93 322.15 53.67Q320.02 53.41 317.75 53.03Q315.48 52.66 313.33 52.03Q311.19 51.39 309.48 50.34Q307.78 49.30 306.77 47.63Q305.77 45.97 305.77 43.61Q305.77 41.20 306.97 39.48Q308.17 37.75 310.36 36.61Q312.55 35.48 315.52 34.93Q318.49 34.38 321.99 34.38Q325.58 34.38 328.49 34.95Q331.39 35.52 333.47 36.63Q335.55 37.75 336.66 39.43Q337.78 41.12 337.78 43.39V44.00H329.16V43.65Q329.16 42.74 328.38 42.01Q327.59 41.29 326.08 40.88Q324.57 40.46 322.43 40.46Q319.85 40.46 318.19 40.79Q316.53 41.12 315.74 41.66Q314.95 42.21 314.95 42.91Q314.95 43.79 315.96 44.29Q316.96 44.79 318.67 45.10Q320.37 45.40 322.5 45.67Q324.62 45.93 326.91 46.28Q329.21 46.63 331.33 47.24Q333.45 47.85 335.16 48.88Q336.86 49.91 337.87 51.50Q338.87 53.10 338.87 55.42Q338.87 59.05 336.77 61.28Q334.67 63.51 331.02 64.51Q327.37 65.52 322.65 65.52ZM344.51 65.0V34.91H353.39V65.0ZM378.41 65.52Q372.11 65.52 367.91 63.75Q363.71 61.98 361.61 58.52Q359.51 55.07 359.51 49.95Q359.51 42.47 364.35 38.43Q369.18 34.38 378.45 34.38Q383.61 34.38 387.55 35.94Q391.48 37.49 393.69 40.31Q395.90 43.13 395.90 46.98H387.24Q387.24 45.10 386.12 43.76Q385.01 42.43 383.00 41.71Q380.99 40.99 378.32 40.99Q375.17 40.99 373.03 42.06Q370.88 43.13 369.77 45.01Q368.65 46.89 368.65 49.38V50.48Q368.65 52.97 369.77 54.87Q370.88 56.77 373.01 57.84Q375.13 58.92 378.19 58.92Q381.07 58.92 383.15 58.24Q385.23 57.56 386.34 56.25Q387.46 54.94 387.46 53.10H395.94Q395.94 56.82 393.80 59.62Q391.66 62.41 387.74 63.97Q383.83 65.52 378.41 65.52ZM415.32 65.0V34.91H438.49Q441.47 34.91 443.68 36.22Q445.88 37.53 447.13 39.83Q448.38 42.12 448.38 45.14Q448.38 48.16 447.11 50.50Q445.84 52.84 443.61 54.13Q441.38 55.42 438.41 55.42H424.19V65.0ZM424.19 48.81H435.96Q437.93 48.81 438.95 47.87Q439.98 46.93 439.98 45.18Q439.98 44.00 439.50 43.19Q439.02 42.39 438.14 41.95Q437.27 41.51 435.96 41.51H424.19ZM470.42 65.52Q464.47 65.52 460.58 63.79Q456.69 62.06 454.76 58.76Q452.84 55.46 452.84 50.83V34.91H461.72V50.43Q461.72 54.46 463.99 56.69Q466.26 58.92 470.42 58.92Q474.57 58.92 476.85 56.69Q479.12 54.46 479.12 50.43V34.91H488.04V50.83Q488.04 55.46 486.12 58.76Q484.19 62.06 480.28 63.79Q476.37 65.52 470.42 65.52ZM495.30 65.0V34.91H503.26L518.83 48.95Q519.22 49.30 519.86 49.91Q520.49 50.52 521.17 51.18Q521.85 51.83 522.33 52.40H522.72Q522.72 51.61 522.70 50.43Q522.68 49.25 522.68 48.33V34.91H531.07V65.0H523.25L508.03 51.26Q506.98 50.34 505.84 49.21Q504.70 48.07 504.00 47.41H503.65Q503.65 47.98 503.68 49.25Q503.70 50.52 503.70 51.96V65.0ZM538.51 65.0V34.91H547.39V49.51L563.74 34.91H574.98L561.25 47.33L575.29 65.0H564.27L554.69 52.66L547.39 58.57V65.0Z"></path></svg></span><p class="cp-footer__sig">La rigueur du classique. L'énergie du punk.</p><p class="cp-footer__text">Studio de développement indépendant. Fait main, sans investisseurs, sans abonnement.</p></div><nav aria-label="Pied de page"><ul class="cp-footer__links"><li><a href="/gig/">Gig<svg class="cp-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 12h15"></path><path d="M13 6l6 6-6 6"></path></svg></a></li><li><a href="/last-round/">Last Round<svg class="cp-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 12h15"></path><path d="M13 6l6 6-6 6"></path></svg></a></li><li><a href="/contact/">Contact<svg class="cp-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 12h15"></path><path d="M13 6l6 6-6 6"></path></svg></a></li><li><a href="/legal/">Mentions légales et confidentialité<svg class="cp-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 12h15"></path><path d="M13 6l6 6-6 6"></path></svg></a></li></ul></nav><div class="cp-footer__bottom"><span>© 2026 Classic Punk</span><span>CP-000 · Développement indépendant</span></div></div></footer>
+</div>
+
+</body>
+</html>

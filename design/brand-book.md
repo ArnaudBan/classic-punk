@@ -33,7 +33,7 @@ Classic Punk est le studio de développement indépendant d'Arnaud : sites web, 
 - **`cp-accent` (jaune presse) n'est jamais une couleur de texte** : uniquement en aplat (Aplat, Highlight, badge « Bientôt », bandeau, étiquette du logo, colonne mise en avant d'un tableau de prix), avec `cp-on-accent` dessus.
 - `cp-marker` (bleu) pour les annotations, le survol des liens et le focus. `cp-inverse` (noir) pour le pied de page, le bandeau slogan, la Face B du manifeste et l'appel final, avec `cp-on-inverse` et `cp-on-inverse-2`.
 - États : `cp-success` (« Disponible », envoi réussi) et `cp-error` (erreurs) sont toujours doublés d'une icône et d'un mot ; `cp-disabled` / `cp-on-disabled` pour « Bientôt sur l'App Store ».
-- **Couleurs invitées** : chaque app garde sa pochette. Les pages Gig et Last Round, et leurs visuels sur l'accueil, basculent sur les couleurs de l'app (`gig-*` : rose `gig-punk`, papier, ruban ; `lr-*` : nuit `lr-background`, violet `lr-primary`, jaune `lr-secondary`), seulement dans le contenu ; l'en-tête et le pied de page restent Classic Punk. Les bandes de couleur des AppCard prennent `gig-punk` et `lr-primary`. Les polices des apps (Anton pour Gig ; Lilita One et Rubik pour Last Round) ne s'utilisent que dans leurs captures et logos, jamais dans le texte du site.
+- **Couleurs invitées** : chaque app garde sa pochette. Sur l'accueil, les visuels des apps prennent leurs couleurs (`gig-*` : rose `gig-punk`, papier, ruban ; `lr-*` : nuit `lr-background`, violet `lr-primary`, jaune `lr-secondary`) ; les bandes des AppCard prennent `gig-punk` et `lr-primary`. Sur la page d'une app, posez `data-theme="gig"` ou `data-theme="last-round"` sur le contenu (jamais sur l'en-tête ni le pied de page) : `cp-accent`, `cp-paper`, le focus et la police affiche basculent sur ceux de l'app, et tous les composants suivent (aplat, surlignage, badge « Bientôt », bandeau, colonne de prix). Last Round étant une app sombre, son thème inverse aussi le papier et l'encre : fond `lr-background`, texte `lr-text`, filets `lr-rule`, fonds inversés en violet `lr-primary`.
 
 ## Typographie
 
@@ -44,6 +44,8 @@ Une seule famille, Archivo, jouée en trois largeurs, plus une mono et un marque
 - **Archivo** (400–700) — `lead`, `body`, `body-s`, `label` : le texte courant (lignes de 60 à 75 caractères, `container-text`), les boutons en capitales.
 - **JetBrains Mono** (400–600) — `meta`, `catalog`, `mono-body` : crédits, numéros de catalogue, plateformes, en capitales espacées.
 - **Permanent Marker** — `marker` : annotations seulement, en `cp-marker`.
+- **Anton** (famille `gig-display`, police de Gig, SIL OFL) — uniquement sur la page Gig, où `data-theme="gig"` la substitue à Archivo Condensed pour les titres affiche. Jamais ailleurs sur le site.
+- **Lilita One** (`lr-display`) et **Rubik ExtraBold** (`lr-numbers`), polices de Last Round (SIL OFL) — uniquement sur la page Last Round : `data-theme="last-round"` met les titres affiche en Lilita One et les chiffres (stats, prix) en Rubik à chiffres tabulaires.
 - Mobile (390 px) : `display-xl` et `display-l` descendent à `display-m`, `title-l` à 28 px, `lead` à 18/28.
 
 ## Grille, espaces, formes
