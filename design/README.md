@@ -20,6 +20,10 @@ Ce dossier est **l'export de Claude Design** cité par le cahier des charges (`.
 | `maquettes/home-desktop.png`, `home-mobile.png`, `home-menu-mobile.png` | Le rendu attendu de la home à 1440 px, 390 px, et menu mobile ouvert | Référence visuelle |
 | `maquettes/gig-desktop.png`, `gig-mobile.png`, `gig.html` | La page Gig (`/gig/`) à 1440 et 390 px, et son balisage de référence | Référence visuelle et de balisage |
 | `maquettes/lastround-desktop.png`, `lastround-mobile.png`, `last-round.html` | La page Last Round (`/last-round/`) à 1440 et 390 px, et son balisage de référence | Référence visuelle et de balisage |
+| `maquettes/contact-desktop.png`, `contact-mobile-etats.png`, `contact.html` | La page Contact à 1440 px (formulaire vide) et en mobile dans ses 5 états : vide, rempli, erreurs de champ, échec d'envoi, message envoyé | Référence visuelle et de balisage |
+| `maquettes/legal-desktop.png`, `legal-mobile.png`, `legal.html` | La page Légal à 1440 et 390 px | Référence visuelle et de balisage |
+| `maquettes/notfound-desktop.png`, `notfound-mobile.png`, `404.html` | La page 404 à 1440 et 390 px | Référence visuelle et de balisage |
+| `assets/og/og-*.png` | Les 5 images de partage (1200 × 630) : accueil, Gig, Last Round, contact, légal | `public/og/` (noms attendus par `Seo.astro`) |
 | `maquettes/home.html` | La home rendue en HTML statique avec les vraies classes `cp-*` (à ouvrir dans un navigateur) | Référence de balisage, pas du code à livrer |
 
 ## Règles d'implémentation
@@ -92,6 +96,40 @@ Même gabarit que Gig, textes du § 3 de `classic-punk_contenus.md`, rendu dans 
     6. Appel final sur violet « Prêt pour la dernière manche ? » + bouton désactivé + lien `/legal/#last-round`.
 - **Visuels** : `assets/apps/lr-*.webp` (réduits) ; sources @3x dans `../last-round/design/maquettes/` et l'icône dans `../last-round/design/app-icon/`.
 
+## La page Contact (`/contact/`)
+
+Textes du § 4 de `classic-punk_contenus.md`. Pas de thème d'app.
+
+- **Hero** : crédits `CP-000 · Contact · Réponse sous 48 h ouvrées`, H1 « Parlons-en. » (« en. » surligné), chapeau.
+- **Deux colonnes** (une seule sous 768 px) :
+    - à gauche, le formulaire dans un cadre (`--cp-paper-raised`, filet 1 px, en-tête mono `CP-000 · Formulaire` + « Tous les champs sont obligatoires ») : Nom et E-mail côte à côte (aide « pour que je puisse vous répondre »), sujet en liste (`Un projet · Support Gig · Support Last Round · Autre chose`), message, bouton `accent` « Envoyer », mention de confidentialité avec lien `/legal/#confidentialite` ;
+    - à droite, deux encarts : **Coordonnées** (e-mail et réseaux, encore à compléter) et **Support des apps** (texte + liens « Support Gig » → `/contact/?sujet=gig`, « Support Last Round » → `/contact/?sujet=last-round`, avec les icônes des apps).
+- **États** (voir `contact-mobile-etats.png`) :
+    - **erreurs de champ** : bordure 2 px `--cp-error`, icône alerte et message sous le champ (« Il me faut un nom pour vous répondre. », « Cette adresse e-mail semble incomplète. », « Le message est vide. »), `aria-invalid` et `aria-describedby` ;
+    - **échec d'envoi** : `Notice` d'erreur en haut du formulaire (« Le message n'est pas parti. … »), les champs gardent leur contenu ;
+    - **succès** : le formulaire est remplacé par la `Notice` de succès (« Message bien reçu. Je reviens vers vous sous 48 h ouvrées. »), un récapitulatif mono (sujet, e-mail) et un bouton « Retour à l'accueil ».
+- Le paramètre `?sujet=gig` ou `?sujet=last-round` présélectionne le sujet (JavaScript vanilla, cf. cahier des charges).
+
+## La page Légal (`/legal/`)
+
+Textes du § 5 de `classic-punk_contenus.md` (la note interne « squelette à faire relire » n'est pas affichée). Page de lecture : priorité à la lisibilité.
+
+- **Hero** : crédits `CP-000 · Légal · Mentions · Confidentialité · Conditions`, H1 en Archivo Condensed 80 px (44 px en mobile), chapeau.
+- **Deux colonnes** (4/8) : à gauche un **sommaire** collant (`position: sticky`) numéroté 01 à 05 avec sous-entrées pour Gig et Last Round ; à droite le texte, 680 px de large maximum, corps 17/28.
+- Chaque partie s'ouvre sur un filet de 3 px et un numéro mono ; ancres exactes du fichier de contenus : `#mentions`, `#confidentialite`, `#gig`, `#gig-confidentialite`, `#gig-conditions`, `#last-round`, `#last-round-confidentialite`, `#last-round-conditions`, `#propriete`.
+- Les mentions légales sont une liste de définitions (`<dl>`) à filets ; en mobile, intitulé au-dessus de la valeur.
+- Les valeurs encore inconnues apparaissent en **mono sur fond grisé avec un pointillé** (`[À COMPLÉTER]`), pour qu'aucune ne passe inaperçue. Elles viennent de `site.ts > legal` ; le build doit avertir tant qu'il en reste (cf. cahier des charges).
+
+## La page 404
+
+- Crédits `CP-404 · Erreur 404 · Page introuvable`, H1 « Fausse note. » en Archivo Condensed 136 px (76 px en mobile) avec « note. » surligné, texte « Cette page n'existe pas, ou elle a quitté la scène. », bouton « Retour à l'accueil ».
+- À droite (en dessous sur mobile), un **disque rayé** en SVG inline : vinyle noir, sillons `--cp-ink-2`, étiquette jaune « 404 · CP-404 · FACE B », rayure couleur papier. Le SVG est dans `maquettes/404.html`.
+- Aucun lien de navigation n'est marqué actif dans l'en-tête.
+
+## Les images de partage (`assets/og/`)
+
+Cinq PNG de 1200 × 630, déjà rendus, à copier dans `public/og/` : `og-home.png`, `og-gig.png`, `og-last-round.png`, `og-contact.png`, `og-legal.png`. Chacune reprend la DA de sa page : accueil (signature + aplat jaune), Gig (Anton, pochette rose, capture du menu), Last Round (nuit à points, Lilita One, deux écrans), contact (« Parlons-en. » sur fond noir), légal (titre sobre). La 404 n'a pas d'image de partage (elle n'est pas indexée).
+
 ## Mise à jour du 1er octobre (après la première livraison)
 
 Fichiers modifiés depuis la première version de cet export, à resynchroniser dans le projet : `tokens.css` (Anton, Lilita One, Rubik, nouvelles couleurs `--lr-surface-raised`, `--lr-rule`, `--lr-ok`, `--lr-danger`), `tokens.json`, `reference/bundle.css` (thèmes `[data-theme="gig"]` et `[data-theme="last-round"]` complet, tableau de prix lisible sur mobile, grilles sans débordement, surlignage lisible sur fond sombre), `fonts/` (Anton, Lilita One, Rubik ExtraBold), `brand-book.md`.
@@ -101,6 +139,6 @@ Fichiers modifiés depuis la première version de cet export, à resynchroniser 
 - Portrait d'Arnaud à fournir (noir et blanc, grain, cadrage serré) : prévoir un emplacement 4:5.
 - Chiffres de Guitar Social Club à valider avec l'associé.
 - Phrase sur le groupe de punk hardcore : option à valider (prévoir un booléen dans `site.ts`).
-- Images Open Graph (`og-*.png`, 1200 × 630) : pas encore produites.
 - Page Gig : prix confirmé à 4,99 € ; restent la version minimale de macOS, le transfert des données, les clients archivés et la langue de lancement (FAQ).
+- Page Contact : adresse e-mail de contact et réseaux sociaux à fournir.
 - Page Last Round : période de sortie, modèle économique (FAQ « Combien coûte Last Round ? ») et vraie capture du widget.
