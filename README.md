@@ -17,7 +17,13 @@ Site statique Astro. Cahier des charges : `classic-punk_cdc-dev.md` · textes : 
 | `npm test`        | Build, puis tests sur `dist/` et sur le schéma des apps (voir `tests/`)                |
 | `npm run verify`  | Tout ce que vérifie la CI : lint, format, types, build et tests                        |
 
-Les tests vérifient notamment : les ancres légales déclarées chez Apple, un seul `<h1>` et un title / une meta description par page, l'absence de lien interne cassé et de script en ligne (CSP), l'exclusion de la 404 du sitemap, et le refus d'une app `available` sans `storeUrl`.
+Les tests (`tests/`) vérifient notamment :
+
+- **site généré** : les ancres légales déclarées chez Apple, un seul `<h1>` et un title / une meta description par page, aucun lien interne cassé (`srcset` compris), aucun script en ligne (CSP), la 404 hors du sitemap ;
+- **collection des apps** : une app `available` sans `storeUrl` est refusée ;
+- **accessibilité, dans Chromium** (`tests/a11y.test.mjs`, desktop et mobile) : audit axe-core WCAG 2.2 AA sans violation sur chaque page ; parcours complet au Tab (lien d'évitement en premier, chaque élément visible et avec un focus visible) ; menu mobile (focus, Échap) ; FAQ au clavier ; bouton « Bientôt » inactif ; formulaire de contact rempli et envoyé au clavier seul ; « Réduire les animations ».
+
+Les tests d'accessibilité utilisent Chromium : `npx playwright install chromium` une fois en local (la CI l'installe elle-même).
 
 Prettier ignore volontairement `design/`, les documents `classic-punk_*.md` et les fichiers copiés tels quels depuis l'export design (`src/styles/tokens.css`, `src/styles/components.css`, `src/data/brand-svg.ts`).
 
@@ -33,6 +39,30 @@ Prettier ignore volontairement `design/`, les documents `classic-punk_*.md` et l
 - `src/styles/tokens.css` et `src/styles/components.css` sont copiés tels quels depuis `design/tokens.css` et `design/reference/bundle.css` : à remplacer d'un bloc à chaque nouvel export du design, ne pas les modifier à la main.
 - Les composants `.astro` reproduisent le balisage et les classes `cp-*` de `design/reference/bundle.js`.
 - La mise en page propre à une section est dans le `<style>` de son composant ; `global.css` ne contient que la base.
+
+## URL à déclarer dans App Store Connect
+
+Ces adresses sont publiques et déclarées chez Apple : **ne jamais changer les ancres** (un test le vérifie).
+
+| App        | Politique de confidentialité                                | URL de support                                      |
+| ---------- | ----------------------------------------------------------- | --------------------------------------------------- |
+| Gig        | `https://classic-punk.fr/legal/#gig-confidentialite`        | `https://classic-punk.fr/contact/?sujet=gig`        |
+| Last Round | `https://classic-punk.fr/legal/#last-round-confidentialite` | `https://classic-punk.fr/contact/?sujet=last-round` |
+
+Pour publier une app : renseigner `storeUrl` et passer `status: available` dans `src/content/apps/<app>.md`, et déposer le badge officiel Apple (SVG fourni par Apple, version française, non modifié) dans `src/assets/brand/apple/` : `mac-app-store-fr.svg` (Gig) ou `app-store-fr.svg` (Last Round). Sans badge, le build échoue volontairement plutôt que d'afficher un badge redessiné.
+
+## Test manuel avec VoiceOver
+
+Les tests automatiques couvrent le clavier et les règles WCAG vérifiables par machine ; une vérification au lecteur d'écran reste à faire à la main avant une mise en ligne importante (Safari, macOS : ⌘ F5 ; iPhone : Réglages → Accessibilité → VoiceOver).
+
+- [ ] **Rotor des titres** (VO + U) : un seul titre de niveau 1 par page, puis les sections dans l'ordre (A1, A2, B1…), sans saut de niveau.
+- [ ] **Repères** : « navigation principale », « contenu principal », « pied de page » ; le lien « Aller au contenu » est annoncé en premier.
+- [ ] **Menu mobile (iPhone)** : le bouton annonce « Ouvrir le menu » puis « Fermer le menu » et son état (déplié / replié).
+- [ ] **Accueil** : le sommaire du hero est annoncé comme navigation ; les badges « Bientôt sur le Mac App Store » / « En développement » sont lus avec la carte de l'app.
+- [ ] **Pages d'app** : le bouton « Bientôt sur… » est annoncé comme estompé (indisponible) ; le widget de Last Round est lu comme une image avec son texte alternatif ; les questions de la FAQ s'annoncent comme repliées / dépliées.
+- [ ] **Contact** : chaque champ annonce son libellé, « obligatoire » et son aide ; une erreur est lue quand le champ reçoit le focus ; le message « Votre message est prêt. » est annoncé après l'envoi.
+- [ ] **Légal** : le sommaire mène bien à chaque ancre (#gig-confidentialite…) et le titre ciblé est lu.
+- [ ] **404** : le disque est lu « Un disque rayé, étiquette 404 ».
 
 ## Contribuer : pull requests vers `main`
 
