@@ -413,7 +413,9 @@ Last Round est distribué via l'App Store et soumis au contrat de licence standa
 
 Les textes, visuels, logos et applications présentés sur ce site appartiennent à Classic Punk, sauf mention contraire. Guitar Social Club est une marque de ses propriétaires respectifs. Apple, App Store, Mac et iPhone sont des marques d'Apple Inc.
 
-**Dernière mise à jour :** 1er octobre 2026
+Portrait d'Arnaud : © Guillaume Salort.
+
+**Dernière mise à jour :** 2 octobre 2026
 
 ---
 
@@ -460,4 +462,4 @@ Titres : 60 caractères max. Descriptions : 155 caractères max.
 - Capture Gig, Setlist : « La Setlist de Gig : total des heures du mois par client »
 - Capture Last Round, accueil : « L'écran d'accueil de Last Round avec la jauge du temps de jeu restant pour la semaine »
 - Capture Last Round, widget : « Le widget Last Round sur l'écran d'accueil de l'iPhone »
-- Portrait d'Arnaud : « Arnaud, fondateur de Classic Punk »
+- Portrait d'Arnaud : « Arnaud, fondateur de Classic Punk » — crédit sous la légende : Photo · Guillaume Salort

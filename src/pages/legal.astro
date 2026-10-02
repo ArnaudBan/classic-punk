@@ -105,6 +105,7 @@ const partNumber = (id: string) => num(toc.findIndex((t) => t.id === id) + 1);
           <p>
             <TodoText text={property.text} />
           </p>
+          {property.photoCredit && <p>{property.photoCredit}</p>}
           <p class="doc__updated">
             {property.updatedLabel} <TodoText text={property.updatedAt} />
           </p>
