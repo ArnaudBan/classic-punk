@@ -87,6 +87,8 @@ export const legal = {
     id: 'propriete',
     title: 'Propriété intellectuelle',
     text: "Les textes, visuels, logos et applications présentés sur ce site appartiennent à Classic Punk, sauf mention contraire. Guitar Social Club est une marque de ses propriétaires respectifs. Apple, App Store, Mac et iPhone sont des marques d'Apple Inc.",
+    /** Crédit du portrait (site.ts > about.portraitCredit), affiché seulement s'il existe. */
+    photoCredit: site.about.portraitCredit ? `Portrait d'Arnaud : © ${site.about.portraitCredit.name}.` : null,
     updatedLabel: 'Dernière mise à jour :',
     updatedAt: l.updatedAt,
   },

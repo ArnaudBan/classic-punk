@@ -60,6 +60,7 @@ export const fr = {
       contact: 'Contact',
     },
     portraitCaption: 'Arnaud — ingénieur du son, puis développeur',
+    photoCredit: 'Photo',
     discover: 'Découvrir',
   },
 } as const;

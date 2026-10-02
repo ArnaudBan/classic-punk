@@ -2,6 +2,7 @@
 /** À propos : portrait 4:5 (emplacement hachuré s'il n'est pas fourni) et texte. */
 import { Picture } from 'astro:assets';
 import TextLink from './TextLink.astro';
+import { fr } from '../i18n/fr';
 import { site } from '../config/site';
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 }
 const { lead, paragraphs, band, caption } = Astro.props;
 const portrait = site.about.portrait;
+const credit = portrait ? site.about.portraitCredit : null;
 ---
 
 <div class="about">
@@ -29,7 +31,21 @@ const portrait = site.about.portrait;
     ) : (
       <div class="about__placeholder" aria-hidden="true" />
     )}
-    <figcaption>{caption}</figcaption>
+    <figcaption>
+      {caption}
+      {credit && (
+        <span class="about__credit">
+          <span class="about__credit-label">{fr.home.photoCredit}</span>
+          {credit.url ? (
+            <a href={credit.url} target="_blank" rel="noopener">
+              {credit.name}
+            </a>
+          ) : (
+            <span>{credit.name}</span>
+          )}
+        </span>
+      )}
+    </figcaption>
   </figure>
   <div class="about__text">
     <p class="about__lead">{lead}</p>
@@ -90,6 +106,22 @@ const portrait = site.about.portrait;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--cp-ink-3);
+  }
+  /* Crédit photo façon dos de pochette : filet, puis « Photo » et le nom. */
+  .about__credit {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-3);
+    margin-top: 10px;
+    padding-top: var(--space-2);
+    border-top: var(--border-hair) solid var(--cp-rule);
+  }
+  .about__credit-label {
+    color: var(--cp-ink);
+    font-weight: 600;
+  }
+  .about__credit a {
+    color: inherit;
   }
   .about__text {
     display: flex;

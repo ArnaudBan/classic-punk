@@ -35,6 +35,8 @@ export const site = {
     showBand: true,
     /** Portrait 4:5, noir et blanc (null : emplacement hachuré à la place). */
     portrait: portrait as ImageMetadata | null,
+    /** Crédit photo du portrait, affiché sous la légende et dans la page Légal (url facultative). */
+    portraitCredit: { name: 'Guillaume Salort' } as { name: string; url?: string } | null,
   },
 
   /** Formulaire de contact : pas de service tiers, le formulaire prépare un e-mail (mailto:). */
@@ -63,6 +65,6 @@ export const site = {
     /** Hébergement de la messagerie de contact. */
     mailHost: 'Infomaniak, en Suisse, sur des serveurs sécurisés',
     // À mettre à jour à chaque modification de la page légale.
-    updatedAt: '1er octobre 2026',
+    updatedAt: '2 octobre 2026',
   },
 } as const;
