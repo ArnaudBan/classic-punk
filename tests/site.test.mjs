@@ -62,7 +62,11 @@ for (const [url, html] of pages) {
 
   test(`${url} : aucun lien interne cassé`, () => {
     const pageIds = ids(html);
-    for (const [, href] of html.matchAll(/\s(?:href|src)="([^"]+)"/g)) {
+    const srcsetUrls = [...html.matchAll(/\ssrcset="([^"]+)"/g)].flatMap((m) =>
+      m[1].split(',').map((c) => c.trim().split(/\s+/)[0]),
+    );
+    const urls = [...[...html.matchAll(/\s(?:href|src)="([^"]+)"/g)].map((m) => m[1]), ...srcsetUrls];
+    for (const href of urls) {
       if (/^(https?:|mailto:|data:|\/\/)/.test(href)) continue;
       if (href.startsWith('#')) {
         assert.ok(href === '#' || pageIds.has(href.slice(1)), `ancre absente de ${url} : ${href}`);
