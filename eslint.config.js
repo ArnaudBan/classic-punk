@@ -21,6 +21,11 @@ export default defineConfig(
     languageOptions: { globals: globals.browser },
   },
   {
+    // Le code passé à page.evaluate() s'exécute dans le navigateur.
+    files: ['tests/a11y.test.mjs'],
+    languageOptions: { globals: { ...globals.node, ...globals.browser } },
+  },
+  {
     // TypeScript vérifie déjà les identifiants (types globaux d'Astro comme ImageMetadata).
     files: ['**/*.{ts,astro}'],
     rules: { 'no-undef': 'off' },

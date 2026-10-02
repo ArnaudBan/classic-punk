@@ -30,6 +30,8 @@ jobs:
 
       - run: npm ci
       - run: npm run check
+      - name: Chromium pour Playwright
+        run: npx playwright install --with-deps chromium
       # Build (pretest) puis tests sur dist/ : rien n'est envoyé si un test échoue.
       - run: npm test
 

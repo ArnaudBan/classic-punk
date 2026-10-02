@@ -40,5 +40,9 @@ jobs:
       - name: Types (astro check)
         run: npm run check
 
+      # Navigateur des tests d'accessibilité (tests/a11y.test.mjs)
+      - name: Chromium pour Playwright
+        run: npx playwright install --with-deps chromium
+
       - name: Build et tests
         run: npm test
