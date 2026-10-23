@@ -2,6 +2,7 @@
 /** Carte d'une sortie du label, alimentée par une entrée de la collection `apps`. */
 import type { CollectionEntry } from 'astro:content';
 import StatusBadge from './StatusBadge.astro';
+import StoreButton from './StoreButton.astro';
 import TextLink from './TextLink.astro';
 import { fr } from '../i18n/fr';
 
@@ -27,7 +28,11 @@ const guestColor = app.theme === 'gig' ? 'var(--gig-punk)' : 'var(--lr-primary)'
     <p class="cp-appcard__tagline">{app.tagline}</p>
     <p class="cp-appcard__desc">{app.summary}</p>
     <div class="cp-appcard__foot">
-      <StatusBadge status={app.status} platform={app.platform} />
+      {app.status === 'available' ? (
+        <StoreButton status={app.status} platform={app.platform} storeUrl={app.storeUrl} size="md" />
+      ) : (
+        <StatusBadge status={app.status} platform={app.platform} />
+      )}
       <TextLink href={`/${app.slug}/`}>{`${fr.home.discover} ${app.name}`}</TextLink>
     </div>
   </div>

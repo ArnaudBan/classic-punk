@@ -83,6 +83,29 @@ for (const [url, html] of pages) {
   });
 }
 
+// Cahier des charges §7.6 : une app `available` affiche le badge officiel Apple vers sa storeUrl,
+// sur l'accueil et sur sa page ; une app non publiée n'en affiche aucun.
+const APPS_DIR = new URL('../src/content/apps/', import.meta.url).pathname;
+const apps = readdirSync(APPS_DIR).map((file) => {
+  const front = readFileSync(join(APPS_DIR, file), 'utf8');
+  const field = (name) => front.match(new RegExp(`^${name}:\\s*(.+)$`, 'm'))?.[1]?.trim();
+  return { slug: field('slug'), status: field('status'), storeUrl: field('storeUrl') };
+});
+const badgeLinks = (html) => [...html.matchAll(/<a class="store-badge[^"]*"[^>]*href="([^"]+)"/g)].map((m) => m[1]);
+
+for (const app of apps) {
+  test(`${app.slug} (${app.status}) : badge App Store sur l'accueil et sur sa page`, () => {
+    if (app.status === 'available') {
+      const url = app.storeUrl?.replace(/&/g, '&amp;');
+      for (const page of ['/', `/${app.slug}/`]) {
+        assert.ok(url && badgeLinks(pages.get(page)).includes(url), `badge Apple manquant sur ${page}`);
+      }
+    } else {
+      assert.deepEqual(badgeLinks(pages.get(`/${app.slug}/`)), [], `badge Apple inattendu sur /${app.slug}/`);
+    }
+  });
+}
+
 test('le sitemap exclut la 404', () => {
   const sitemap = readFileSync(join(DIST, 'sitemap-0.xml'), 'utf8');
   assert.ok(!sitemap.includes('404'), 'la 404 ne doit pas être dans le sitemap');

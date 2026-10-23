@@ -5,8 +5,8 @@ catalog: CP-001
 endorsement: un set Classic Punk
 platform: macos
 minOS: macOS 14
-status: coming-soon
-# storeUrl: à renseigner avec status: available
+status: available
+storeUrl: https://apps.apple.com/fr/app/gig-time-tracker/id6820615041?mt=12
 price: 4,99 €
 category: BusinessApplication
 theme: gig

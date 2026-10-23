@@ -12,10 +12,15 @@ interface Props {
   platform: 'macos' | 'ios';
   storeUrl?: string;
   size?: 'md' | 'lg';
+  /** Sur fond sombre : version blanche du badge Apple (si elle est fournie). */
+  onDark?: boolean;
+  /** Ajoute la zone de protection Apple au-dessus du badge (sous un titre surligné, par exemple). */
+  clearTop?: boolean;
 }
-const { status, platform, storeUrl, size = 'lg' } = Astro.props;
+const { status, platform, storeUrl, size = 'lg', onDark = false, clearTop = false } = Astro.props;
 
-// Badges officiels Apple, version française, à déposer dans src/assets/brand/apple/.
+// Badges officiels Apple, version française, non modifiés (toolbox.marketingtools.apple.com),
+// dans src/assets/brand/apple/ ; variante blanche facultative : <nom>-white.svg.
 const BADGES = {
   macos: { file: 'mac-app-store-fr.svg', alt: 'Télécharger dans le Mac App Store' },
   ios: { file: 'app-store-fr.svg', alt: "Télécharger dans l'App Store" },
@@ -25,7 +30,8 @@ const badgeFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/brand
 let badge: { src: string; width: number; height: number; alt: string } | undefined;
 if (status === 'available') {
   const { file, alt } = BADGES[platform];
-  const mod = badgeFiles[`../assets/brand/apple/${file}`];
+  const white = badgeFiles[`../assets/brand/apple/${file.replace('.svg', '-white.svg')}`];
+  const mod = (onDark && white) || badgeFiles[`../assets/brand/apple/${file}`];
   if (!mod || !storeUrl) {
     throw new Error(
       `StoreButton : l'app est « available » mais il manque ${!storeUrl ? 'storeUrl' : `le badge officiel Apple src/assets/brand/apple/${file}`}.`,
@@ -33,11 +39,12 @@ if (status === 'available') {
   }
   badge = { src: mod.default.src, width: mod.default.width, height: mod.default.height, alt };
 }
-const height = size === 'lg' ? 54 : 44;
+// Hauteur d'affichage ; Apple demande au moins 40 px à l'écran.
+const height = size === 'lg' ? 54 : 40;
 ---
 
 {badge ? (
-  <a class="store-badge" href={storeUrl}>
+  <a class:list={['store-badge', clearTop && 'store-badge--clear']} href={storeUrl}>
     <img src={badge.src} alt={badge.alt} height={height} width={Math.round((badge.width * height) / badge.height)} />
   </a>
 ) : (
@@ -50,5 +57,9 @@ const height = size === 'lg' ? 54 : 44;
   .store-badge {
     display: inline-block;
     line-height: 0;
+  }
+  /* Apple impose une zone de protection d'un quart de la hauteur du badge autour de celui-ci. */
+  .store-badge--clear {
+    margin-top: calc(var(--space-3) + 2px);
   }
 </style>
