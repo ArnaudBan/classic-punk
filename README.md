@@ -49,7 +49,7 @@ Ces adresses sont publiques et déclarées chez Apple : **ne jamais changer les 
 | Gig        | `https://classic-punk.fr/legal/#gig-confidentialite`        | `https://classic-punk.fr/contact/?sujet=gig`        |
 | Last Round | `https://classic-punk.fr/legal/#last-round-confidentialite` | `https://classic-punk.fr/contact/?sujet=last-round` |
 
-Pour publier une app : renseigner `storeUrl` et passer `status: available` dans `src/content/apps/<app>.md`, et déposer le badge officiel Apple (SVG fourni par Apple, version française, non modifié) dans `src/assets/brand/apple/` : `mac-app-store-fr.svg` (Gig) ou `app-store-fr.svg` (Last Round). Sans badge, le build échoue volontairement plutôt que d'afficher un badge redessiné.
+Pour publier une app : renseigner `storeUrl` et passer `status: available` dans `src/content/apps/<app>.md`. Le badge officiel Apple (version française, non modifié) doit être dans `src/assets/brand/apple/`, avec sa variante blanche `-white.svg` pour les fonds sombres. Ceux du Mac App Store y sont déjà (Gig, publiée). Pour Last Round, télécharger `app-store-fr.svg` et `app-store-fr-white.svg` sur [toolbox.marketingtools.apple.com](https://toolbox.marketingtools.apple.com/) (`/api/badges/download-on-the-app-store/black/fr-fr` et `/white/fr-fr`). Sans badge, le build échoue volontairement plutôt que d'afficher un badge redessiné. Un test vérifie qu'une app publiée affiche son badge vers sa `storeUrl` sur l'accueil et sur sa page.
 
 ## Test manuel avec VoiceOver
 
@@ -58,8 +58,8 @@ Les tests automatiques couvrent le clavier et les règles WCAG vérifiables par 
 - [ ] **Rotor des titres** (VO + U) : un seul titre de niveau 1 par page, puis les sections dans l'ordre (A1, A2, B1…), sans saut de niveau.
 - [ ] **Repères** : « navigation principale », « contenu principal », « pied de page » ; le lien « Aller au contenu » est annoncé en premier.
 - [ ] **Menu mobile (iPhone)** : le bouton annonce « Ouvrir le menu » puis « Fermer le menu » et son état (déplié / replié).
-- [ ] **Accueil** : le sommaire du hero est annoncé comme navigation ; les badges « Bientôt sur le Mac App Store » / « En développement » sont lus avec la carte de l'app.
-- [ ] **Pages d'app** : le bouton « Bientôt sur… » est annoncé comme estompé (indisponible) ; le widget de Last Round est lu comme une image avec son texte alternatif ; les questions de la FAQ s'annoncent comme repliées / dépliées.
+- [ ] **Accueil** : le sommaire du hero est annoncé comme navigation ; le badge « Télécharger dans le Mac App Store » de Gig et le statut « En développement » de Last Round sont lus avec la carte de l'app.
+- [ ] **Pages d'app** : le badge de Gig est annoncé comme lien « Télécharger dans le Mac App Store » ; le bouton « Bientôt sur l'App Store » de Last Round est annoncé comme estompé (indisponible) ; le widget de Last Round est lu comme une image avec son texte alternatif ; les questions de la FAQ s'annoncent comme repliées / dépliées.
 - [ ] **Contact** : chaque champ annonce son libellé, « obligatoire » et son aide ; une erreur est lue quand le champ reçoit le focus ; le message « Votre message est prêt. » est annoncé après l'envoi.
 - [ ] **Légal** : le sommaire mène bien à chaque ancre (#gig-confidentialite…) et le titre ciblé est lu.
 - [ ] **404** : le disque est lu « Un disque rayé, étiquette 404 ».

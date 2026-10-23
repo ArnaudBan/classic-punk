@@ -70,7 +70,7 @@ const { hero, steps, features, pricing, faq, cta } = gig;
 
   <CtaBlock kicker={cta.kicker} titleStart={cta.titleStart} titleHighlight={cta.titleHighlight}>
     <ActionRow slot="actions">
-      <StoreButton status={app.status} platform={app.platform} storeUrl={app.storeUrl} />
+      <StoreButton status={app.status} platform={app.platform} storeUrl={app.storeUrl} onDark clearTop />
       <TextLink href={cta.link.href}>{cta.link.label}</TextLink>
     </ActionRow>
   </CtaBlock>

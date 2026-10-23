@@ -89,7 +89,7 @@ Classic Punk développe aussi ses propres applications. Petites, indépendantes,
 **Carte Gig**
 
 - Plateforme : Mac
-- Statut : Bientôt sur le Mac App Store
+- Statut : Disponible sur le Mac App Store (badge officiel Apple « Télécharger dans le Mac App Store »)
 - **Gig — le time tracker qui ne te loue rien.**
 - Un client, une tâche, 1-2-3-4! : le chrono tourne dans la barre de menu. À la fin du mois, ta Setlist te donne tes heures par client. Achat unique, pas de compte, pas de cloud.
 - Lien : Découvrir Gig → `/gig/`
@@ -168,7 +168,7 @@ Et je n'ai pas raccroché la guitare : je suis le bassiste de Vigilante (lien : 
 
 ## 2. Page Gig
 
-**Statut d'affichage :** Bientôt sur le Mac App Store (remplacer par le badge officiel Apple à la sortie).
+**Statut d'affichage :** Disponible sur le Mac App Store — https://apps.apple.com/fr/app/gig-time-tracker/id6820615041?mt=12 (badge officiel Apple).
 
 ### 2.1 Hero
 
@@ -179,7 +179,7 @@ Et je n'ai pas raccroché la guitare : je suis le bassiste de Vigilante (lien : 
 **Chapeau :**
 Gig compte tes heures depuis la barre de menu de ton Mac. Tu choisis un client, tu tapes ta tâche, tu cries 1-2-3-4! — et à la fin du mois, ta Setlist te donne tes heures par client, prêtes à facturer.
 
-**Bouton :** Bientôt sur le Mac App Store `[désactivé tant que l'app n'est pas publiée]`
+**Bouton :** badge officiel Apple « Télécharger dans le Mac App Store » (lien vers la fiche App Store)
 **Lien secondaire :** Voir comment ça marche → `#comment`
 
 ### 2.2 Bandeau slogan
@@ -244,7 +244,7 @@ Pas encore : pour l'instant, Gig existe uniquement en français.
 ### 2.8 Appel final
 
 **Titre :** Prêt pour le premier set ?
-**Bouton :** Bientôt sur le Mac App Store
+**Bouton :** badge officiel Apple « Télécharger dans le Mac App Store » (version blanche sur fond noir)
 **Lien :** Confidentialité et conditions de Gig → `/legal/#gig`
 
 ---

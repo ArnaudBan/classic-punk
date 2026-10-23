@@ -134,12 +134,13 @@ describe('navigation au clavier', () => {
   });
 
   test('bouton « Bientôt » : désactivé sans être masqué aux lecteurs d’écran', async () => {
-    const page = await open('/gig/');
+    // Last Round est encore en développement : son bouton App Store est « Bientôt ».
+    const page = await open('/last-round/');
     const button = page.locator('.app-hero .cp-btn').first();
     assert.equal(await button.getAttribute('aria-disabled'), 'true');
     await button.focus();
     await page.keyboard.press('Enter');
-    assert.equal(new URL(page.url()).pathname, '/gig/');
+    assert.equal(new URL(page.url()).pathname, '/last-round/');
     await close(page);
   });
 
